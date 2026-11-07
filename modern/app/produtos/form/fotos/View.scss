@@ -1,0 +1,25 @@
+.produtosfotos-cls {
+    input {
+        text-align: center;
+        font-weight: bold !important;
+    }
+
+    .itemfoto-cls{
+        width: 93vw;
+        height: 55px;
+        font-weight:normal;
+        border-bottom: solid 1px gray;
+        border: solid 1px black !important;
+        border-radius: 2px !important;
+        background-color: #156f99;
+        color: white !important;
+        font-weight: bold !important;
+    }
+
+    .btn-fechar-dialog{
+        background-color: #0385BF !important;
+        height: 40px !important;
+        color: white !important;
+        font-weight: bold !important;
+    }
+}

@@ -1,0 +1,203 @@
+{
+    "name": "SamosAdmin",
+    "namespace": "SamosAdmin",
+    "version": "2.0.2456.0",
+    "framework": "ext",
+    "toolkit": "classic",
+    "theme": "theme-triton",
+    "locale": "pt_BR",
+    "requires": [
+        "font-awesome",
+        "charts",
+        "ux",
+        "samos-login",
+        "samos-module",
+        "samos-utils",
+        "samos-viewport",
+        "samos-widgets",
+        "samos-financeiros"
+    ],
+    "indexHtmlPath": "index.html",
+    "classpath": [
+        "app"
+    ],
+    "overrides": [
+        "${app.dir}/overrides"
+    ],
+    "fashion": {
+        "inliner": {
+            "enable": false
+        }
+    },
+    "sass": {
+        "namespace": "SamosAdmin",
+        "generated": {
+            "var": "sass/save.scss",
+            "src": "sass/save"
+        },
+        "etc": [
+            "sass/etc/all.scss"
+        ],
+        "var": [
+            "sass/var/all.scss",
+            "sass/var"
+        ],
+        "src": [
+            "sass/src"
+        ]
+    },
+    "js": [
+        {
+            "path": "${framework.dir}/build/ext-all-rtl-debug.js"
+        },
+        {
+            "path": "app.js",
+            "bundle": true
+        },
+        {
+            "path": "${workspace.dir}/libraries/jquery.min.js"
+        },
+        {
+            "path": "${workspace.dir}/libraries/webcam.js"
+        },
+        {
+            "path": "${workspace.dir}/libraries/qrcode.js"
+        },
+        {
+            "path": "${workspace.dir}/libraries/moment.js"
+        },
+        {
+            "path": "${workspace.dir}/libraries/moment-timezone.js"
+        },
+        {
+            "path": "${workspace.dir}/libraries/jsaes.js"
+        },
+        {
+            "path": "${workspace.dir}/libraries/socket.io.min.js"
+        }
+    ],
+    "css": [
+        {
+            "path": "${build.out.css.path}",
+            "bundle": true,
+            "exclude": [
+                "fashion"
+            ]
+        },
+        {
+            "path": "resources/startGauge.css"
+        }
+    ],
+    "classic": {
+        "requires": [
+            "locale"
+        ]
+    },
+    "loader": {
+        "cache": false,
+        "cacheParam": "_dc"
+    },
+    "production": {
+        "output": {
+            "base": "${workspace.dir}/SamosAdmin/server/samosadmin/classic",
+            "js": {
+                "version": "ES6"
+            },
+            "appCache": {
+                "enable": true,
+                "path": "cache.appcache"
+            }
+        },
+        "loader": {
+            "cache": "${build.timestamp}"
+        },
+        "cache": {
+            "enable": true
+        },
+        "compressor": {
+            "type": "yui"
+        }
+    },
+    "testing": {
+        "output": {
+            "js": {
+                "version": "ES6"
+            },
+            "appCache": {
+                "enable": true,
+                "path": "cache.appcache"
+            }
+        },
+        "loader": {
+            "cache": "${build.timestamp}"
+        },
+        "cache": {
+            "enable": true
+        }
+    },
+    "development": {
+        "appCache": {
+            "enable": false,
+            "path": " cache.appcache"
+        },
+        "watch": {
+            "delay": 250
+        }
+    },
+    "bootstrap": {
+        "base": "${app.dir}",
+        "microloader": "bootstrap.js",
+        "css": "bootstrap.css"
+    },
+    "output": {
+        "base": "${workspace.build.dir}/${build.environment}/${app.name}",
+        "appCache": {
+            "enable": false
+        },
+        "microloader": {
+            "path": "microloader.js",
+            "embed": false,
+            "enable": true
+        }
+    },
+    "cache": {
+        "enable": false,
+        "deltas": true
+    },
+    "appCache": {
+        "cache": [
+            "index.html"
+        ],
+        "network": [
+            "*"
+        ],
+        "fallback": []
+    },
+    "resources": [
+        {
+            "path": "resources",
+            "output": "shared"
+        }
+    ],
+    "archivePath": "archive",
+    "slicer": {
+        "js": [
+            {
+                "path": "sass/example/custom.js",
+                "isWidgetManifest": true
+            }
+        ],
+        "output": {
+            "appCache": {
+                "enable": false
+            }
+        },
+        "cache": {
+            "enable": false
+        }
+    },
+    "ignore": [
+        "(^|/)CVS(/?$|/.*?$)"
+    ],
+    "id": "565d1213-8226-4a52-a22f-152f137f5925"
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title></title>
+    <style>
+      table {border-collapse: collapse;border-spacing: 0;}
+      td {padding: 0;vertical-align: top;}
+      .contents { 
+          background-color: rgba(193,221,241,0.2);
+          background-image: url("cid:BACKGROUND_URL");
+      }
+      .padded {padding-left: 70px;word-break: break-word;}
+      .footer .padded {font-size: 12px;}
+      .address {width: 200px;}
+      .subscription {width: 500px;}
+      .tableft{padding:5px;text-align:left}
+      .tabcenter{padding:5px;text-align:center}
+      .tabright{padding:5px;text-align:right}
+    </style>
+  </head>
+  <body class="contents">
+    <center>
+      <table>
+        <tr>
+          <td>
+            <div>
+               <img src="cid:LOGO_URL">
+               <br><br><br><br>
+              </div>
+          </td>
+        </tr>
+      </table>
+      <div style="width:70%;">[CABECALHO]</div>
+      [CORPO]
+      <table style="width:70%;line-height:10px;">
+        <tr>
+          <td>
+            <font size="4" color="blue"><p>* N&atilde;o &eacute; necess&aacute;rio responder esse email</p></font>
+          </td>
+        </tr>
+      </table>
+      <div style="line-height:16px;">&nbsp;</div>
+      <table class="footer">
+        <tr>
+          <td class="border">&nbsp;</td>
+       </tr>
+        <tr>
+          <td>
+            <table>
+             <tr>
+                <td class="address">
+                  <table>
+                    <tr>
+                      <td style="padding-left:50px;word-break: break-word;font-size: 12px;">
+                        <div>&copy;<span id="copyright"></span> <a href="http://www.samos.com.br">www.samos.com.br</a></div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+                <td class="subscription">
+                  <table>
+                    <tr>
+                      <td style="padding-left:32px;word-break: break-word;font-size: 12px;">
+                         <div>Est&aacute; recebendo este e-mail porque foi solicitado por voc&ecirc; em nossa empresa</div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </center>
+  </body>
+  <script>
+    document.querySelector('#copyright').innerHTML = new Date().getFullYear();
+  </script>
+</html>

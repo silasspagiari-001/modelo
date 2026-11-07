@@ -1,0 +1,650 @@
+{
+    "apiNode": [
+        "http://localhost:3000"
+    ],
+    "apiDelphi": [
+        "http://localhost:8050"
+    ],
+    "impressoras": {},
+    "redis":false, 
+    "notificacoes": true,	
+    "licenca": {
+        "api": "https://automacao.samosweb.com.br",
+        "notificarUsuarios": [
+            1
+        ],
+        "diasAviso": 5,
+        "regra": "QSsxKGludmVydGlkbyl8QysyKGludmVydGlkbyk"
+    },
+    "clientName": "eleve",
+    "timezone": "America/Sao_Paulo",
+    "tema": "orange",
+    "isDMVC": true,
+    "case": "uppercase",
+    "multiEmpresa": false,
+    "exibicaoPdf": "window",
+    "maquinasCartao": ["Rede","GetNet","Cielo"],
+    "login": {
+        "case": "uppercase",
+        "salvarSenha": true,
+        "ocultarEsqueciSenha": false,
+        "validarExpediente": false,
+        "baterPonto": false,
+        "diasBloquearAcesso": 0,
+        "aparelhosPermitidos": {
+            "phone": true,
+            "tablet": true,
+            "desktop": true
+        }
+    },
+    "dashboard": {
+        "faturamento": {
+            "usuarios": []
+        }
+    },
+   "pessoas": {
+        "ordemBusca": 0,
+        "foto": false,
+        "labelPagina": "CNO",
+        "labelCredito": "% Base INSS",
+        "usarCampoIBGE": true,
+        "labelIBGE": "Inscrição Municipal",
+        "precoEspecifico": false,
+        "propriedades": true,
+        "tipoCusto": "Z",
+        "tipos": [
+            ["A","Clientes", "#0000FF"],
+            ["B","Fornecedores", "#0000FF"],
+            ["C","Contas", "#0000FF"],
+            ["V","Veículos", "#0000FF"]
+        ]
+    },
+    "usuarios": {
+        "foto": false,
+        "tipoVendedor": "2",
+        "tipos": [
+            ["0","Diretores"],
+            ["1","Gerentes"],
+            ["2","Vendedores"],
+            ["3","Supervisores"],
+            ["4","Administrativo"],
+            ["5","Fiscal"]
+        ]
+    },
+    "produtos": {
+        "ordemBusca": 1,
+        "labelPreco": "Preço",
+        "labelPrazo": "À prazo",
+        "labelReservado": "Custo Médio",
+        "labelTransferencia": "Transferência",
+        "labelMarca": "Marca",
+        "labelFabrica": "Fábrica",
+        "labelEmbalagem": "Embalagem",
+        "labelAplicacao": "Aplicação",
+        "labelListaPreco": "Lista Preço",
+        "labelDerivado": "Editável",
+        "descricao": {
+            "label": "PIS/Cofins",
+            "readOnly": false
+        },
+        "statusConsultaPreco": "T",
+        "precoMargemMinimo": false,
+        "local": true,
+        "comissaoVista": false,
+        "comissaoPrazo": false,
+        "hideEmbalagem": false,
+        "sat": false,
+        "lotes": false,
+        "loteObrigatorio": false,
+        "montagemProdutos": false,
+        "exibirSaldoApenasLocalEDeposito": false,
+        "calculoPreco": {
+            "vista": "(custo + (custo * margem * 0.01))",
+            "prazo": "(custo + (custo * margem * 0.01))",
+            "margem": "(vista - custo) / (custo * 0.01)"
+        },
+        "atualizaPreco": [
+            {
+                "field": "SALDOS_COMISSAO",
+                "ativo": false,
+                "title": "% Comissao"
+            },
+            {
+                "field": "SALDOS_MARKUP",
+                "ativo": false,
+                "title": "% Markup"
+            },
+            {
+                "field": "SALDOS_CUSTO",
+                "ativo": true,
+                "title": "R$ Custo",
+                "recalcular": {
+                    "SALDOS_PRECO": true,
+                    "SALDOS_PRECOMINIMO": false
+                }
+            },
+            {
+                "field": "SALDOS_MARGEM",
+                "ativo": true,
+                "title": "% Margem",
+                "recalcular": {
+                    "SALDOS_PRECO": true
+                }
+            },
+            {
+                "field": "SALDOS_PRECO",
+                "ativo": true,
+                "title": "R$ Preco",
+                "recalcular": {
+                    "SALDOS_MARGEM": true,
+                    "SALDOS_PRAZO": false
+                }
+            },
+            {
+                "field": "SALDOS_PRAZO",
+                "ativo": false,
+                "title": "R$ Prazo",
+                "recalcular": {
+                    "SALDOS_PRECO": false
+                }
+            },
+            {
+                "field": "SALDOS_MARGEMMINIMA",
+                "ativo": false,
+                "title": "% MargemMin",
+                "recalcular": {
+                    "SALDOS_PRECOMINIMO": false
+                }
+            },
+            {
+                "field": "SALDOS_PRECOMINIMO",
+                "ativo": false,
+                "title": "R$ PrecoMin",
+                "recalcular": {
+                    "SALDOS_MARGEMMINIMA": false
+                }
+            }
+        ],
+        "grid": {
+            "PRODUTOS_MARCA": false,
+            "PRODUTOS_FABRICA": false,
+            "PRODUTOS_APLICACAO": false,
+            "PRODUTOS_UNIDADE": true,
+            "SALDOS_LOCAL": false,
+            "SALDOS_DISPONIVEL": true,
+            "SALDOS_PRECO": true,
+            "SALDOS_PRAZO": false
+        },
+        "status": [
+            ["","Todos"],
+            ["T","Ativo"],
+            ["P","Produção"],
+            ["R","Revenda"],
+            ["F","Inativo"]
+        ],
+        "derivado": [
+            ["T","Sim"],
+            ["F","Não"]
+        ],
+        "unidades": [
+            ["AMP","Ampola"],
+            ["BG","Bisnaga"],
+            ["BR","Barra"],
+            ["CJ","Conjunto"],
+            ["CP","Comprimido"],
+            ["CX","Caixa"],
+            ["DZ","Dúzia"],
+            ["ENV","Envelope"],
+            ["FA","FA"],
+            ["FL","Folha"],
+            ["FR","Frasco"],
+            ["GL","GL"],
+            ["ICA","ICA"],
+            ["JG","Jogo"],
+            ["KG","KG"],
+            ["KIT","Kit"],
+            ["LAM","LAM"],
+            ["LT","Litro"],
+            ["MT","Metro"],
+            ["M2","Metro Quadrado"],
+            ["PAR","Par"],
+            ["PC","Peça"],
+            ["PCT","Pacote"],
+            ["PTE","Pote"],
+            ["RL","Rolo"],
+            ["TB","TB"],
+            ["UN","Unidade"],
+            ["SC","Sacos"],
+            ["VD","Vidro"]
+        ],
+        "cstlocalPadrao": "000",
+	"origem": [
+            ["0","0 - Nacional (exceto as indicadas nos códigos 3, 4, 5 e 8)"],
+            ["1","1 - Estrangeira - importação direta (exceto a indicada no código 6)"],
+            ["2","2 - Estrangeira - adquirida no mercado interno (exceto a indicada no código 7)"],
+            ["3","3 - Nacional - conteúdo de importação > 40% e = 70%"],
+            ["4","4 - Nacional - produção conforme processos produtivos básicos"],
+            ["5","5 - Nacional - conteúdo de importação = 40%"], 
+            ["6","6 - Estrangeira - importação direta, sem similar nacional (resolução CAMEX e gás natural)"],
+            ["7","7 - Estrangeira - adquirida no mercado interno, sem similar nacional (CAMEX e gás natural)"],
+            ["8","8 - Nacional - conteúdo de importação > 70%"]
+        ],
+        "cstlocal": [
+            ["00","00 - Tributado"],
+            ["10","10 - Substituição"],
+            ["20","20 - Redução Base"],
+            ["30","30 - Isenta Substituição"],
+            ["40","40 - Isenta"],
+            ["41","41 - Não Tributada"],
+            ["50","50 - Suspensão"],
+            ["51","51 - Diferido"],
+            ["60","60 - Antecipado"],
+            ["70","70 - Substituição Reduzida"],
+            ["90","90 - Outros"],
+            ["101","101 - Tributado"],
+            ["102","102 - Tributado"],
+            ["201","201 - Tributado Simples"],
+            ["240","240 - Isenta"],
+            ["400","400 - Não Sujeito a Recolhimento"],
+            ["500","500 - Antecipado"],
+            ["560","560 - Antecipado"],
+            ["900","900 - Outros"]
+        ],
+        "cstoutrosPadrao": "000",
+        "cstoutros": [
+            ["00","00 - Tributado"],
+            ["10","10 - Substituição"],
+            ["20","20 - Redução Base"],
+            ["30","30 - Isenta Substituição"],
+            ["40","40 - Isenta"],
+            ["41","41 - Não Tributada"],
+            ["50","50 - Suspensão"],
+            ["51","51 - Diferido"],
+            ["60","60 - Antecipado"],
+            ["70","70 - Substituição Reduzida"],
+            ["90","90 - Outros"],
+            ["101","101 - Tributado"],
+            ["102","102 - Tributado"],
+            ["201","201 - Tributado Simples"],
+            ["240","240 - Isenta"],
+            ["400","400 - Não Sujeito a Recolhimento"],
+            ["500","500 - Antecipado"],
+            ["560","560 - Antecipado"],
+            ["900","900 - Outros"]
+        ],
+        "cstsubstPadrao": "000",
+        "cstsubst": [
+            ["000","000 - Sem ST"],
+            ["010","010 - Com ST"]
+        ],
+        "percentuaisIcms": {
+            "simplesLocal": 0,
+            "simplesRegiao1": 0,
+            "simplesRegiao2": 0,
+            "normalLocal": 18,
+            "normalRegiao1": 7,
+            "normalRegiao2": 12
+        },
+        "coresSaldos": {
+            "zerado": "color: red;",
+            "baixo": "color: yellow;",
+            "normal": "color: green;"
+        },
+        "conveniolocal": [],
+        "convenio12": [],
+        "conveniooutros": [],
+        "marcaproduto": false,
+        "marcacombo": false,
+        "marcas": []
+    },
+    "movimentos": {
+        "ordemBusca": 6,
+        "carregaVendedor": true,
+        "editaVendedor": true,
+        "filtraVendedor": false,
+        "carregaPessoaTransporte": false,
+        "editaNumeroRequisicao": false,
+        "tipoPreco": "prazo",
+        "calculoImposto": "nodejs",
+        "calculaPesoNfe": true,
+        "exibirPesoMovimento": false,
+        "envioAutomaticoXML": true,
+        "exibirDiasVctoRodape": false,
+        "exibirPedidoCompraNfe": false,
+        "exibirRequisicaoNfe": false,
+        "rateiaFreteNfe": false,
+        "rateiaDescontoRequisicaoEntrada": false,
+        "rateiaDescontoNotaEntrada": false,
+        "alteraLiquido": true,
+        "descontoNfe": false,
+        "descontoMaximo": 10,
+        "descontoMaximoSupervisor":30,
+        "descontoMaximoGerente": 60,
+        "qtdePaginasImpressao": 1,
+        "entrega": {
+            "loja": false,
+            "deposito": false,
+            "imediata": false,
+            "empresa": false,
+            "data": false,
+            "hora": false,
+            "situacao": 1,
+            "entregar": false
+        },
+        "autoGerarRomaneio": false,
+        "ramoRomaneio": "construcao",
+        "limiteDiasPedidoRomaneio": 99999,
+        "impressaoRomaneio": [
+            "Imprimir"
+        ],
+        "sistemaDeAprovacao": false,
+        "casasDecimaisPreco": 2,
+        "pedidoCompraObrigatorio": false,
+        "nomeSeguradora": "PORTO SEGURO",
+        "cnpjSeguradora": "02149205000169",
+        "numeroApolice": "99999",
+        "numeroAverbacao": "1020304050",
+        "gridProdutos": {
+            "MOVIMENTOSITENS_ID_PRODUTOS": true,
+            "PRODUTOS_NOME": true,
+            "PRODUTOS_MARCA": false,
+            "PRODUTOS_FABRICA": false,
+            "PRODUTOS_APLICACAO": false,
+            "SALDOS_LOCAL": false,
+            "SALDOS_DISPONIVEL": false,
+            "MOVIMENTOSITENS_QUANTIDADE": true,
+            "MOVIMENTOSITENS_PRECO": true,
+            "MOVIMENTOSITENS_PERCENTUAL": true,
+            "MOVIMENTOSITENS_DESCONTOS": true,
+            "MOVIMENTOSITENS_TOTAL": true,
+            "MOVIMENTOSITENS_LIQUIDO": true,
+            "MOVIMENTOSITENS_TOTALLIQUIDO": true,
+            "MOVIMENTOSITENS_MARGEM": false
+        },
+        "promocao": {
+            "PROMOCOES_EMPRESAS": "",
+            "PROMOCOES_CUSTOTECNICO": 0,
+            "PROMOCOES_DESCONTO": 0,
+            "PROMOCOES_INDICE": 0,
+            "PROMOCOES_PARCELAS": 0
+        },
+        "exportarGravado": true,
+        "alterarAposExportar": true,
+        "exportacao": {
+            "ORC": ["PED"],
+            "PED": ["NFE"],
+            "REQ": ["NFE"],
+            "DEV": [],
+            "NFE": [],
+            "CFE": [],
+            "TRS": [],
+            "CPA": ["REQ"]
+        },
+        "partida": {
+            "coeficiente": ""
+        },
+        "prazosOrcamento": true,
+        "avisarSaldoInsuficiente": false,
+        "senhaImpressao": false,
+        "senhaDescontoPrivilegiado": true,
+        "usuariosNotificarEncomenda": [],
+        "carregaMontador": false,
+        "carregaEntregador": false,
+        "usarMarkup": false,
+        "pedidoLP": false,
+        "transporteEspecie": "CAIXAS",
+        "transporteMarca": "",
+        "lancarLoteNoPedido": false,
+        "lancarLoteNaRequisicao": false,
+        "cnaeServicosPadrao": "4399104",
+        "aliquotaINSS": 11,
+        "aliquotaISS": 5,
+        "retemISS": true,
+        "cnaeServicos": [
+            ["7732201", "7732201 - Aluguel de máquinas e equipamentos para construção sem operador, exceto andaimes"],
+            ["5229099", "5229099 - Outras atividades auxiliares dos transportes terrestres não especificadas anteriormente"],
+            ["5212500", "5212500 - Carga e descarga"],
+            ["4930201", "4930201 - Transporte rodoviário de carga, exceto produtos perigosos e mudanças, municipal"],
+            ["4923002", "4923002 - Serviço de transporte de passageiros locação de automóveis com motorista"],
+            ["4399104", "4399104 - Serviços de operação e fornecimento de equipamentos para transporte e elevação de cargas e pessoas para uso em obras"],
+            ["4313400", "4313400 - Obras de terraplenagem"]
+        ],      
+        "tabelaServicosPadrao": "07.02",
+        "tabelaServicos": [
+            ["07.02", "07.02 - Execução, por administração, empreitada ou subempreitada, de obras de construção civil, hidráulica etc","5.0"],
+            ["11.04", "11.04 - Armazenamento, depósito, carga, descarga, arrumação e guarda de bens de qualquer espécie","2.0"],
+            ["14.14", "14.14 - Guincho intra-municipal, guindaste e içamento","2.0"],
+            ["16.01", "16.01 - Serviços de transporte coletivo municipal rodoviário, metroviário, ferroviário e aquaviário de passageiros","3.5"]
+        ]
+    },
+    "financeiros": {
+        "ordemBusca": 0,
+        "dataInicial": "",
+        "dataFinal": "31/12/2026",
+        "exibirDuplicataNoCaixa": false,
+        "transferirSaldoCaixa": false,
+        "gerarCaixaNoRetorno": false,
+        "tipoFinanceira": "",
+        "multiEmpresa": false,
+        "labelAlimentacao": "Vale Alimentação",
+        "labelOutro":"Outro",
+        "caixaLancaIndividual": true,
+        "boletos": {
+            "ordemBusca": 0,
+            "permitirImpressaoVariosClientes": true
+        },
+        "centrocusto": false,
+        "editaNumeroAgrupamento": false
+    },
+    "emissao": {
+        "etiquetaProdutos": {
+	    "tipos": ["PRODUTOS"]
+        },
+        "etiquetaPessoas": {
+	    "tipos": ["PESSOAS"]
+        }
+    },
+    "senhaNivel": {
+        "1": {
+            "nome": "Supervisor",
+            "regra": "QSszKGludmVydGlkbyl8QyhpbnZlcnRpZG8p"
+        },
+        "2": {
+            "nome": "Gerente",
+            "regra": "QShpbnZlcnRpZG8pfEMrMg"
+        },
+        "3": {
+            "nome": "Diretor",
+            "regra": "QisxfEMoaW52ZXJ0aWRvKQ"
+        }
+    },
+    "caminhoUpload": "",
+    "ordens": {
+        "bxPortadorId": "7",
+        "bxPortadorNome": "BANCO SICOOB",
+        "status": [
+            ["N","Aberta"],
+            ["E","Finalizada"],
+            ["C","Cancelada"],
+            ["F","Faturada"],
+            ["T","Todas"]
+        ]
+    },
+    "menuRelatorios": [
+        {
+            "text": "Estoque",
+            "module": "winrelatoriosestoque",
+            "isWindow": true,
+            "children": [
+                {
+                    "text": "Inventário de Produtos",
+                    "module": "relatoriosinventario",
+                    "usuarios": [1, 2, 3],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Lista de Preços",
+                    "module": "relatoriosprecos",
+                    "usuarios": [1, 2, 3],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Saldo de Produtos",
+                    "module": "relatoriossaldos",
+                    "usuarios": [1, 2, 3],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Produtos Movimentados",
+                    "module": "relatoriosmovimentoprodutos",
+                    "usuarios": [1, 2, 3],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Contagem de Estoque",
+                    "module": "relatorioscontagemestoque",
+                    "usuarios": [1, 2, 3],
+                    "isWindow": true,
+                    "read": "T"
+                }
+            ]
+        },
+        {
+            "text": "Compras",
+            "module": "winrelatorioscompras",
+            "isWindow": true,
+            "children": [
+                {
+                    "text": "Compras Sintética",
+                    "module": "relatorioscompras",
+                    "isWindow": true,
+                    "usuarios": [],
+                    "read": "T"
+                },
+                {
+                    "text": "Compras Analítica",
+                    "module": "relatorioscomprasanalitica",
+                    "usuarios": [1, 2, 3],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Compras Produto Sintética",
+                    "module": "relatorioscomprasproduto",
+                    "usuarios": [1, 2, 3],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Compras Fornecedor Sintética",
+                    "module": "relatorioscompras",
+                    "isWindow": true,
+                    "usuarios": [],
+                    "read": "T"
+                },
+                {
+                    "text": "Compras Fornecedor Analítica",
+                    "module": "relatorioscompras",
+                    "isWindow": true,
+                    "usuarios": [],
+                    "read": "T"
+                },
+                {
+                    "text": "Compras no Período",
+                    "module": "relatorioscompras",
+                    "isWindow": true,
+                    "usuarios": [],
+                    "read": "T"
+                },
+                {
+                    "text": "Compras Mês a Mês",
+                    "module": "relatorioscompras",
+                    "isWindow": true,
+                    "usuarios": [],
+                    "read": "T"
+                },
+                {
+                    "text": "Compras no Período Última Compra",
+                    "module": "relatorioscompras",
+                    "isWindow": true,
+                    "usuarios": [],
+                    "read": "T"
+                },
+                {
+                    "text": "Sugestão de Compras",
+                    "module": "relatoriossugestaocompras",
+                    "isWindow": true,
+                    "usuarios": [],
+                    "read": "T"
+                }
+            ]
+        },
+        {
+            "text": "Faturamento",
+            "module": "winrelatoriosfaturamento",
+            "isWindow": true,
+            "children": [
+                {
+                    "text": "Vendas de serviços mês",
+                    "module": "relatoriosvendasservicosmes",
+                    "usuarios": [1, 2, 3],
+                    "isWindow": true,
+                    "read": "T"
+                }
+            ]
+        },
+        {
+            "text": "Financeiro",
+            "module": "winrelatoriosfinanceiro",
+            "isWindow": true,
+            "children": [
+                {
+                    "text": "Títulos a Receber/Pagar",
+                    "module": "relatoriosfinanceiro",
+                    "usuarios": [1, 2, 3],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Baixas a Receber/Pagar",
+                    "module": "relatoriosbaixas",
+                    "usuarios": [1, 2, 3],
+                    "isWindow": true,
+                    "read": "T" 
+                },
+                {
+                    "text": "Fluxo de Caixa Sintético",
+                    "module": "relatorioscaixasintetico",
+                    "usuarios": [1, 2, 3],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Conta Correntes",
+                    "module": "relatorioscontascorrentes",
+                    "usuarios": [1, 2, 3],
+                    "isWindow": true,
+                    "read": "T"
+                }
+            ]
+        },
+        {
+            "text": "Fiscal",
+            "module": "winrelatoriosfiscal",
+            "isWindow": true,
+            "children": [
+                {
+                    "text": "Registros Fiscais",
+                    "module": "relatoriosfiscais",
+                    "usuarios": [1, 2, 3],
+                    "isWindow": true,
+                    "read": "T"
+                }
+            ]
+        }
+    ]
+}

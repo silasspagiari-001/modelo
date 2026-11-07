@@ -1,0 +1,54 @@
+/* 1. Criar a exceção personalizada no Firebird */
+CREATE EXCEPTION EXC_CST590_DETECTADO 'CST 590 DETECTADO NA GRAVACAO DO ITEM!';
+COMMIT;
+
+/* 2. Criar a Trigger usando a nova exceção */
+SET TERM ^ ;
+CREATE TRIGGER TRG_CHCK_CST590 FOR MOVIMENTOSITENS
+ACTIVE BEFORE INSERT OR UPDATE POSITION 0
+AS
+BEGIN
+  IF (CAST(NEW.MOVIMENTOSITENS_CST AS VARCHAR(10)) = '590') THEN
+  BEGIN
+    EXCEPTION EXC_CST590_DETECTADO;
+  END
+END^
+SET TERM ; ^
+COMMIT;
+
+
+VEM ERRADO DO PEDIDO
+
+
+nota     pedido   id       produto 
+527096 - 751675 - 376824 - 14770
+527097 - 751676 - 376827 - 296732
+527114 - 751698 - 376872 - 288780
+527166 - 751729 - 376950 - 79438
+527168 - 751756 - 377018 - 275069
+527202 - 751791 - 377099 - 30993
+
+
+3571 repeticao
+
+ O que Paulo quis dizer com ‘continuar a suportar uns aos outros’? Ele estava nos incentivando a ser pacientes e bondosos com nossos irmãos mesmo quando eles nos irritam ou ofendem. 
+ Nesse mesmo texto, Paulo destacou o exemplo de amor e perdão de Jeová. Jeová é razoável e não espera que seus servos sejam perfeitos. 
+ Ele sabe das nossas limitações, mas se concentra nas nossas qualidades. Por causa disso, ele continua nos tratando com bondade imerecida e misericórdia.
+ Se fizermos nosso melhor para ver os irmãos como Jeová os vê, vai ser mais fácil suportar com paciência os erros deles, assim como eles suportam com paciência os nossos. 
+ Pense no seguinte: quando uma planta está sem flor, nós nos sentimos motivados a cuidar dela porque nos lembramos de como ela é bonita quando está florida. 
+ Do mesmo modo, quando nossos irmãos nos decepcionarem, nós vamos nos sentir motivados a perdoá-los e tratá-los com bondade se nos lembrarmos das qualidades deles.
+ 
+ 
+RECEBER  
+remessa 	protocolo
+00570/26	7589 
+				 
+REMESSA
+numerore 	protocolo
+00570/26	7589
+
+PROTOCOLO
+remessa		codigo
+00570/26	7589
+
+				 

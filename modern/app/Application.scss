@@ -1,0 +1,351 @@
+$enable-font-awesome: dynamic(true);
+
+$base-color:   #EEEDED;
+$base-highlight-color: mix(black, $base-color, 50%);
+$base-dark-color: mix(black, $base-color, 50%);
+
+/*Blocos de temas*/
+/*Tema 1 - basic*/
+/*---------------------------------------------------*/
+$primary-color-basic:   #E23015;
+$secondary-color-basic: #535353;
+$tertiary-color-basic:  #cbcbcb;
+$lighter-color-basic:   #ededed;
+$darker-color-basic:    #3a3a3a;
+/*---------------------------------------------------*/
+
+/*Tema 2 - green*/
+/*---------------------------------------------------*/
+$primary-color-green:   #337837;
+$secondary-color-green: #535353;
+$tertiary-color-green:  #cbcbcb;
+$lighter-color-green:   #ededed;
+$darker-color-green:    #3a3a3a;
+/*---------------------------------------------------*/
+
+/*Tema 3 - blue*/
+/*---------------------------------------------------*/
+$primary-color-blue:   #0385BF;
+$secondary-color-blue: #535353;
+$tertiary-color-blue:  #cbcbcb;
+$lighter-color-blue:   #ededed;
+$darker-color-blue:    #3a3a3a;
+/*---------------------------------------------------*/
+
+/*Tema 4 - gray*/
+/*---------------------------------------------------*/
+$primary-color-gray:   #535353;
+$secondary-color-gray: #535353;
+$tertiary-color-gray:  #cbcbcb;
+$lighter-color-gray:   #ededed;
+$darker-color-gray:    #3a3a3a;
+/*---------------------------------------------------*/
+
+/*Tema 5 - orange*/
+/*---------------------------------------------------*/
+$primary-color-orange:   #ff711b;
+$secondary-color-orange: #535353;
+$tertiary-color-orange:  #cbcbcb;
+$lighter-color-orange:   #ededed;
+$darker-color-orange:    #3a3a3a;
+/*---------------------------------------------------*/
+
+//controle de backgroungd-color por tema, botoes, views, etc
+.back-color-basic {
+    background-color: $primary-color-basic;
+}
+
+.back-color-blue {
+    background-color: $primary-color-blue;
+}
+
+.back-color-green {
+    background-color: $primary-color-green;
+}
+
+.back-color-gray {
+    background-color: $primary-color-gray;
+}
+
+.back-color-orange {
+    background-color: $primary-color-orange;
+}
+
+//tirando underline azul dos textfields
+.x-textfield.x-focused .x-underline-el:before {
+	background-color: transparent !important;
+}
+
+//botões com textos Case Sensitive
+.x-button .x-text-el {
+    min-height: 16px;
+ 	text-transform: none !important;
+}
+
+/*labels dos textfields*/
+.x-big .x-field > .x-label-el {
+    padding: 0px !important;
+    font-size: 10px;
+    color: black !important;
+    line-height: 10px;
+}
+
+/*configs das lists*/
+.x-dataview.listpesquisa {
+    width: 100vw !important;
+
+    .x-listitem-inner-el {
+        padding: 5px !important;
+        line-height: 21px;
+        font-size:12px
+    }
+}
+
+.x-list.listmenu .x-inner-el {
+    padding: 5px 5px !important;
+}
+
+.x-big .x-listitem {
+    font-size: 16px;
+    line-height: 3px;
+	font-weight: bold;
+	background-color: transparent;
+}
+
+.list-basic {
+    .x-show-selection > .x-listitem.x-selected {
+        background-color: mix(white, $primary-color-basic, 50%);
+        color: #111;
+    }
+}
+
+.list-blue {
+    .x-show-selection > .x-listitem.x-selected {
+        background-color: mix(white, $primary-color-blue, 50%);
+        color: #111;
+    }
+}
+
+.list-green {
+    .x-show-selection > .x-listitem.x-selected {
+        background-color: mix(white, $primary-color-green, 50%);
+        color: #111;
+    }
+}
+
+.list-gray {
+    .x-show-selection > .x-listitem.x-selected {
+        background-color: mix(white, $primary-color-gray, 50%);
+        color: #111;
+    }
+}
+
+.list-orange {
+    .x-show-selection > .x-listitem.x-selected {
+        background-color: mix(white, $primary-color-orange, 50%);
+        color: #111;
+    }
+}
+
+/*cor do toggle field*/
+.toggle-basic {
+    .x-slider .x-fill-el {
+        background-color: mix(white, $primary-color-basic, 50%);
+    }
+    .x-thumb {
+        background-color: $primary-color-basic;
+    }
+}
+
+.toggle-blue {
+    .x-slider .x-fill-el {
+        background-color: mix(white, $primary-color-blue, 50%);
+    }
+    .x-thumb {
+        background-color: $primary-color-blue;
+    }
+}
+
+.toggle-green {
+    .x-slider .x-fill-el {
+        background-color: mix(white, $primary-color-green, 50%);
+    }
+    .x-thumb {
+        background-color: $primary-color-green;
+    }
+}
+
+.toggle-orange {
+    .x-slider .x-fill-el {
+        background-color: mix(white, $primary-color-orange, 50%);
+    }
+    .x-thumb {
+        background-color: $primary-color-orange;
+    }
+}
+
+.toggle-gray {
+    .x-slider .x-fill-el {
+        background-color: mix(white, $primary-color-gray, 50%);
+    }
+    .x-thumb {
+        background-color: $primary-color-gray;
+    }
+}
+
+
+//tamanho e fonte dos textos nos forms
+.x-panel.formcls {
+    .x-input-el {
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
+.x-big .x-textfield .x-input-el {
+    padding: 0px !important;
+}
+.x-textfield .x-input-el {
+    background-color: transparent/* !important*/;
+}
+/*para aparecer o botão no seletor de data*/
+.x-button {
+    color: black
+}
+
+/*oculta o texto Load More quando a list está vazia*/
+.x-big .x-listpaging .x-message {
+    font-size: 0px;
+}
+
+//botões de mensagem
+.button-msg-danger {
+    color: white;
+    background-color: #FF2819;
+    border-color: #FF2819;
+}
+
+.button-primary-msg-basic {
+    color: white;
+    background-color: $primary-color-basic;
+    border-color: $primary-color-basic;
+    margin-right: 5px !important;
+}
+
+.button-primary-msg-green {
+    color: white;
+    background-color: $primary-color-green;
+    border-color: $primary-color-green;
+    margin-right: 5px !important;
+}
+
+.button-primary-msg-blue {
+    color: white;
+    background-color: $primary-color-blue;
+    border-color: $primary-color-blue;
+    margin-right: 5px !important;
+}
+
+.button-primary-msg-gray {
+    color: white;
+    background-color: $primary-color-gray;
+    border-color: $primary-color-gray;
+    margin-right: 5px !important;
+}
+
+.button-primary-msg-orange {
+    color: white;
+    background-color: $primary-color-orange;
+    border-color: $primary-color-orange;
+    margin-right: 5px !important;
+}
+
+.button-secondary-msg-basic {
+    color: white;
+    background-color: $secondary-color-basic;
+    border-color: $secondary-color-basic;
+    margin-right: 5px !important;
+}
+
+.button-secondary-msg-green {
+    color: white;
+    background-color: $secondary-color-green;
+    border-color: $secondary-color-green;
+    margin-right: 5px !important;
+}
+
+.button-secondary-msg-blue {
+    color: white;
+    background-color: $secondary-color-blue;
+    border-color: $secondary-color-blue;
+    margin-right: 5px !important;
+}
+
+.button-secondary-msg-gray {
+    color: white;
+    background-color: $secondary-color-gray;
+    border-color: $secondary-color-gray;
+    margin-right: 5px !important;
+}
+
+.button-secondary-msg-orange {
+    color: white;
+    background-color: $secondary-color-orange;
+    border-color: $secondary-color-orange;
+    margin-right: 5px !important;
+}
+
+.button-tertiary-msg-basic {
+    color: white;
+    background-color: $tertiary-color-basic;
+    border-color: $tertiary-color-basic;
+    margin-right: 5px !important;
+}
+
+.button-tertiary-msg-green {
+    color: white;
+    background-color: $tertiary-color-green;
+    border-color: $tertiary-color-green;
+    margin-right: 5px !important;
+}
+
+.button-tertiary-msg-blue {
+    color: white;
+    background-color: $tertiary-color-blue;
+    border-color: $tertiary-color-blue;
+    margin-right: 5px !important;
+}
+
+.button-tertiary-msg-gray {
+    color: white;
+    background-color: $tertiary-color-gray;
+    border-color: $tertiary-color-gray;
+    margin-right: 5px !important;
+}
+
+.button-tertiary-msg-orange {
+    color: white;
+    background-color: $tertiary-color-orange;
+    border-color: $tertiary-color-orange;
+    margin-right: 5px !important;
+}
+
+//textfield styles
+.input-text-align-right input {
+    text-align: right !important;
+}
+
+.input-text-align-center input {
+    text-align: center !important;
+}
+
+.input-color-green input {
+    color: green !important;
+}
+
+.input-color-red input {
+    color: red !important;
+}
+
+.input-color-blue input {
+    color: blue !important;
+}

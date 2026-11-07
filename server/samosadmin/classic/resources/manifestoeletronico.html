@@ -1,0 +1,108 @@
+ <!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title></title>
+    <style>
+      table {border-collapse: collapse;border-spacing: 0;}
+      td {padding: 0;vertical-align: top;}
+      .contents { background-color: rgba(193,221,241,0.2);background-image: url("cid:logofundo");}
+      .padded {padding-left: 70px;word-break: break-word;}
+      .footer .padded {font-size: 12px;}
+      .address {width: 200px;}
+      .subscription {width: 500px;}
+      .tableft{padding:5px;text-align:left}
+      .tabcenter{padding:5px;text-align:center}
+      .tabright{padding:5px;text-align:right}
+    </style>
+  </head>
+  <body class="contents">
+    <center>
+      <table>
+        <tr>
+          <td>
+            <div>
+               <img src="cid:logotipo"><br><br>
+              </div>
+          </td>
+        </tr>
+      </table>
+      <table style="width:70%">
+        <tr>
+          <td width=10%><font size="3" color="back"><p>Emitente:</p></font></td>
+          <td width=60%><font size="3" color="red"><p>[EMPRESAS_EMITENTE]</p></font></td>
+          <td width=30%></td>
+        </tr>
+        <tr>
+          <td width=10%><font size="3" color="back"><p>Endere&ccedil;o:</p></font></td>
+          <td width=60%><font size="3" color="red"><p>[EMPRESAS_LOCALIZACAO]</p></font></td>
+          <td width=30%></td>
+        </tr>
+      </table>
+      <br>
+      <table style="width:70%">
+        <tr>
+          <td>
+            <font size="4" color="red"><p>Segue em anexo o XML e o PDF de seu [DOCUMENTO]</p></font>
+            <!-- Cabeçalho-->
+            <table border="1" style="width:100%;background-color: #c1ddf1;">
+              <tr>
+                <td class="tabcenter" width=50%><b>Destinat&aacute;rio</b></td>
+                <td class="tabcenter" width=20%><b>Cpf/Cnpj</b></td>
+                <td class="tabcenter" width=15%><b>Emiss&atilde;o </b></td>
+                <td class="tabcenter" width=15%><b>Valor   </b></td>
+              </tr>
+              <tr>
+                <td class="tableft"   width=50%><b>[DESTINO]</b></td>
+                <td class="tabcenter" width=20%><b>[CNPJ]</b></td>
+                <td class="tabcenter" width=15%><b>[EMISSAO]</b></td>
+                <td class="tabright"  width=15%><b>[VALOR]</b></td>
+              </tr>
+            </table>
+            <table style="width:100%;line-height:10px;">
+              <tr>
+                <td>
+                  <font size="4" color="blue"><p>* N&atilde;o &eacute; necess&aacute;rio responder esse email</p></font>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <div style="line-height:16px;">&nbsp;</div>
+      <table class="footer">
+        <tr>
+          <td class="border">&nbsp;</td>
+       </tr>
+        <tr>
+          <td>
+            <table>
+             <tr>
+                <td class="address">
+                  <table>
+                    <tr>
+                      <td style="padding-left:50px;word-break: break-word;font-size: 12px;">
+                        <div>&copy;<span id="copyright"></span> <a href="http://www.samos.com.br">www.samos.com.br</a></div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+                <td class="subscription">
+                  <table>
+                    <tr>
+                      <td style="padding-left:32px;word-break: break-word;font-size: 12px;">
+                         <div>Est&aacute; recebendo este e-mail porque foi solicitado por voc&ecirc; em nossa empresa</div>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </center>
+  </body>
+  <script>
+    document.querySelector('#copyright').innerHTML = new Date().getFullYear();
+  </script>
+</html>

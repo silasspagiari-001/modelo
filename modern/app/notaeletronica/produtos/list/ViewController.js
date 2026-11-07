@@ -1,0 +1,27 @@
+Ext.define('SamosAdminModern.notaeletronica.produtos.list.ViewController', {
+    extend: 'Ext.app.ViewController',
+    alias: 'controller.notaeletronicaprodutos',
+
+    onItemClick: async function (dataview, index, target, record, e) {
+        this.getViewModel().set({
+            'produto' : record,
+            'initialValues': Object.assign({}, record.data),
+            'hideForm': false
+        });
+    },
+
+    onVoltarClick: function() {
+        const main = this.getView().up('main');
+        
+        main.down('panel').setActiveItem('notaeletronicaform');
+        main.down('container[reference="title"]').setHtml('Nota Eletrônica');
+
+        main.getViewModel().set({
+            hideVoltar : false,
+            hideExcluir: true,
+            hideAlterar: true,
+            hideGravar : true,
+            hideNovo   : true
+        });
+    }
+});

@@ -1,0 +1,501 @@
+'use strict';
+
+const path      = require('path');
+const appRoot   = path.dirname(require.main.filename);
+const fs        = require('fs');
+const utils     = require('../../../services/samosUtils');
+const api       = require('../..');
+const pdfStream = require('../../../services/pdfStream');
+const moment    = require('moment-timezone');
+
+moment.locale('pt_BR');
+
+const samosFB = require('../../../services/samosFirebird');
+
+module.exports = {
+    read: async params => { 
+		return new Promise(async (resolve, reject) => {
+			const db = await samosFB.conectarBanco(params.client); 
+            const dados = await obterDados(db, params);
+
+            const intervaloVendedor = params.idUsuario == 0 ? ` Vendedor: TODOS ` :                                      
+                                      ` Vendedor: ${params.idUsuario} `
+
+            const intervaloGrupo = params.idGrupo == 0 ? ` Grupo: TODOS ` :                                      
+                                   ` Grupo: ${params.idGrupo} `
+            
+            const somentePRP = params.prp == 1 ? ` - Somente PRP` : ``;
+
+            const docRelatorio = params.documento == '1' ? 'ORÇAMENTOS' :
+                                 params.documento == '2' ? 'PEDIDOS' :
+                                 params.documento == '3' ? 'NOTAS' :
+                                 params.documento == '4' ? 'REQUISIÇÕES' : '';
+
+            const statusRelatorio = params.status == '0' ? ' - Status: Todos' :
+                                    params.status == '1' ? ' - Status: Faturados' :
+                                    params.status == '2' ? ' - Status: Não faturados' : '' ;
+
+            const docDefinition = {
+                pageOrientation: 'landscape',
+                pageSize: 'A4',
+                pageMargins: [15, 40, 15, 35],  // E S D I 
+                content: [
+                    {columns: [{},{},{},{},{},{},{},{},{},{}]},
+                    {
+                        style: 'tableExample',
+                        table: {
+                            widths:  [40, '*', 150, 50, 50, 50, 50, 35, 28, 28],
+                            headerRows: 3,
+                            body: []
+                        },
+                        layout: {
+                            fillColor: function (i) {
+                                return (i % 2 === 0) ? '#F0F0F0' : null;
+                            }
+                        }
+                    }
+                ],
+                footer: function(page, pages) {
+                    return { 
+                        stack: [ 
+                            '_'.repeat(150),
+                            { text: 'Página: ' + page.toString() + ' de ' + pages.toString(), italics: true, fontSize: 7, alignment: 'right'}
+                        ],
+                        margin: [15, 10]  // 10, 10
+                    };
+                },
+                styles: {
+                    tableExample: {
+                        fontSize: 8,
+                        margin: [0, 0, 0, 0],
+                        border: 0
+                    },
+                    tableHeader: {
+                        bold: true,
+                        fontSize: 8,
+                        color: 'black'
+                    }
+                }
+            };
+
+            let rows = docDefinition.content[1].table.body;
+
+            let pathLogo;
+
+            try {
+                pathLogo = utils.client.getImagePath(`logos/headers/${params.empresacnpj}.png`, params);
+            } catch(error) {
+                pathLogo = `${appRoot}/resources/images/headers/default.png`;
+            }
+
+            const cents = utils.number.cents.bind(utils.number);					
+
+            rows.push(		
+                [
+                    {							
+                        image: pathLogo,
+                        width: 80,
+                        colSpan: 2,
+                        fontSize: 15,
+                        alignment: 'left',
+                        border: [false, false, false, false]
+                    },{},
+                    { 
+                        text: `Relação de Vendas por Pessoa Sintética - ${docRelatorio}`,
+                        colSpan: 4,
+                        bold: true,
+                        fontSize: 13,
+                        border: [false, false, false, false]
+                    },{},{},{},
+                    {
+                        text: '',
+                        colSpan: 4,
+                        fontSize: 10,
+                        alignment: 'right',
+                        border: [false, false, false, false]								
+                    },{},{},{}
+                ],
+                [
+                    {							
+                        text: moment.tz(params.timezone).format('HH:mm:ss'),
+                        alignment: 'left',
+                        border: [false, false, false, false]
+                    },
+                    { 
+                        text: 'Período: ' + moment(params.inicio).format('DD/MM/YYYY') + ' a ' + moment(params.final).format('DD/MM/YYYY') + intervaloVendedor + intervaloGrupo + somentePRP + statusRelatorio,
+                        colSpan: 7,
+                        fontSize: 8,
+                        alignment: 'center',
+                        border: [false, false, false, false]
+                    },{},{},{},{},{},{},
+                    {
+                        text: moment.tz(params.timezone).format('DD/MM/YYYY'),
+                        colSpan: 2,
+                        alignment: 'right',
+                        border: [false, false, false, false]
+                    },{}
+                ],												
+                [
+                    {
+                        text: 'Código',
+                        style: 'tableHeader',
+                        alignment: 'center'									
+                    },
+                    {
+                        text: 'Nome da Pessoa',
+                        style: 'tableHeader',
+                        alignment: 'center'	
+                    },
+                    {
+                        text: 'Cidade, UF',
+                        style: 'tableHeader',
+                        alignment: 'center'	
+                    },
+                    {
+                        text: 'Devolvido',
+                        style: 'tableHeader',
+                        alignment: 'center'
+                    },
+                    {
+                        text: 'À Vista',
+                        style: 'tableHeader',
+                        alignment: 'center'
+                    },
+                    {
+                        text: 'À Prazo',
+                        style: 'tableHeader',
+                        alignment: 'center'
+                    },
+                    {
+                        text: 'Total',
+                        style: 'tableHeader',
+                        alignment: 'center'
+                    },
+                    {
+                        text: 'Margem',
+                        style: 'tableHeader',
+                        alignment: 'center'
+                    },
+                    {
+                        text: '% SFAT',
+                        style: 'tableHeader',
+                        alignment: 'center'
+                    },
+                    {
+                        text: 'Régua',
+                        style: 'tableHeader',
+                        alignment: 'center'
+                    }
+                ]
+            );
+
+            const totalVista     = dados.reduce((total, item) => total += cents(item['AVISTA']),    0);
+            const totalPrazo     = dados.reduce((total, item) => total += cents(item['APRAZO']),    0);
+            const totalDevolvido = dados.reduce((total, item) => total += cents(item['DEVOLUCAO']), 0);
+            const totalVendido   = totalVista + totalPrazo;
+
+            let regua = 0;
+
+            for(let i in dados){
+                const avista        = cents(dados[i]['AVISTA']);
+                const aprazo        = cents(dados[i]['APRAZO']);
+                dados[i]['vendido'] = avista + aprazo;
+            }
+
+            dados.sort((a, b) => {
+                if (a['vendido'] < b['vendido']) {
+                    return 1;
+                  }
+                  if (a['vendido'] > b['vendido']) {
+                    return -1;
+                  }
+                  return 0;
+            });
+
+            for(let i in dados){
+                const avista    = cents(dados[i]['AVISTA']);
+                const aprazo    = cents(dados[i]['APRAZO']);
+                const devolvido = cents(dados[i]['DEVOLUCAO']);
+                const vendido   = dados[i]['vendido'];
+
+                const margem = (100 - ((((vendido - devolvido)) / (totalVendido - totalDevolvido)) * 100));
+                const fat    = (vendido / totalVendido) * 100;
+                
+                regua = regua + ((vendido / totalVendido) * 100);
+
+                rows.push([
+                    {
+                        text: dados[i]['CODIGO'],
+                        alignment: 'right',
+                        style: 'tableExample'
+                    },							
+                    {
+                        text: dados[i]['NOME'],
+                        alignment: 'left',
+                        style: 'tableExample'
+                    },						
+                    {
+                        text: ( dados[i]['ID_PROPRIEDADES'] > 0 ? `${dados[i]['CIDADEPROPRIEDADE']}, ${dados[i]['ESTADOPROPRIEDADE']}` : `${dados[i]['CIDADE']}, ${dados[i]['ESTADO']}`).slice(0, 30),
+                        alignment: 'left',
+                        style: 'tableExample'
+                    },
+                    {
+                        text: utils.number.float2moeda(devolvido / 100),
+                        alignment: 'right',
+                        style: 'tableExample'
+                    },
+                    {
+                        text: utils.number.float2moeda(avista / 100),
+                        alignment: 'right',
+                        style: 'tableExample'
+                    },
+                    {
+                        text: utils.number.float2moeda(aprazo / 100),
+                        alignment: 'right',
+                        style: 'tableExample'
+                    },
+                    {
+                        text: utils.number.float2moeda(dados[i]['vendido'] / 100),
+                        alignment: 'right',
+                        style: 'tableExample'
+                    },
+                    {
+                        text: utils.number.float2moeda(margem),
+                        alignment: 'right',
+                        style: 'tableExample'
+                    },
+                    {
+                        text: utils.number.float2moeda(fat),
+                        alignment: 'right',
+                        style: 'tableExample'
+                    },
+                    {
+                        text: utils.number.float2moeda(regua),
+                        alignment: 'right',
+                        style: 'tableExample'
+                    }
+                ]);	
+            }
+
+            rows.push([
+                {
+                    text: 'Líquido',
+                    alignment: 'right',
+                    bold: true,
+                    colSpan: 3,
+                    style: 'tableExample'
+                },{},{},					
+                {
+                    text: utils.number.float2moeda(totalDevolvido / 100),
+                    alignment: 'right',
+                    bold: true,
+                    style: 'tableExample'
+                },
+                {
+                    text: utils.number.float2moeda(totalVista / 100),
+                    alignment: 'right',
+                    bold: true,
+                    style: 'tableExample'
+                },
+                {
+                    text: utils.number.float2moeda(totalPrazo / 100),
+                    alignment: 'right',
+                    bold: true,
+                    style: 'tableExample'
+                },
+                {
+                    text: utils.number.float2moeda(totalVendido / 100),
+                    alignment: 'right',
+                    bold: true,
+                    style: 'tableExample'
+                },
+                {
+                    text: utils.number.float2moeda((100 -((((totalVendido - totalDevolvido)) / (totalVendido - totalDevolvido)) * 100))),
+                    alignment: 'right',
+                    bold: true,
+                    style: 'tableExample'
+                },
+                {
+                    text: utils.number.float2moeda(0),
+                    alignment: 'right',
+                    bold: true,
+                    style: 'tableExample'
+                },
+                {
+                    text: utils.number.float2moeda(0),
+                    alignment: 'right',
+                    bold: true,
+                    style: 'tableExample'
+                }
+            ]);	
+
+            pdfStream(docDefinition, resolve, reject);
+        });
+    }
+};
+
+const obterDados = function(db, params) {
+    const { 
+        documento, 
+        vacina,
+        inicio, 
+        final, 
+        empresaLogada, 
+        idPessoai, 
+        idPessoaf,
+        idUsuario, 
+        idGrupo,
+        prp,
+        status
+    } = params;
+
+    const sqlOperacao = (documento == 4 && status == 2) ? ' and MOVIMENTOS_ID_OPERACOES = 600000 ' :
+                        (documento == 4 && status == 1) ? ' and MOVIMENTOS_ID_OPERACOES = 610000 ' :
+                        (documento != 4) ? `and OPERACOES_ACAO = 'VN'` : '';
+
+    const sqlUsuario = idUsuario > 0 ?  `MOVIMENTOS_ID_USUARIOS = ${idUsuario} and ` : '';
+    const sqlGrupo   = idGrupo   > 0 ?  `PRODUTOS_ID_GRUPOS = ${idGrupo} and ` : '';
+
+    return new Promise(async (resolve, reject) => {
+		let sql = `execute block returns (
+            CODIGO integer,
+            NOME varchar(50),
+            CIDADE varchar(50),
+            ESTADO varchar(2),
+            ID_PROPRIEDADES integer,
+            CIDADEPROPRIEDADE varchar(50),
+            ESTADOPROPRIEDADE varchar(2),
+            DEVOLUCAO numeric(12,2),
+            AVISTA numeric(12,2),
+            APRAZO numeric(12,2),
+            TOTAL numeric(12,2)
+          )
+          as
+          declare variable V_CODIGO integer;
+          declare variable V_NOME varchar(50);
+          declare variable V_CIDADE varchar(50);
+          declare variable V_ESTADO varchar(2);
+          declare variable V_ID_PROPRIEDADES integer;
+          declare variable V_CIDADEPROPRIEDADE varchar(50);
+          declare variable V_ESTADOPROPRIEDADE varchar(2);
+          declare variable V_OPERACOESACAO varchar(2);
+          declare variable V_MOVIMENTOSITENSTOTAL numeric(12,2);
+          declare variable V_AVISTA numeric(12,2);
+          declare variable V_APRAZO numeric(12,2);
+          declare variable V_DEVOLUCAO numeric(12,2);
+          declare variable V_PRAZO integer;
+          begin 
+            V_AVISTA    = 0;
+            V_APRAZO    = 0;
+            V_DEVOLUCAO = 0;
+            for
+              select MOVIMENTOS_ID_PESSOAS,
+                     PESSOAS_NOME,
+                     CIDADES.CIDADES_NOME as CIDADES_NOME,
+                     CIDADES.CIDADES_ESTADO as CIDADES_ESTADO,
+                     MOVIMENTOS_ID_PROPRIEDADES as ID_PROPRIEDADES,
+                     CIDADESPROPRIEDADE.CIDADES_NOME as CIDADES_NOMEPROPRIEDADE,
+                     CIDADESPROPRIEDADE.CIDADES_ESTADO as CIDADES_ESTADOPROPRIEDADE
+              from MOVIMENTOS
+              join PESSOAS on PESSOAS_ID = MOVIMENTOS_ID_PESSOAS
+              join CIDADES on CIDADES.CIDADES_ID = PESSOAS.PESSOAS_ID_CIDADES
+              left outer join PROPRIEDADES on PROPRIEDADES_ID = MOVIMENTOS_ID_PROPRIEDADES
+              left outer join CIDADES as CIDADESPROPRIEDADE on CIDADESPROPRIEDADE.CIDADES_ID = PROPRIEDADES.PROPRIEDADES_ID_CIDADES
+              where  MOVIMENTOS_ID_PESSOAS between ${idPessoai} and ${idPessoaf} and
+                    ${sqlUsuario}
+                    ${prp         == '1' ? ` PESSOAS_TIPO = 'G' and ` : ''}
+                     MOVIMENTOS_EMISSAO between '${inicio}' and '${final}'
+              group by MOVIMENTOS_ID_PESSOAS,PESSOAS_NOME,CIDADES_NOME,CIDADES_ESTADO, MOVIMENTOS_ID_PROPRIEDADES, CIDADES_NOMEPROPRIEDADE, CIDADES_ESTADOPROPRIEDADE
+              order by MOVIMENTOS_ID_PESSOAS
+            into
+              :V_CODIGO,
+              :V_NOME,
+              :V_CIDADE,
+              :V_ESTADO,
+              :V_ID_PROPRIEDADES,
+              :V_CIDADEPROPRIEDADE,
+              :V_ESTADOPROPRIEDADE
+            do
+              begin
+              select sum(MOVIMENTOSITENS_TOTAL) as MOVIMENTOSITENS_TOTAL
+                from MOVIMENTOSITENS
+                join MOVIMENTOS on MOVIMENTOS_ID = MOVIMENTOSITENS_ID_MOVIMENTOS
+                join OPERACOES on OPERACOES_ID   = MOVIMENTOS_ID_OPERACOES
+                join PRODUTOS on PRODUTOS_ID     = MOVIMENTOSITENS_ID_PRODUTOS
+              where MOVIMENTOS_ID_EMPRESAS = ${empresaLogada} and
+                    MOVIMENTOS_ID_DOCUMENTOS = ${empresaLogada}000${documento}   and
+                    MOVIMENTOS_EMISSAO between '${inicio}' and '${final}' and
+                    ${vacina == '1' ? ` PRODUTOS_DERIVADO <> 'V' and ` : ''}
+                    ${sqlGrupo}
+                    MOVIMENTOS_ID_PRAZOS < 3 and
+                    ((MOVIMENTOS_STATUS <> 'C') and 
+                     (MOVIMENTOS_STATUS <> 'D') and
+                     (MOVIMENTOS_STATUS <> 'R')) and
+                    MOVIMENTOS_ID_PESSOAS = :V_CODIGO and
+                    MOVIMENTOS_ID_PROPRIEDADES = :V_ID_PROPRIEDADES
+                    ${sqlOperacao}
+                into : V_AVISTA;
+          
+              select sum(MOVIMENTOSITENS_TOTAL) as MOVIMENTOSITENS_TOTAL
+                from MOVIMENTOSITENS
+                join MOVIMENTOS on MOVIMENTOS_ID = MOVIMENTOSITENS_ID_MOVIMENTOS
+                join OPERACOES on OPERACOES_ID   = MOVIMENTOS_ID_OPERACOES
+                join PRODUTOS on PRODUTOS_ID     = MOVIMENTOSITENS_ID_PRODUTOS
+              where MOVIMENTOS_ID_EMPRESAS = ${empresaLogada} and
+                    MOVIMENTOS_ID_DOCUMENTOS = ${empresaLogada}000${documento}   and
+                    MOVIMENTOS_EMISSAO between '${inicio}' and '${final}' and
+                    ${vacina == '1' ? ` PRODUTOS_DERIVADO <> 'V' and ` : ''}
+                    ${sqlGrupo}                    
+                    MOVIMENTOS_ID_PRAZOS > 9 and
+                    ((MOVIMENTOS_STATUS <> 'C') and 
+                     (MOVIMENTOS_STATUS <> 'D') and 
+                     (MOVIMENTOS_STATUS <> 'R')) and
+                    MOVIMENTOS_ID_PESSOAS = :V_CODIGO and
+                    MOVIMENTOS_ID_PROPRIEDADES = :V_ID_PROPRIEDADES
+                    ${sqlOperacao}
+                into : V_APRAZO;
+          
+              select sum(MOVIMENTOSITENS_TOTAL) as MOVIMENTOSITENS_TOTAL
+                from MOVIMENTOSITENS
+                join MOVIMENTOS on MOVIMENTOS_ID = MOVIMENTOSITENS_ID_MOVIMENTOS
+                join OPERACOES on OPERACOES_ID = MOVIMENTOS_ID_OPERACOES
+                join PRODUTOS on PRODUTOS_ID = MOVIMENTOSITENS_ID_PRODUTOS
+              where MOVIMENTOS_ID_EMPRESAS = ${empresaLogada} and
+                    MOVIMENTOS_ID_DOCUMENTOS = ${empresaLogada}000${documento} and
+                    MOVIMENTOS_EMISSAO between '${inicio}' and '${final}' and
+                    ((MOVIMENTOS_STATUS <> 'C') and 
+                     (MOVIMENTOS_STATUS <> 'D') and
+                     (MOVIMENTOS_STATUS <> 'R')) and
+                    ${vacina == '1' ? ` PRODUTOS_DERIVADO <> 'V' and ` : ''}
+                    ${sqlGrupo}                    
+                    MOVIMENTOS_ID_PESSOAS = :V_CODIGO and
+                    MOVIMENTOS_ID_PROPRIEDADES = :V_ID_PROPRIEDADES and
+                    OPERACOES_ACAO = 'DC'
+                into : V_DEVOLUCAO;
+          
+                CODIGO      = V_CODIGO;
+                NOME        = V_NOME;
+                CIDADE      = V_CIDADE;
+                ESTADO      = V_ESTADO;
+                CIDADEPROPRIEDADE = V_CIDADEPROPRIEDADE;
+                ESTADOPROPRIEDADE = V_ESTADOPROPRIEDADE;
+                ID_PROPRIEDADES = V_ID_PROPRIEDADES;
+                DEVOLUCAO   = coalesce(V_DEVOLUCAO,0);
+                AVISTA      = coalesce(V_AVISTA,0);
+                APRAZO      = coalesce(V_APRAZO,0);
+                TOTAL       = coalesce((AVISTA+APRAZO)-DEVOLUCAO,0);
+                if ((DEVOLUCAO + AVISTA + APRAZO) > 0)  then
+                  suspend;
+              end
+          end ;`
+
+          db.query(sql, async (error, results) => {
+            if (error) {
+                console.log(error);
+                reject();
+            } else {
+                resolve(results);
+            }
+        });
+    });
+};

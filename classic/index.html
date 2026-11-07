@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html manifest="">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10, user-scalable=yes">
+    <title>Sistema Samos</title>
+</head>
+<body></body>
+<script type="text/javascript">
+    var Ext = Ext || {};
+    var SamosAdmin = SamosAdmin || {};
+
+    Ext.beforeLoad = function (tags) {
+        if(Ext.platformTags.desktop) {
+            if(location.href.match('modern')) {
+                location.href = location.href.replace('modern', 'classic');
+            }
+        } else {
+            if(location.href.match('classic')) {
+                location.href = location.href.replace('classic', 'modern');
+            }
+        }
+    };
+
+    (async function() {
+        function initStartGauge() {
+            const tema          = localStorage.getItem('tema') || 'basic';
+            const loadingMask   = document.createElement('div');
+            const loading       = document.createElement('div');
+            const logoAnimation = document.createElement('div');
+            const logoSamos     = document.createElement('div');
+            const centerColor1  = document.createElement('div');
+            const centerColor2  = document.createElement('div');
+            const centerColor3  = document.createElement('div');
+            const rightBlack    = document.createElement('div');
+            const rightColor    = document.createElement('div');
+            const leftBlack     = document.createElement('div');
+            const leftColor     = document.createElement('div');
+            
+            loadingMask.id          = 'loading-mask';
+            loading.id              = 'loading';
+            logoAnimation.className = 'logo-animation';
+            logoSamos.className     = `logo-samos-${tema}`;
+            centerColor1.className  = `center-color-${tema}-1`;
+            centerColor2.className  = `center-color-${tema}-2`;
+            centerColor3.className  = `center-color-${tema}-3`;
+            rightBlack.className    = 'right-black animation-settings';
+            rightColor.className    = `right-color-${tema} animation-settings`;
+            leftBlack.className     = 'left-black animation-settings';
+            leftColor.className     = `left-color-${tema} animation-settings`;
+
+            document.body.appendChild(loadingMask);
+            document.body.appendChild(loading);
+            loading.appendChild(logoAnimation);
+            loading.appendChild(logoSamos);
+            logoAnimation.appendChild(centerColor1);
+            logoAnimation.appendChild(centerColor2);
+            logoAnimation.appendChild(centerColor3);
+            logoAnimation.appendChild(rightBlack);
+            logoAnimation.appendChild(rightColor);
+            logoAnimation.appendChild(leftBlack);
+            logoAnimation.appendChild(leftColor);
+        }
+
+        async function getConfig() {
+            try {
+                await getConfigFromClientFolder();
+            } catch(error) {
+                await getConfigFromRoot();
+            }
+        }
+
+        async function getConfigFromClientFolder() {
+            //tenta obter o config pelo método de consulta
+            const config = await(await fetch(`${location.origin}/clientes/getconfig`)).text();
+
+            try {
+                Ext.ClientConfig = JSON.parse(config);
+                console.warn(`config.json da pasta do cliente no servidor`)
+            } catch(error) {
+                Ext.ClientConfig = JSON.parse(config.split('=').pop());
+                console.warn(`config.js da pasta do cliente no servidor`)
+            }
+        }
+
+        async function getConfigFromRoot() {
+            //tenta obter o config da raiz do frontend
+            const candidates = [
+                new URL('./config.json', window.location.href).href,
+                new URL('./config.js', window.location.href).href,
+                new URL('../classic/config.json', window.location.href).href,
+                new URL('../classic/config.js', window.location.href).href,
+            ];
+
+            for (const candidate of candidates) {
+                try {
+                    const response = await fetch(candidate, { cache: 'no-store' });
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+                    const config = await response.text();
+                    const normalizedConfig = config.trim();
+                    const json = normalizedConfig.startsWith('{') || normalizedConfig.startsWith('[')
+                        ? normalizedConfig
+                        : normalizedConfig.split('=').pop().trim().replace(/;\s*$/, '');
+
+                    Ext.ClientConfig = JSON.parse(json);
+                    console.warn(`config.json da pasta raiz do frontend: ${candidate}`)
+                    return;
+                } catch (error) {
+                    // tenta o próximo candidato
+                }
+            }
+
+            await getConfigJSONFromRoot();
+        }
+
+        async function getConfigJSONFromRoot() {
+            try {
+                const candidate = new URL('./config.js', window.location.href).href;
+                const config = await(await fetch(candidate, { cache: 'no-store' })).text();
+                const json = config.split('=').pop().trim().replace(/;\s*$/, '');
+                Ext.ClientConfig = JSON.parse(json);
+                console.warn(`config.js da pasta raiz do frontend: ${candidate}`)
+            } catch (error) {
+                console.error('NÃO ENCONTRADO: config.json')
+            }
+        }
+        
+        initStartGauge();
+        await getConfig();
+    })();
+</script>
+<!-- The line below must be kept intact for Sencha Cmd to build your application -->
+<script id="microloader" data-app="565d1213-8226-4a52-a22f-152f137f5925" type="text/javascript" src="bootstrap.js"></script>
+</html>

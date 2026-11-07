@@ -1,0 +1,14 @@
+.env
+.vscode/
+licencas/
+daemon/
+node_modules
+public/
+package-lock.*
+*.log
+config.js
+config.json
+backup.json
+.well-known/
+xml.xml
+xml.json

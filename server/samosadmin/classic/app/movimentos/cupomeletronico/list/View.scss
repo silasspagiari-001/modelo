@@ -1,0 +1,23 @@
+.preto {
+    color: black !important;
+}
+.verde {
+    color: green !important;
+}
+.vermelho {
+    color: red !important;
+}
+.lilas {
+    color: purple !important;
+}
+.azul {
+    color: blue !important;
+}
+.fundo-azul {
+    background-color: mix($primary-color-blue, white, 40%) !important;
+    color: black !important;
+}
+.fundo-amarelo {
+    background-color: rgb(255, 255, 192) !important;
+    color: black !important;
+}

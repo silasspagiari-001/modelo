@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Sistema SamosAdmin</title>
+	</head>
+	<body bgcolor="#f7f7f7">
+		<div>&nbsp;</div>
+		<table align="center" border="0">
+			<tr>
+				<h1 id='sessaotext'>Sessão Encerrada!</h1>
+			</tr>
+			<tr>
+				<td align="center">
+					<img id='logo'/>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<h3>
+						<a id='link'>Fazer login novamente</a>
+					</h3>
+				</td>
+			</tr>
+			<tr>
+				<h1><center><font color = '157fcc'>
+					
+			</tr>
+		</table>
+	</body>
+
+	<script type="text/javascript">
+		const text = document.getElementById('sessaotext');
+		const link = document.getElementById('link');
+		const logo = document.getElementById('logo');
+
+		text.style.align = 'center';
+		text.style.margin = '0 auto';
+		text.style.width = '80%';
+		text.style.fontSize = '80px';
+
+		link.style.align = 'center';
+		link.style.margin = '0 auto';
+		link.style.width = '80%';
+		link.style.fontSize = '50px';
+		link.href = location.href.split('resources')[0];
+
+		logo.src = `images/login/main.png`;
+		logo.width  = window.innerWidth - 40;
+		logo.height = logo.width / 2;
+	</script>
+</html>

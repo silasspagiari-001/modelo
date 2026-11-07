@@ -1,0 +1,118 @@
+
+/*
+//overriding underline from bootstrap.min.js
+a{
+  color: transparent !important;
+}
+
+a:focus,a:hover{
+  color: transparent !important;
+  text-decoration:none !important;
+}*/
+
+//overridind padding of radiofield
+input[type=checkbox],input[type=radio]{
+  margin: -18px 0 0 !important;
+}
+
+.label-info {
+  background-color: black !important;
+}
+
+.label{
+  padding: .1em .4em .1em !important;
+  font-size: 90% !important;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+@mixin box-shadow($h-shadow,$v-shadow,$blur,$spread,$shadow-color) {
+  $value: $h-shadow, $v-shadow, $blur, $spread, $shadow-color;
+  -webkit-box-shadow: $value;
+  -moz-box-shadow: $value;
+  -ms-box-shadow: $value;
+  box-shadow: $value;
+}
+
+.x-fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 $font-family;
+}
+
+.boldFont {
+  font-weight: bold;
+}
+
+.x-grid-dirty-cell > .x-grid-cell-inner:after {
+    content: "" !important;
+}
+
+.ux-notification-light-error{
+  background-color: transparent !important;
+
+  .x-window-body {
+    text-align: center;
+    border-radius: 10px;
+    padding: 20px 20px 20px 20px;
+    background-color: #ff8c98 !important;
+    border: 0px solid white;
+    font-size: 18px;
+    font-weight: normal;
+  }
+
+  &.x-window-default {
+      border: none;
+      padding: 0;
+  }
+}
+
+.ux-notification-light-success{
+  background-color: transparent !important;
+
+  .x-window-body {
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px 20px 20px 20px;
+    background-color: #c4ea9c !important;
+    border: 0px solid white;
+    font-size: 18px;
+    font-weight: normal;
+  }
+
+  &.x-window-default {
+    border: none;
+    padding: 0;
+  }
+}
+
+.ux-notification-light-warning{
+  background-color: transparent !important;
+
+  .x-window-body {
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px 20px 20px 20px;
+    background-color: #f3fd58 !important;
+    border: 0px solid white;
+    font-size: 18px;
+    font-weight: normal;
+  }
+
+  &.x-window-default {
+      border: none;
+      padding: 0;
+  }
+}

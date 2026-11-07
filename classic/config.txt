@@ -1,0 +1,837 @@
+{
+    "apiNode": [
+        "http://localhost:3000"
+    ],
+    "apiDelphi": [
+        "http://localhost:8060"
+    ],
+    "impressoras": {},
+    "redis":false, 
+    "notificacoes": true,	
+    "licenca": {
+        "api": "https://automacao.samosweb.com.br",
+        "notificarUsuarios": [
+            1
+        ],
+        "diasAviso": 5,
+        "regra": "QSsxKGludmVydGlkbyl8QysyKGludmVydGlkbyk"
+    },
+    "clientName": "redesat",
+    "timezone": "America/Sao_Paulo",
+    "tema": "basic",
+    "isDMVC": true,
+    "case": "uppercase",
+    "multiEmpresa": false,
+    "exibicaoPdf": "window",
+    "maquinasCartao": ["Rede","GetNet","Cielo"],
+    "login": {
+        "case": "uppercase",
+        "salvarSenha": true,
+        "ocultarEsqueciSenha": false,
+        "validarExpediente": false,
+        "baterPonto": false,
+        "diasBloquearAcesso": 0,
+        "aparelhosPermitidos": {
+            "phone": true,
+            "tablet": true,
+            "desktop": true
+        }
+    },
+    "dashboard": {
+        "faturamento": {
+            "usuarios": []
+        }
+    },
+    "pessoas": {
+        "ordemBusca": 0,
+        "foto": false,
+        "labelPagina": "Página",
+        "precoEspecifico": false,
+        "propriedades": false,
+        "tipoCusto": "Z",
+        "tipos": [
+            ["A","Clientes", "#000000"],
+            ["H","Combustiveis", "#836FFF"],
+            ["R","Consumos", "#00CED1"],
+            ["E","Despesas", "#3CB371"],
+            ["U","Empresas", "#DAA520"],
+            ["K","Financeiras", "#BC8F8F"],
+            ["B","Fornecedores", "#A020F0"],
+            ["I","Funcionarios", "#FF00FF"],
+            ["S","Imobiliarias", "#FF1493"],
+            ["G","Impostos", "#8B0000"],
+            ["T","Assessorias", "#FF7F50"],
+            ["C","Montadores MEI", "#FF4500"],
+            ["F","Montadores Proprios", "#99761C"],
+            ["P","Motoristas MEI", "#FFE4C4"],
+            ["Q","Motoristas Proprios", "#D8BFD8"],
+            ["M","Portadores", "#B0E0E6"],
+            ["L","Seguradoras", "#EEE8AA"],
+            ["J","Terceirizados", "#F0E68C"],
+            ["D","Transportadoras", "#FF6347"],
+            ["N","Transportadores MEI", "#FF69B4"],
+            ["O","Transportadores Proprios", "#4B0082"]
+        ]
+    },
+    "usuarios": {
+        "maxUsuariosCadastrados": 2,
+        "acessosSimultaneos": 10,
+        "foto": false,
+        "tipoVendedor": "2",
+        "tipos": [
+            ["0","Diretores"],
+            ["1","Gerentes"],
+            ["2","Vendedores"],
+            ["3","Supervisores"],
+            ["4","Administrativo"],
+            ["5","Fiscal"]
+        ]
+    },
+    "produtos": {
+        "ordemBusca": 1,
+        "labelPreco": "De R$",
+        "labelPrazo": "À prazo",
+        "labelReservado": "Reservado",
+        "labelTransferencia": "Transferência",
+        "labelMarca": "Marca",
+        "labelFabrica": "Fábrica",
+        "labelEmbalagem": "Embalagem",
+        "labelAplicacao": "Aplicação",
+        "labelListaPreco": "Lista Preço",
+        "labelDerivado": "Editável",
+        "loteGrupos":[],
+        "descricao": {
+            "label": "Fórmula",
+            "readOnly": true
+        },
+        "statusConsultaPreco": "T",
+        "precoMargemMinimo": true,
+        "local": true,
+        "comissaoVista": false,
+        "comissaoPrazo": false,
+        "hideEmbalagem": false,
+        "sat": false,
+        "montagemProdutos": false,
+        "exibirSaldoApenasLocalEDeposito": false,
+        "calculoPreco": {
+            "vista": "(custo / (100 - margem)) * 100",
+            "prazo": "(custo / (100 - margem)) * 100",
+            "margem": "(vista - custo) / (custo * 0.01)"
+        },
+        "atualizaPreco": [
+            {
+                "field": "SALDOS_COMISSAO",
+                "ativo": false,
+                "title": "% Comissao"
+            },
+            {
+                "field": "SALDOS_MARKUP",
+                "ativo": false,
+                "title": "% Markup"
+            },
+            {
+                "field": "SALDOS_CUSTO",
+                "ativo": true,
+                "title": "R$ Custo",
+                "recalcular": {
+                    "SALDOS_PRECO": true,
+                    "SALDOS_PRECOMINIMO": false
+                }
+            },
+            {
+                "field": "SALDOS_MARGEM",
+                "ativo": true,
+                "title": "% Margem",
+                "recalcular": {
+                    "SALDOS_PRECO": true
+                }
+            },
+            {
+                "field": "SALDOS_PRECO",
+                "ativo": true,
+                "title": "R$ Preco",
+                "recalcular": {
+                    "SALDOS_MARGEM": true,
+                    "SALDOS_PRAZO": false
+                }
+            },
+            {
+                "field": "SALDOS_PRAZO",
+                "ativo": false,
+                "title": "R$ Prazo",
+                "recalcular": {
+                    "SALDOS_PRECO": false
+                }
+            },
+            {
+                "field": "SALDOS_MARGEMMINIMA",
+                "ativo": false,
+                "title": "% MargemMin",
+                "recalcular": {
+                    "SALDOS_PRECOMINIMO": false
+                }
+            },
+            {
+                "field": "SALDOS_PRECOMINIMO",
+                "ativo": false,
+                "title": "R$ PrecoMin",
+                "recalcular": {
+                    "SALDOS_MARGEMMINIMA": false
+                }
+            }
+        ],
+        "grid": {
+            "PRODUTOS_MARCA": false,
+            "PRODUTOS_FABRICA": false,
+            "PRODUTOS_APLICACAO": false,
+            "PRODUTOS_UNIDADE": false,
+            "SALDOS_LOCAL": false,
+            "SALDOS_DISPONIVEL": true,
+            "SALDOS_PRECO": true,
+            "SALDOS_PRECOMINIMO": true,
+            "SALDOS_PRAZO": false
+        },
+        "status": [
+            ["","Todos"],
+            ["T","Ativo"],
+            ["P","Produção"],
+            ["R","Revenda"],
+            ["F","Inativo"]
+        ],
+        "derivado": [
+            ["T","Sim"],
+            ["F","Não"]
+        ],
+        "unidades": [
+            ["AM","Ampola"],
+            ["BD","Balde"],
+            ["UI","UI"],
+            ["BS","Bisnaga"],
+            ["SC","Saco"],
+            ["CX","Caixa"],
+            ["CJ","Conjunto"],
+            ["FR","Frasco"],
+            ["PC","Peca"],
+            ["UN","Unidade"],
+            ["PT","Pote"],
+            ["KG","Kilo"],
+            ["BG","Bag"]
+        ],
+        "cstlocal": [
+            ["0101","0101 - Tributada pelo Simples Nacional com permissão de crédito"],
+            ["0102","0102 - Tributada pelo Simples Nacional sem permissão de crédito"],
+            ["0103","0103 - Isenção do ICMS no Simples Nacional para faixa de receita bruta"],
+            ["0201","0201 - Tributada pelo Simples Nacional com permissão de crédito e com cobrança do ICMS ST"],
+            ["0202","0202 - Tributada pelo Simples Nacional sem permissão de crédito e com cobrança do ICMS ST"],
+            ["0203","0203 - Isenção do ICMS no Simples Nacional para faixa de receita bruta e cobrança do ICMS ST"],
+            ["0300","0300 - Imune"],
+            ["0400","0400 - Não tributada pelo Simples Nacional"],
+            ["0500","0500 - ICMS cobrado anteriormente por ST (Substituído) ou por antecipação"],
+            ["0900","0900 - Outros"],
+            ["4102","4102 - Nacional com Produção"]
+        ],
+        "cstoutros": [
+            ["0101","0101 - Tributada pelo Simples Nacional com permissão de crédito"],
+            ["0102","0102 - Tributada pelo Simples Nacional sem permissão de crédito"],
+            ["0103","0103 - Isenção do ICMS no Simples Nacional para faixa de receita bruta"],
+            ["0201","0201 - Tributada pelo Simples Nacional com permissão de crédito e com cobrança do ICMS ST"],
+            ["0202","0202 - Tributada pelo Simples Nacional sem permissão de crédito e com cobrança do ICMS ST"],
+            ["0203","0203 - Isenção do ICMS no Simples Nacional para faixa de receita bruta e cobrança do ICMS ST"],
+            ["0300","0300 - Imune"],
+            ["0400","0400 - Não tributada pelo Simples Nacional"],
+            ["0500","0500 - ICMS cobrado anteriormente por ST (Substituído) ou por antecipação"],
+            ["0900","0900 - Outros"],
+            ["4102","4102 - Nacional com Produção"]
+        ],
+        "cstsubstPadrao": "010",
+        "cstsubst": [
+            ["010","010 - Substituição"]
+        ],
+        "percentuaisIcms": {
+            "simplesLocal": 0,
+            "simplesRegiao1": 0,
+            "simplesRegiao2": 0,
+            "normalLocal": 18,
+            "normalRegiao1": 7,
+            "normalRegiao2": 12
+        },
+        "coresSaldos": {
+            "zerado": "color: red;",
+            "baixo": "color: yellow;",
+            "normal": "color: green;"
+        },
+        "conveniolocal": [],
+        "convenio12": [],
+        "conveniooutros": [],
+        "marcaproduto": false,
+        "marcas": [
+		["FCAUTOPECAS", "FCAUTOPECAS"],
+		["DIVERSOS", "DIVERSOS"]
+	]
+    },
+    "movimentos": {
+        "ordemBusca": 6,
+        "carregaVendedor": true,
+        "editaVendedor": true,
+        "filtraVendedor": false,
+        "exibirTotalVendedor": true,
+        "carregaPessoaTransporte": false,
+        "editaNumeroRequisicao": false,
+        "tipoPreco": "vista",
+        "calculoImposto": "nodejs",
+        "calculaPesoNfe": true,
+        "exibirPesoMovimento": false,
+        "envioAutomaticoXML": false,
+        "envioCopiaEmail": "joaosisauto@gmail.com;joaocarlos@samos.com.br",
+        "exibirDiasVctoRodape": false,
+        "exibirPedidoCompraNfe": false,
+        "exibirRequisicaoNfe": false,
+        "rateiaFreteNfe": true,
+        "rateiaDescontoRequisicaoEntrada": false,
+        "rateiaDescontoNotaEntrada": false,
+        "alteraLiquido": true,
+        "descontoNfe": false,
+        "descontoMaximo": 100,
+        "descontoMaximoSupervisor":98,
+        "descontoMaximoGerente": 99,
+        "qtdePaginasImpressao": 1,
+        "entrega": {
+            "loja": false,
+            "deposito": false,
+            "imediata": false,
+            "empresa": false,
+            "data": false,
+            "hora": false,
+            "situacao": 0,
+            "entregar": false
+        },
+        "autoGerarRomaneio": false,
+        "ramoRomaneio": "moveis",
+        "ramoOrdemServico": "veiculos",
+        "limiteDiasPedidoRomaneio": 99999,
+        "impressaoRomaneio": [
+            "Imprimir"
+        ],
+        "sistemaDeAprovacao": false,
+        "casasDecimaisPreco": 2,
+        "pedidoCompraObrigatorio": false,
+        "gridProdutos": {
+            "MOVIMENTOSITENS_ID_PRODUTOS": true,
+            "PRODUTOS_NOME": true,
+            "PRODUTOS_MARCA": false,
+            "PRODUTOS_FABRICA": false,
+            "PRODUTOS_APLICACAO": false,
+            "SALDOS_LOCAL": false,
+            "SALDOS_DISPONIVEL": true,
+            "MOVIMENTOSITENS_QUANTIDADE": true,
+            "MOVIMENTOSITENS_PRECO": true,
+            "MOVIMENTOSITENS_PERCENTUAL": false,
+            "MOVIMENTOSITENS_DESCONTOS": false,
+            "MOVIMENTOSITENS_TOTAL": true,
+            "MOVIMENTOSITENS_LIQUIDO": false,
+            "MOVIMENTOSITENS_TOTALLIQUIDO": true,
+            "MOVIMENTOSITENS_MARGEM": false
+        },
+        "promocao": {
+            "PROMOCOES_EMPRESAS": "",
+            "PROMOCOES_CUSTOTECNICO": 0,
+            "PROMOCOES_DESCONTO": 0,
+            "PROMOCOES_INDICE": 0,
+            "PROMOCOES_PARCELAS": 0
+        },
+        "exportarGravado": true,
+        "alterarAposExportar": true,
+        "exportacao": {
+            "ORC": ["PED"],
+            "PED": ["NFE"],
+            "REQ": [],
+            "DEV": [],
+            "NFE": [],
+            "CFE": [],
+            "TRS": [],
+            "CPA": ["REQ"]
+        },
+        "partida": {
+            "coeficiente": "1,0000#0,5220#0,3530#0,2685#0,2179#0,1841#0,1600#0,1420#0,1280#0,1168#0,1076#0,1000#0,0958#0,0903#0,0856#0,0814#0,0778#0,0746#0,0717#0,0691#0,0668#0,0646#0,0627#0,0610#"
+        },
+        "avisarSaldoInsuficiente": false,
+        "senhaImpressao": false,
+        "senhaDescontoPrivilegiado": true,
+        "usuariosNotificarEncomenda": [],
+        "carregaMontador": false,
+        "carregaEntregador": false,
+        "usarMarkup": false,
+        "pedidoLP": false,
+        "transporteEspecie": "CAIXAS",
+        "transporteMarca": "FCAUTOPECAS"
+    },
+    "financeiros": {
+        "contaCaixa": 9999999,
+        "nomeCaixa": "CAIXA DIARIO",
+        "ordemBusca": 0,
+        "dataInicial": "01/01/2021",
+        "dataFinal": "31/12/2024",
+        "exibirDuplicataNoCaixa": true,
+        "transferirSaldoCaixa": false,
+        "gerarCaixaNoRetorno": false,
+        "tipoFinanceira": "",
+        "multiEmpresa": false,
+        "labelAlimentacao": "Vale Alimentação",
+        "caixaLancaIndividual": false,
+        "hideCaixaBaixas": true,
+        "idContaCaixa": 9999999,
+        "nomeContaCaixa": "CAIXA DIARIO",
+        "boletos": {
+            "ordemBusca": 0,
+            "permitirImpressaoVariosClientes": true
+        },
+        "duplicata": {
+            "dinheiro":false,
+            "portadorDinheiro": 1,
+            "readOnlyDinheiro": false,
+            "cheque":false,
+            "portadorCheque": 1,
+            "readOnlyCheque": true,
+            "credito":false,
+            "portadorCredito": 1,
+            "readOnlyCredito": true,
+            "debito":false,
+            "portadorDebito": 1,
+            "readOnlyDebito": true,
+            "pix":false,
+            "portadorPix": 1,
+            "readOnlyPix": true,
+            "outro":false,
+            "portadorOutro": 1,
+            "readOnlyOutro": true
+        },
+        "centrocusto": false,
+        "labelOutro": "Outro",
+        "editaNumeroAgrupamento": false
+    },
+    "emissao": {
+        "etiquetaProdutos": {
+	    "tipos": ["PRODUTOS"]
+        },
+        "etiquetaPessoas": {
+	    "tipos": ["PESSOAS"]
+        }
+    },
+    "senhaNivel": {
+        "1": {
+            "nome": "Supervisor",
+            "regra": "QSszKGludmVydGlkbyl8QyhpbnZlcnRpZG8p"
+        },
+        "2": {
+            "nome": "Gerente",
+            "regra": "QShpbnZlcnRpZG8pfEMrMg"
+        },
+        "3": {
+            "nome": "Diretor",
+            "regra": "QisxfEMoaW52ZXJ0aWRvKQ"
+        }
+    },
+    "caminhoUpload": "",
+    "ordens": {
+        "obsCliente": true,   
+        "status": [
+            ["1","Aberta"],
+            ["2","Concluida"],
+            ["T","Todas"]
+        ]
+    },
+    "menuRelatorios": [
+        {
+            "text": "Estoque",
+            "module": "winrelatoriosestoque",
+            "isWindow": true,
+            "children": [
+                {
+                    "text": "Produtos",
+                    "module": "relatoriosprodutos",
+                    "usuarios": [1,    3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Inventário de Produtos",
+                    "module": "relatoriosinventario",
+                    "usuarios": [1,   3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Lista de Preços",
+                    "module": "relatoriosprecos",
+                    "usuarios": [1,  3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Saldo de Produtos",
+                    "module": "relatoriossaldos",
+                    "usuarios": [1,  3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Saldo Comparativo",
+                    "module": "relatoriossaldoscomparativo",
+                    "usuarios": [1,  3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Produtos Movimentados",
+                    "module": "relatoriosmovimentoprodutos",
+                    "usuarios": [1,  3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Saldos e validades Lotes",
+                    "module": "relatoriosestoquelotes",
+                    "usuarios": [1, 3, 2],
+                    "isWindow": true,
+                    "read": "T"
+                }
+            ]
+        },
+        {
+            "text": "Atualização",
+            "module": "winrelatoriosatualizacao",
+            "isWindow": true,
+            "children": [
+                {
+                    "text": "Pessoas",
+                    "module": "relatoriospessoas",
+                    "usuarios": [1,  3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Produtos",
+                    "module": "relatoriosprodutos",
+                    "usuarios": [1,  3,2],
+                    "isWindow": true,
+                    "read": "T"
+                }
+            ]
+        },
+        {
+            "text": "Compras",
+            "module": "winrelatorioscompras",
+            "isWindow": true,
+            "children": [
+                {
+                    "text": "Pedidos de Compra",
+                    "module": "relatoriospedidoscompra",
+                    "usuarios": [1, 48, 51, 900, 35, 24, 2, 47,   1, 48, 51, 900, 35, 314, 820],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Compras Analítica",
+                    "module": "relatorioscomprasanalitica",
+                    "usuarios": [1],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Compras Produtos",
+                    "module": "relatorioscompras",
+                    "usuarios": [1,  3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Compras Fornecedor Sintética",
+                    "module": "relatorioscomprasfornecedor",
+                    "usuarios": [1],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Compras Produto Sintética",
+                    "module": "relatorioscomprasproduto",
+                    "isWindow": true,
+                    "usuarios": [1],
+                    "read": "T"
+                }
+            ]
+        },
+        {
+            "text": "Faturamento",
+            "module": "winrelatoriosfaturamento",
+            "isWindow": true,
+            "children": [
+                {
+                    "text": "Ordens Serviço",
+                    "module": "relatoriosordens",
+                    "usuarios": [1,  3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Venda Sintética",
+                    "module": "relatoriosvendasintetica",
+                    "usuarios": [1,   3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Venda Analítica",
+                    "module": "relatoriosvendaanalitica",
+                    "usuarios": [1,   3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Venda Pessoa",
+                    "module": "relatoriosvendapessoa",
+                    "usuarios": [1,   3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Venda Fábrica",
+                    "module": "relatoriosvendafabrica",
+                    "usuarios": [1,  3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Venda Vendedor",
+                    "module": "relatoriosvendausuario",
+                    "usuarios": [1,   3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Venda Comparativa",
+                    "module": "relatoriosvendacomparativa",
+                    "usuarios": [1,  3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Venda Tipo Recebimento",
+                    "module": "relatoriosvendatipo",
+                    "usuarios": [1,  3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Vendas por Pessoa Sintética",
+                    "module": "relatoriosvendaspessoassintetica",
+                    "usuarios": [1],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Vendas por Pessoa Analítica",
+                    "module": "relatoriosvendaspessoasanalitica",
+                    "usuarios": [1],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Vendas por Vendedor Sintética",
+                    "module": "relatoriosvendasvendedorsintetica",
+                    "usuarios": [1],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Vendas por Vendedor Analítica",
+                    "module": "relatoriosvendasvendedoranalitica",
+                    "usuarios": [1],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Vendas por Vendedor Produtos",
+                    "module": "relatoriosvendasvendedorprodutos",
+                    "usuarios": [1],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Vendas por Fornecedor Sintética",
+                    "module": "relatoriosvendasfornecedorsintetica",
+                    "usuarios": [1],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Movimentos",
+                    "module": "relatoriosmovimentos",
+                    "usuarios": [1,   3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Comissões de Vendedores",
+                    "module": "relatorioscomissoes",
+                    "usuarios": [1,   3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Comissões Fin",
+                    "module": "relatorioscomissoesfin",
+                    "usuarios": [1,   3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Comissões Pro",
+                    "module": "relatorioscomissoespro",
+                    "usuarios": [1,   3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Documentos Emitidos no Período",
+                    "module": "relatoriosvendaperiodo",
+                    "usuarios": [1],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Vendas por Produtos Mês a Mês",
+                    "module": "relatoriosvendapessoa",
+                    "usuarios": [1],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Margem Bruta Faturada",
+                    "module": "relatoriosmargembrutafaturada",
+                    "usuarios": [1],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Resultados Caixa",
+                    "module": "relatoriosresultados",
+                    "usuarios": [1,  3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Lucratividade",
+                    "module": "relatorioslucratividade",
+                    "usuarios": [1,  3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Fluxo de Caixa Sintético",
+                    "module": "relatorioscaixasintetico",
+                    "usuarios": [1],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Romaneios",
+                    "module": "relatoriosromaneios",
+                    "usuarios": [1,  3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Produções",
+                    "module": "relatoriosproducoes",
+                    "usuarios": [1],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Demonstrativo",
+                    "module": "relatoriosdemonstrativo",
+                    "usuarios": [1,  3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Controle Bancário",
+                    "module": "relatoriosextrato",
+                    "usuarios": [1,  3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Controle Vacinas",
+                    "module": "relatoriosvacinas",
+                    "usuarios": [1],
+                    "isWindow": true,
+                    "read": "T"
+                }
+            ]
+        },
+        {
+            "text": "Financeiro",
+            "module": "winrelatoriosfinanceiro",
+            "isWindow": true,
+            "children": [
+                {
+                    "text": "Títulos a Receber/Pagar",
+                    "module": "relatoriosfinanceiro",
+                    "usuarios": [1,   3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Baixas a Receber/Pagar",
+                    "module": "relatoriosbaixas",
+                    "usuarios": [1],
+                    "isWindow": true,
+                    "read": "T" 
+                },
+                {
+                    "text": "Posição Financeira Bancos",
+                    "module": "relatoriosbancos",
+                    "usuarios": [1,  3,2],
+                    "isWindow": true,
+                    "read": "T" 
+                },
+                {
+                    "text": "Relatório Bancos",
+                    "module": "relatorioscontascorrentes",
+                    "usuarios": [1,  3,2],
+                    "isWindow": true,
+                    "read": "T" 
+                }
+            ]
+        },
+        {
+            "text": "Fiscal",
+            "module": "winrelatoriosfiscal",
+            "isWindow": true,
+            "children": [
+                {
+                    "text": "Registros Fiscais",
+                    "module": "relatoriosfiscais",
+                    "usuarios": [1,   3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Livro Produto Controlado",
+                    "module": "relatorioslivrocontrolado",
+                    "usuarios": [1,   3,2],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Faturamento",
+                    "module": "relatoriosfaturamento",
+                    "usuarios": [1],
+                    "isWindow": true,
+                    "read": "T"
+                }
+            ]
+        }
+    ]
+}

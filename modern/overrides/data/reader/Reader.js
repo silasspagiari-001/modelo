@@ -1,0 +1,54 @@
+Ext.define('Overrides.data.reader.Reader', {
+    override: 'Ext.data.reader.Reader',
+
+    extractData: function(root, readOptions) {
+        var me = this,
+            entityType = readOptions && readOptions.model ? Ext.data.schema.Schema.lookupEntity(readOptions.model) : me.getModel(),
+            schema = entityType.schema,
+            includes = schema.hasAssociations(entityType) && me.getImplicitIncludes(),
+            fieldExtractorInfo = me.getFieldExtractorInfo(entityType.fieldExtractors),
+            length = root.length,
+            records = new Array(length),
+            typeProperty = me.getTypeProperty(),
+            reader, node, nodeType, record, i;
+        if (!length && Ext.isObject(root)) {
+            root = [
+                root
+            ];
+            length = 1;
+        }
+        for (i = 0; i < length; i++) {
+            record = root[i] || {};//override para record null
+            if (!record.isModel) {
+                // If we're given a model instance in the data, just push it on
+                // without doing any conversion. Otherwise, create a record.
+                node = record;
+                // This Reader may be configured to produce different model types based on
+                // a differentiator field in the incoming data:
+                // typeProperty name be a string, a function which yields the child type, or an object: {
+                //     name: 'mtype',
+                //     namespace: 'MyApp'
+                // }
+                if (typeProperty && (nodeType = me.getChildType(schema, node, typeProperty))) {
+                    reader = nodeType.getProxy().getReader();
+                    record = reader.extractRecord(node, readOptions, nodeType, schema.hasAssociations(nodeType) && reader.getImplicitIncludes(), reader.getFieldExtractorInfo(nodeType.fieldExtractors));
+                } else {
+                    record = me.extractRecord(node, readOptions, entityType, includes, fieldExtractorInfo);
+                }
+                // Generally we don't want to have references to XML documents
+                // or XML nodes to hang around in memory but Trees need to be able
+                // to access the raw XML node data in order to process its children.
+                // See https://sencha.jira.com/browse/EXTJS-15785 and
+                // https://sencha.jira.com/browse/EXTJS-14286
+                if (record.isModel && record.isNode) {
+                    record.raw = node;
+                }
+            }
+            if (record.onLoad) {
+                record.onLoad();
+            }
+            records[i] = record;
+        }
+        return records;
+    }
+});

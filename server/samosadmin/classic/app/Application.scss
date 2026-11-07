@@ -1,0 +1,3921 @@
+$base-color:   #EEEDED;
+$base-highlight-color: mix(black, $base-color, 50%);
+$base-dark-color: mix(black, $base-color, 50%);
+
+/*Blocos de temas*/
+
+/*Tema 1 - basic*/
+/*---------------------------------------------------*/
+.sencha-dash-dash-headerbar-basic {
+    padding:0 30px 0 0;
+    background: linear-gradient($secondary-color-basic, $tertiary-color-basic);
+    color: $darker-color-basic;
+    position:fixed;
+    width:100%;
+    z-index:10;
+    border-style: none none solid none !important;
+    border-width: 0.8px !important;
+    border-color: mix(white, $secondary-color-basic, 50%) !important;
+    .fundo-logo {
+        background-color: $tertiary-color-basic;
+        border-style: none solid none none !important;
+        border-width: 0.8px !important;
+        border-color: mix(white, $secondary-color-basic, 50%) !important;
+    }
+    .header-right-profile-image {
+        border-radius: 20px;
+    }
+    .top-user-name{
+        font-weight: bold;
+        color: $darker-color-basic;
+        font-size: 14px;
+    }
+}
+
+@include treelist-ui(
+    $ui: 'treelist-clean-basic',
+    $padding: 0 10px 0px 20px,
+    $background-color: $lighter-color-basic,
+    $toolstrip-background-color: $lighter-color-basic,
+    $tool-float-indicator-color: black,
+    $tool-float-indicator-width: 5px,
+    $tool-indicator-selected-color: black,
+    $tool-indicator-selected-width: 4px,
+    $row-over-background-color: mix($secondary-color-basic, $lighter-color-basic, 2%),
+    $item-expanded-background-color: mix($secondary-color-basic, $lighter-color-basic, 3%),
+    $row-selected-background-color: mix($secondary-color-basic, $lighter-color-basic, 7%),
+    $tool-selected-background-color: $lighter-color-basic,
+    $item-line-height : 30px,
+    $item-icon-color: $darker-color-basic,
+    $item-expander-color: $darker-color-basic,
+    $item-text-color: $darker-color-basic,
+    $item-icon-over-color: mix(white, $darker-color-basic, 10%),
+    $item-text-over-color: mix(white, $darker-color-basic, 15%),
+    $item-expander-over-color: mix($secondary-color-basic, $lighter-color-basic, 70%),
+    $item-text-font-size: 13px,
+    $item-icon-font-size: 20px,
+    $item-icon-width: 20px,
+    $item-expander-font-size: 13px,
+    $item-expander-width: 18px,
+    $row-indicator-width: 5px,
+    $row-indicator-selected-color: #F7F7F7,
+    $row-indicator-selected-over-color: #F7F7F7,
+    $row-indicator-over-color: #F7F7F7,
+    $item-expanded-child-background-color: $lighter-color-basic,
+    $item-selected-background-color: $lighter-color-basic
+);
+
+@include extjs-tab-panel-ui(
+    $ui: 'tabpanel-clean-basic',
+    $ui-tab-background-color: white,
+    $ui-tab-background-color-focus: white,
+    $ui-tab-background-color-over: white,
+    $ui-tab-background-color-active: white,
+    $ui-tab-background-color-focus-over: white,
+    $ui-tab-background-color-focus-active: white,
+    $ui-tab-background-color-disabled:white,
+    $ui-tab-border-radius : 2,
+    $ui-tab-border-width: 2,
+    $ui-tab-margin : 0px,
+    $ui-tab-padding: 3px 4px,
+    $ui-tab-text-padding:  5px,
+    $ui-tab-border-color:  white,
+    $ui-tab-border-color-focus:  white,
+    $ui-tab-border-color-over:  white,
+    $ui-tab-border-color-active: $primary-color-basic,
+    $ui-tab-border-color-focus-over: white,
+    $ui-tab-border-color-focus-active: $primary-color-basic,
+    $ui-tab-border-color-disabled: white,
+    $ui-tab-font-weight: bold,
+    $ui-tab-color: black,
+    $ui-tab-color-focus: black,
+    $ui-tab-color-over: black,
+    $ui-tab-color-active: black,
+    $ui-tab-color-focus-over: black,
+    $ui-tab-color-focus-active: black,
+    $ui-tab-color-disabled: black,
+    $ui-bar-padding: 0px,
+    $ui-tab-line-height: 25px,
+    $ui-tab-closable-icon-top: 15px,
+    $ui-tab-closable-icon-glyph-color: mix(black, white, 35%),
+    $ui-tab-closable-icon-glyph-color-over: mix(black, white, 35%)
+);
+
+.x-tab-bar-tabpanel-clean-basic-top > .x-tab-bar-body-tabpanel-clean-basic {
+    background: linear-gradient($tertiary-color-basic, white);
+}
+
+.x-tab.x-tab-tabpanel-clean-basic {
+    border-style: none none solid none;
+}
+
+.x-tab.x-tab-active.x-tab-tabpanel-clean-basic {
+    border-color: $primary-color-basic;
+}
+
+@include extjs-panel-ui(
+    $ui: 'formpanel-clean-basic',
+    $ui-header-color: $secondary-color-basic,
+    $ui-header-font-size: 16px,
+    $ui-header-border-style: none,
+    $ui-header-font-weight: bold,
+    $ui-header-background-color: #f5f5f5,
+    $ui-body-background-color: #f5f5f5
+);
+
+.x-panel-formpanel-clean-basic {
+    top: 0px !important;
+}
+
+.x-panel-header-formpanel-clean-basic {
+    background: rgba(225, 225, 225, 0.3) !important;
+}
+
+.x-panel-header-formpanel-noheader-basic-horizontal.x-header-noborder {
+    background: rgba(225,225,225,0.3) !important;
+}
+
+.x-panel-body-formpanel-noheader-basic {
+    background: rgba(225,225,225,0.3) !important;
+}
+
+.x-panel-body-formpanel-clean-basic {
+    background: rgba(225,225,225,0.3) !important;
+}
+
+@include extjs-panel-ui(
+    $ui: 'formpanel-noheader-basic',
+    $ui-header-line-height: 5px,
+    $ui-header-text-padding: 0px 10px 0 10px,
+    $ui-header-padding: 0px 10px 0 10px,
+    $ui-header-color: $secondary-color-basic,
+    $ui-header-font-size: 0px,
+    $ui-header-border-style: none,
+    $ui-header-font-weight: bold,
+    $ui-header-background-color: #f5f5f5,
+    $ui-body-background-color: #f5f5f5
+);
+
+@include extjs-panel-ui(
+    $ui: 'panel-clean-basic',
+    $ui-padding: 5px 20px 20px 20px
+);
+
+.x-panel-body-panel-clean-basic {
+    background-color: transparent;
+}
+
+.x-grid-with-row-lines .x-grid-item.x-grid-item-selected {
+    background-color: rgba(203, 203, 203, 0.8) !important;
+}
+
+.disabled-row .x-grid-cell {
+    background-color: #d8d8d8 !important;
+    border-color: #d8d8d8 !important;
+    color: #a6a6a6 !important;
+}
+
+.disabled-row .x-grid-with-row-lines .x-grid-item .x-grid-item-selected {
+    background-color: #d8d8d8 !important;
+    border-color: #d8d8d8 !important;
+    color: #a6a6a6 !important;
+}
+
+@include extjs-menu-ui(
+    $ui: 'menu-clean-basic',
+    $ui-item-font-size: 14px,
+    $ui-item-font-weight: bold,
+    $ui-item-active-background-color: $primary-color-basic,
+    $ui-item-icon-size: 0px,
+    $ui-separator-border-color: $secondary-color-basic
+);
+
+.x-menu-item-focus .x-menu-item-text-menu-clean-basic,
+.x-menu-item-active .x-menu-item-text-menu-clean-basic {
+    color: black !important;
+    font-weight: bold !important;
+}
+
+@include extjs-text-field-ui(
+    $ui: 'textbold-basic',
+    $ui-color: black,
+    $ui-height: 30px,
+    $ui-font-size: 14px,
+    $ui-font-weight: bold,
+    $ui-border-radius: 5px,
+    $ui-border-style: solid,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-basic,
+    $ui-focus-border-color: $primary-color-basic
+);
+
+.x-form-text-wrap-textbold-basic {
+    border-radius: 5px;
+}
+
+.x-form-empty-field-textbold-basic {
+    color: black;
+}
+
+.x-form-trigger-textbold-basic {
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.x-form-trigger-gridtext-basic {
+    width: 20px !important;
+}
+
+@include extjs-label-ui(
+    $ui: 'textbold-basic',
+    $ui-error-msg-color: red
+);
+
+.x-form-text-textbold-basic {
+    padding: 5px !important;
+    background-color: rgba(255,255,255,0.75) !important;
+}
+
+.x-form-text-textbold-basic:not([readonly]):focus{
+    background-color: $tertiary-color-basic !important;
+}
+
+@include extjs-text-field-ui(
+    $ui: 'textarea-clean-basic',
+    $ui-font-weight: bold,
+    $ui-font-size: 14px,
+    $ui-border-style: solid,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-basic,
+    $ui-focus-border-color: $primary-color-basic
+);
+
+.x-form-text-textarea-clean-basic:not([readonly]):focus{
+    background-color: $tertiary-color-basic !important;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'primary-basic',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $primary-color-basic,
+    $border-color: $primary-color-basic
+);
+@include extjs-button-large-ui(
+    $ui: 'primary-basic',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $primary-color-basic,
+    $border-color: $primary-color-basic,
+    $line-height: 34px
+);
+@include extjs-button-toolbar-small-ui(
+    $ui: 'primary-basic',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $primary-color-basic,
+    $border-color: $primary-color-basic
+);
+
+.x-btn.x-btn-primary-basic-small{
+    box-shadow: 0 0 9px 0px #585858;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'secondary-basic',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $secondary-color-basic,
+    $border-color: $secondary-color-basic
+);
+@include extjs-button-large-ui(
+    $ui: 'secondary-basic',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $secondary-color-basic,
+    $border-color: $secondary-color-basic,
+    $line-height: 34px
+);
+@include extjs-button-toolbar-small-ui(
+    $ui: 'secondary-basic',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $secondary-color-basic,
+    $border-color: $secondary-color-basic
+);
+
+.x-btn.x-btn-secondary-basic-small{
+    box-shadow: 0 0 9px 0px black;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'tertiary-basic',
+    $border-radius: 5px,
+    $background-color: $tertiary-color-basic,
+    $border-color: $tertiary-color-basic
+);
+@include extjs-button-large-ui(
+    $ui: 'tertiary-basic',
+    $border-radius: 5px,
+    $background-color: $tertiary-color-basic,
+    $border-color: $tertiary-color-basic,
+    $line-height: 34px
+);
+@include extjs-button-toolbar-small-ui(
+    $ui: 'tertiary-basic',
+    $border-radius: 5px,
+    $background-color: $tertiary-color-basic,
+    $border-color: $tertiary-color-basic
+);
+
+.x-btn.x-btn-tertiary-basic-small{
+    box-shadow: 0 0 9px 0px #c8c8c8;
+
+    .x-btn-inner-default-small {
+        color: #4a4a4a !important;
+    }
+}
+.x-btn-inner-tertiary-basic-small{
+    color: #4a4a4a !important;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'danger-basic',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: #FF2819,
+    $border-color: #FF2819
+);
+@include extjs-button-large-ui(
+    $ui: 'danger-basic',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: #FF2819,
+    $border-color: #FF2819,
+    $line-height: 34px
+);
+@include extjs-button-toolbar-small-ui(
+    $ui: 'danger-basic',
+    $border-radius: 5px,
+    $color: white,
+    $background-color: #FF2819,
+    $border-color: #FF2819
+);
+
+.x-btn.x-btn-danger-basic-small{
+    box-shadow: 0 0 9px 0px #585858;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'light-basic',
+    $font-size: 14px,
+    $border-radius: 5px,
+    $color: $secondary-color-basic,
+    $background-color: transparent,
+    $background-color-over: #F1F1F1,
+    $border-width: 0
+);
+
+@include extjs-button-small-ui(
+    $ui: 'light-primary-basic',
+    $font-size: 14px,
+    $border-radius: 5px,
+    $color: $secondary-color-basic,
+    $background-color: #F1F1F1,
+    $background-color-over: #F1F1F1,
+    $border-width: 0
+);
+
+@include extjs-button-small-ui(
+    $ui: 'light-border-basic',
+    $font-size: 14px,
+    $border-radius: 5px,
+    $color: $secondary-color-basic,
+    $glyph-color: $secondary-color-basic,
+    $background-color: transparent,
+    $background-color-over: #F1F1F1,
+    $border-width: 1px,
+    $border-color: #F1F1F1
+);
+
+@include extjs-button-small-ui(
+    $ui: 'light-primary-border-basic',
+    $font-size: 14px,
+    $border-radius: 5px,
+    $color: $secondary-color-basic,
+    $background-color: #F1F1F1,
+    $background-color-over: #F1F1F1,
+    $border-width: 1px,
+    $border-color: #7E7E7E
+);
+
+@include extjs-button-small-ui(
+    $ui: 'transparent-basic',
+    $font-size: 14px,
+    $color: $primary-color-basic,
+    $border-radius: 5px,
+    $glyph-color: $primary-color-basic,
+    $background-color: transparent,
+    $border-width: 0
+);
+
+@include extjs-button-small-ui(
+    $ui: 'transparent-invert-basic',
+    $font-size: 14px,
+    $border-color: transparent,
+    $color: mix(black, $primary-color-basic, 15%),
+    $arrow-glyph-color: mix(black, $primary-color-basic, 15%),
+    $background-color: transparent
+);
+
+@include extjs-text-field-ui(
+    $ui: 'gridtext-basic',
+    $ui-color: black,
+    $ui-height: 30px,
+    $ui-font-size: 14px,
+    $ui-font-weight: bold,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-basic,
+    $ui-focus-border-color: none
+);
+
+@include extjs-checkbox-ui(
+    $ui: 'gridtext-basic'
+);
+
+.x-form-checkbox-gridtext-basic{
+    margin: 4px 0px 0px 35px !important;
+}
+
+@include extjs-tag-field-ui(
+    $ui: 'gridtext-basic'
+);
+
+.x-form-cb-wrap-gridtext-basic {
+    height: 29px !important;
+    border-left: 1px solid #D0D0D0 !important;
+    border-bottom: 1px solid #D0D0D0 !important;
+}
+
+.x-form-text-gridtext-basic:not([readonly]):focus{
+    background-color: $tertiary-color-basic !important;
+}
+
+.x-form-empty-field-gridtext-basic {
+    color: black;
+}
+
+.x-form-trigger-wrap-gridtext-basic {
+    border-style: none none solid solid;
+    border-color: #d0d0d0;
+}
+
+.gridformbackground .x-panel-body-default {
+    background: #f5f5f5;
+}
+
+@include extjs-text-field-ui(
+    $ui: 'comboEmpresa-basic',
+    $ui-background-color: transparent,
+    $ui-padding: 5px,
+    $ui-color: black !important,
+    $ui-font-weight: bold,
+    $ui-font-size: 13px,
+    $ui-border-style: solid,
+    $ui-border-width: 1px,
+    $ui-border-color:  $darker-color-basic,
+    $ui-focus-border-color: $tertiary-color-basic,
+    $ui-trigger-glyph-color: $tertiary-color-basic,
+    $ui-height: 20px
+);
+
+.x-form-trigger-comboEmpresa-basic {
+    width: 20px;
+    font: 20px/29px FontAwesome;
+    background: transparent;
+    color: black !important;
+}
+
+.x-form-empty-field-comboEmpresa-basic {
+    color: black !important;
+}
+
+@include extjs-text-field-ui(
+    $ui: 'textlist-basic',
+    $ui-height: 18px,
+    $ui-padding: 0px 5px 0px 5px,
+    $ui-font-weight: bold,
+    $ui-font-size: 14px,
+    $ui-border-style: solid,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-basic,
+    $ui-focus-border-color: $primary-color-basic
+);
+
+.x-form-text-textlist-basic:not([readonly]):focus{
+    background-color: $tertiary-color-basic !important;
+}
+
+.container-notificacao-basic {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.contador-notificacao-basic {
+    display: inline-block;
+    position: relative;
+    top: 0px;
+    padding: 0.6em;
+    background: $primary-color-basic;
+    border-radius: 0.2em;
+    font-size: 1.3em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.contador-notificacao-basic::before, 
+.contador-notificacao-basic::after {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.contador-notificacao-basic::before {
+    display: block;
+    content: "\f0f3";
+    font-family: "FontAwesome";
+    transform-origin: top center;
+}
+
+.contador-notificacao-basic::after {
+    font-family: Arial;
+    font-size: 0.7em;
+    font-weight: 700;
+    position: absolute;
+    top: -10px;
+    right: -15px;
+    padding: 4px 6px;
+    line-height: 100%;
+    border: 2px #fff solid;
+    border-radius: 60px;
+    background: $primary-color-basic;
+    opacity: 0;
+    content: attr(data-count);
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    transition: transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+
+.contador-notificacao-basic.notify::before {
+    -webkit-animation: ring 1.5s ease;
+    animation: ring 1.5s ease;
+}
+
+.contador-notificacao-basic.show-count::after {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+.container-empresa-basic {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.container-ponto-basic {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.contador-ponto-basic {
+    display: inline-block;
+    position: relative;
+    top: 0px;
+    padding: 0.6em;
+    background: $primary-color-basic;
+    border-radius: 0.2em;
+    font-size: 1.3em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.contador-ponto-basic::before, 
+.contador-ponto-basic::after {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.contador-ponto-basic::before {
+    display: block;
+    content: "\f017";
+    font-family: "FontAwesome";
+    transform-origin: top center;
+}
+
+.contador-ponto-basic::after {
+    font-family: Arial;
+    font-size: 0.7em;
+    font-weight: 700;
+    position: absolute;
+    top: -10px;
+    right: -15px;
+    padding: 4px 6px;
+    line-height: 100%;
+    border: 2px #fff solid;
+    border-radius: 60px;
+    background: $primary-color-basic;
+    opacity: 0;
+    content: attr(data-count);
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    transition: transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+
+.contador-ponto-basic.notify::before {
+    -webkit-animation: ring 1.5s ease;
+    animation: ring 1.5s ease;
+}
+
+.contador-ponto-basic.show-count::after {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+.x-form-text-textbold-basic.x-tagfield {
+	padding: 3px 0 0 4px
+}
+
+.x-form-text-textbold-basic .x-tagfield-input {
+	margin: 0 4px 3px 0
+}
+
+.x-form-text-textbold-basic .x-tagfield-input-field {
+	height: 24px;
+	line-height: 24px
+}
+
+.x-form-text-textbold-basic .x-tagfield-item {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-ms-border-radius: 0;
+	-o-border-radius: 0;
+	border-radius: 0;
+	background-color: #ececec;
+	border: 1px solid #ececec;
+	padding: 0 21px 0 5px;
+	margin: 0 4px 3px 0;
+	color: #404040;
+	line-height: 22px
+}
+
+.x-form-text-textbold-basic .x-tagfield-item:hover {
+	background-color: #e5e5e5;
+	border-color: #e5e5e5;
+	color: #404040
+}
+
+.x-form-text-textbold-basic .x-tagfield-item.x-tagfield-item-selected {
+	background-color: #7fb5e4;
+	border-color: #7fb5e4;
+	color: #fff
+}
+
+.x-form-text-textbold-basic .x-tagfield-item-close {
+	width: 12px;
+	height: 12px;
+	top: 5px;
+	right: 3px;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+	opacity: 0.85;
+	font: 12px/1 FontAwesome;
+	color: #919191
+}
+
+.x-form-text-textbold-basic .x-tagfield-item-close:before {
+	content: "\f00d"
+}
+
+.x-form-text-textbold-basic .x-tagfield-item-close:hover {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=93)";
+	opacity: 0.93;
+	color: #919191
+}
+
+.x-form-text-textbold-basic .x-tagfield-item-close:active {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	opacity: 1
+}
+
+.x-form-text-textbold-basic .x-tagfield-item-selected .x-tagfield-item-close {
+	color: #fff
+}
+
+.x-form-text-textbold-basic .x-tagfield-item-selected .x-tagfield-item-close:hover {
+	color: #fff
+}
+
+/*---------------------------------------------------*/
+
+
+
+/*Tema 2 - green*/
+/*---------------------------------------------------*/
+.sencha-dash-dash-headerbar-green {
+    padding:0 30px 0 0;
+    background: linear-gradient($secondary-color-green, $tertiary-color-green);
+    color: $darker-color-green;
+    position:fixed;
+    width:100%;
+    z-index:10;
+    border-style: none none solid none !important;
+    border-width: 0.8px !important;
+    border-color: mix(white, $secondary-color-green, 50%) !important;
+    .fundo-logo {
+        background-color: $tertiary-color-green;
+        border-style: none solid none none !important;
+        border-width: 0.8px !important;
+        border-color: mix(white, $secondary-color-green, 50%) !important;
+    }
+    .header-right-profile-image {
+        border-radius: 20px;
+    }
+    .top-user-name{
+        font-weight: bold;
+        color: $darker-color-green;
+        font-size: 14px;
+    }
+}
+
+@include treelist-ui(
+    $ui: 'treelist-clean-green',
+    $padding: 0 10px 0px 20px,
+    $background-color: $lighter-color-green,
+    $toolstrip-background-color: $lighter-color-green,
+    $tool-float-indicator-color: black,
+    $tool-float-indicator-width: 5px,
+    $tool-indicator-selected-color: black,
+    $tool-indicator-selected-width: 4px,
+    $row-over-background-color: mix($secondary-color-green, $lighter-color-green, 2%),
+    $item-expanded-background-color: mix($secondary-color-green, $lighter-color-green, 3%),
+    $row-selected-background-color: mix($secondary-color-green, $lighter-color-green, 7%),
+    $tool-selected-background-color: $lighter-color-green,
+    $item-line-height : 30px,
+    $item-icon-color: $darker-color-green,
+    $item-expander-color: $darker-color-green,
+    $item-text-color: $darker-color-green,
+    $item-icon-over-color: mix(white, $darker-color-green, 10%),
+    $item-text-over-color: mix(white, $darker-color-green, 15%),
+    $item-expander-over-color: mix($secondary-color-green, $lighter-color-green, 70%),
+    $item-text-font-size: 13px,
+    $item-icon-font-size: 20px,
+    $item-icon-width: 20px,
+    $item-expander-font-size: 13px,
+    $item-expander-width: 18px,
+    $row-indicator-width: 5px,
+    $row-indicator-selected-color: #F7F7F7,
+    $row-indicator-selected-over-color: #F7F7F7,
+    $row-indicator-over-color: #F7F7F7,
+    $item-expanded-child-background-color: $lighter-color-green,
+    $item-selected-background-color: $lighter-color-green
+);
+
+@include extjs-tab-panel-ui(
+    $ui: 'tabpanel-clean-green',
+    $ui-tab-background-color: white,
+    $ui-tab-background-color-focus: white,
+    $ui-tab-background-color-over: white,
+    $ui-tab-background-color-active: white,
+    $ui-tab-background-color-focus-over: white,
+    $ui-tab-background-color-focus-active: white,
+    $ui-tab-background-color-disabled:white,
+    $ui-tab-border-radius : 2,
+    $ui-tab-border-width: 2,
+    $ui-tab-margin : 0px,
+    $ui-tab-padding: 3px 4px,
+    $ui-tab-text-padding:  5px,
+    $ui-tab-border-color:  white,
+    $ui-tab-border-color-focus:  white,
+    $ui-tab-border-color-over:  white,
+    $ui-tab-border-color-active: $primary-color-green,
+    $ui-tab-border-color-focus-over: white,
+    $ui-tab-border-color-focus-active: $primary-color-green,
+    $ui-tab-border-color-disabled: white,
+    $ui-tab-font-weight: bold,
+    $ui-tab-color: black,
+    $ui-tab-color-focus: black,
+    $ui-tab-color-over: black,
+    $ui-tab-color-active: black,
+    $ui-tab-color-focus-over: black,
+    $ui-tab-color-focus-active: black,
+    $ui-tab-color-disabled: black,
+    $ui-bar-padding: 0px,
+    $ui-tab-line-height: 25px,
+    $ui-tab-closable-icon-top: 15px,
+    $ui-tab-closable-icon-glyph-color: mix(black, white, 35%),
+    $ui-tab-closable-icon-glyph-color-over: mix(black, white, 35%)
+);
+
+.x-tab-bar-tabpanel-clean-green-top > .x-tab-bar-body-tabpanel-clean-green {
+    background: linear-gradient($tertiary-color-green, white);
+}
+
+.x-tab.x-tab-tabpanel-clean-green {
+    border-style: none none solid none;
+}
+
+.x-tab.x-tab-active.x-tab-tabpanel-clean-green {
+    border-color: $primary-color-green;
+}
+
+@include extjs-panel-ui(
+    $ui: 'formpanel-clean-green',
+    $ui-header-color: $secondary-color-green,
+    $ui-header-font-size: 16px,
+    $ui-header-border-style: none,
+    $ui-header-font-weight: bold,
+    $ui-header-background-color: #f5f5f5,
+    $ui-body-background-color: #f5f5f5
+);
+
+.x-panel-formpanel-clean-green {
+    top: 0px !important;
+}
+
+.x-panel-header-formpanel-clean-green {
+    background: rgba(225, 225, 225, 0.3) !important;
+}
+
+.x-panel-header-formpanel-noheader-green-horizontal.x-header-noborder {
+    background: rgba(225,225,225,0.3) !important;
+}
+
+.x-panel-body-formpanel-noheader-green {
+    background: rgba(225,225,225,0.3) !important;
+}
+
+.x-panel-body-formpanel-clean-green {
+    background: rgba(225,225,225,0.3) !important;
+}
+
+@include extjs-panel-ui(
+    $ui: 'formpanel-noheader-green',
+    $ui-header-line-height: 5px,
+    $ui-header-text-padding: 0px 10px 0 10px,
+    $ui-header-padding: 0px 10px 0 10px,
+    $ui-header-color: $secondary-color-green,
+    $ui-header-font-size: 0px,
+    $ui-header-border-style: none,
+    $ui-header-font-weight: bold,
+    $ui-header-background-color: #f5f5f5,
+    $ui-body-background-color: #f5f5f5
+);
+
+@include extjs-panel-ui(
+    $ui: 'panel-clean-green',
+    $ui-padding: 5px 20px 20px 20px
+);
+
+.x-panel-body-panel-clean-green {
+    background-color: transparent;
+}
+
+.x-grid-with-row-lines .x-grid-item.x-grid-item-selected {
+    background-color: rgba(203, 203, 203, 0.8) !important;
+}
+
+@include extjs-menu-ui(
+    $ui: 'menu-clean-green',
+    $ui-item-font-size: 14px,
+    $ui-item-font-weight: bold,
+    $ui-item-active-background-color: $primary-color-green,
+    $ui-item-icon-size: 0px,
+    $ui-separator-border-color: $secondary-color-green
+);
+
+.x-menu-item-focus .x-menu-item-text-menu-clean-green,
+.x-menu-item-active .x-menu-item-text-menu-clean-green {
+    color: black !important;
+    font-weight: bold !important;
+}
+
+@include extjs-text-field-ui(
+    $ui: 'textbold-green',
+    $ui-color: black,
+    $ui-height: 30px,
+    $ui-font-size: 14px,
+    $ui-font-weight: bold,
+    $ui-border-radius: 5px,
+    $ui-border-style: solid,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-green,
+    $ui-focus-border-color: $primary-color-green
+);
+
+.x-form-text-wrap-textbold-green {
+    border-radius: 5px;
+}
+
+.x-form-empty-field-textbold-green {
+    color: black;
+}
+
+.x-form-trigger-textbold-green {
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.x-form-trigger-gridtext-green {
+    width: 20px !important;
+}
+
+@include extjs-label-ui(
+    $ui: 'textbold-green',
+    $ui-error-msg-color: red
+);
+
+.x-form-text-textbold-green {
+    padding: 5px !important;
+    background-color: rgba(255,255,255,0.75) !important;
+}
+
+.x-form-text-textbold-green:not([readonly]):focus{
+    background-color: $tertiary-color-green !important;
+}
+
+@include extjs-text-field-ui(
+    $ui: 'textarea-clean-green',
+    $ui-font-weight: bold,
+    $ui-font-size: 14px,
+    $ui-border-style: solid,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-green,
+    $ui-focus-border-color: $primary-color-green
+);
+
+.x-form-text-textarea-clean-green:not([readonly]):focus{
+    background-color: $tertiary-color-green !important;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'primary-green',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $primary-color-green,
+    $border-color: $primary-color-green
+);
+@include extjs-button-large-ui(
+    $ui: 'primary-green',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $primary-color-green,
+    $border-color: $primary-color-green,
+    $line-height: 34px
+);
+@include extjs-button-toolbar-small-ui(
+    $ui: 'primary-green',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $primary-color-green,
+    $border-color: $primary-color-green
+);
+
+.x-btn.x-btn-primary-green-small{
+    box-shadow: 0 0 9px 0px #585858;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'secondary-green',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $secondary-color-green,
+    $border-color: $secondary-color-green
+);
+@include extjs-button-large-ui(
+    $ui: 'secondary-green',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $secondary-color-green,
+    $border-color: $secondary-color-green,
+    $line-height: 34px
+);
+@include extjs-button-toolbar-small-ui(
+    $ui: 'secondary-green',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $secondary-color-green,
+    $border-color: $secondary-color-green
+);
+
+.x-btn.x-btn-secondary-green-small{
+    box-shadow: 0 0 9px 0px black;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'tertiary-green',
+    $border-radius: 5px,
+    $background-color: $tertiary-color-green,
+    $border-color: $tertiary-color-green
+);
+@include extjs-button-large-ui(
+    $ui: 'tertiary-green',
+    $border-radius: 5px,
+    $background-color: $tertiary-color-green,
+    $border-color: $tertiary-color-green,
+    $line-height: 34px
+);
+@include extjs-button-toolbar-small-ui(
+    $ui: 'tertiary-green',
+    $border-radius: 5px,
+    $background-color: $tertiary-color-green,
+    $border-color: $tertiary-color-green
+);
+
+.x-btn.x-btn-tertiary-green-small{
+    box-shadow: 0 0 9px 0px #c8c8c8;
+
+    .x-btn-inner-default-small {
+        color: #4a4a4a !important;
+    }
+}
+.x-btn-inner-tertiary-green-small{
+    color: #4a4a4a !important;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'danger-green',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: #FF2819,
+    $border-color: #FF2819
+);
+@include extjs-button-large-ui(
+    $ui: 'danger-green',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: #FF2819,
+    $border-color: #FF2819,
+    $line-height: 34px
+);
+@include extjs-button-toolbar-small-ui(
+    $ui: 'danger-green',
+    $border-radius: 5px,
+    $color: white,
+    $background-color: #FF2819,
+    $border-color: #FF2819
+);
+
+.x-btn.x-btn-danger-green-small{
+    box-shadow: 0 0 9px 0px #585858;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'light-green',
+    $font-size: 14px,
+    $border-radius: 5px,
+    $color: $secondary-color-green,
+    $background-color: transparent,
+    $background-color-over: #F1F1F1,
+    $border-width: 0
+);
+
+@include extjs-button-small-ui(
+    $ui: 'light-primary-green',
+    $font-size: 14px,
+    $border-radius: 5px,
+    $color: $secondary-color-green,
+    $background-color: #F1F1F1,
+    $background-color-over: #F1F1F1,
+    $border-width: 0
+);
+
+@include extjs-button-small-ui(
+    $ui: 'light-border-green',
+    $font-size: 14px,
+    $border-radius: 5px,
+    $color: $secondary-color-green,
+    $glyph-color: $secondary-color-green,
+    $background-color: transparent,
+    $background-color-over: #F1F1F1,
+    $border-width: 1px,
+    $border-color: #F1F1F1
+);
+
+@include extjs-button-small-ui(
+    $ui: 'light-primary-border-green',
+    $font-size: 14px,
+    $border-radius: 5px,
+    $color: $secondary-color-green,
+    $background-color: #F1F1F1,
+    $background-color-over: #F1F1F1,
+    $border-width: 1px,
+    $border-color: #7E7E7E
+);
+
+@include extjs-button-small-ui(
+    $ui: 'transparent-green',
+    $font-size: 14px,
+    $color: $primary-color-green,
+    $border-radius: 5px,
+    $glyph-color: $primary-color-green,
+    $background-color: transparent,
+    $border-width: 0
+);
+
+@include extjs-button-small-ui(
+    $ui: 'transparent-invert-green',
+    $font-size: 14px,
+    $border-color: transparent,
+    $color: mix(black, $primary-color-green, 15%),
+    $arrow-glyph-color: mix(black, $primary-color-green, 15%),
+    $background-color: transparent
+);
+
+@include extjs-text-field-ui(
+    $ui: 'gridtext-green',
+    $ui-color: black,
+    $ui-height: 30px,
+    $ui-font-size: 14px,
+    $ui-font-weight: bold,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-green,
+    $ui-focus-border-color: none
+);
+
+@include extjs-checkbox-ui(
+    $ui: 'gridtext-green'
+);
+
+.x-form-checkbox-gridtext-green{
+    margin: 4px 0px 0px 35px !important;
+}
+
+@include extjs-tag-field-ui(
+    $ui: 'gridtext-green'
+);
+
+.x-form-cb-wrap-gridtext-green {
+    height: 29px !important;
+    border-left: 1px solid #D0D0D0 !important;
+    border-bottom: 1px solid #D0D0D0 !important;
+}
+
+.x-form-text-gridtext-green:not([readonly]):focus{
+    background-color: $tertiary-color-green !important;
+}
+
+.x-form-empty-field-gridtext-green {
+    color: black;
+}
+
+.x-form-trigger-wrap-gridtext-green {
+    border-style: none none solid solid;
+    border-color: #d0d0d0;
+}
+
+.gridformbackground .x-panel-body-default {
+    background: #f5f5f5;
+}
+
+@include extjs-text-field-ui(
+    $ui: 'comboEmpresa-green',
+    $ui-background-color: transparent,
+    $ui-padding: 5px,
+    $ui-color: black !important,
+    $ui-font-weight: bold,
+    $ui-font-size: 13px,
+    $ui-border-style: solid,
+    $ui-border-width: 1px,
+    $ui-border-color:  $darker-color-green,
+    $ui-focus-border-color: $tertiary-color-green,
+    $ui-trigger-glyph-color: $tertiary-color-green,
+    $ui-height: 20px
+);
+
+.x-form-trigger-comboEmpresa-green {
+    width: 20px;
+    font: 20px/29px FontAwesome;
+    background: transparent;
+    color: black !important;
+}
+
+.x-form-empty-field-comboEmpresa-green {
+    color: black !important;
+}
+
+@include extjs-text-field-ui(
+    $ui: 'textlist-green',
+    $ui-height: 18px,
+    $ui-padding: 0px 5px 0px 5px,
+    $ui-font-weight: bold,
+    $ui-font-size: 14px,
+    $ui-border-style: solid,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-green,
+    $ui-focus-border-color: $primary-color-green
+);
+
+.x-form-text-textlist-green:not([readonly]):focus{
+    background-color: $tertiary-color-green !important;
+}
+
+.container-notificacao-green {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.contador-notificacao-green {
+    display: inline-block;
+    position: relative;
+    top: 0px;
+    padding: 0.6em;
+    background: $primary-color-green;
+    border-radius: 0.2em;
+    font-size: 1.3em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.contador-notificacao-green::before, 
+.contador-notificacao-green::after {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.contador-notificacao-green::before {
+    display: block;
+    content: "\f0f3";
+    font-family: "FontAwesome";
+    transform-origin: top center;
+}
+
+.contador-notificacao-green::after {
+    font-family: Arial;
+    font-size: 0.7em;
+    font-weight: 700;
+    position: absolute;
+    top: -10px;
+    right: -15px;
+    padding: 4px 6px;
+    line-height: 100%;
+    border: 2px #fff solid;
+    border-radius: 60px;
+    background: $primary-color-green;
+    opacity: 0;
+    content: attr(data-count);
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    transition: transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+
+.contador-notificacao-green.notify::before {
+    -webkit-animation: ring 1.5s ease;
+    animation: ring 1.5s ease;
+}
+
+.contador-notificacao-green.show-count::after {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+.container-ponto-green {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.contador-ponto-green {
+    display: inline-block;
+    position: relative;
+    top: 0px;
+    padding: 0.6em;
+    background: $primary-color-green;
+    border-radius: 0.2em;
+    font-size: 1.3em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.contador-ponto-green::before, 
+.contador-ponto-green::after {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.contador-ponto-green::before {
+    display: block;
+    content: "\f017";
+    font-family: "FontAwesome";
+    transform-origin: top center;
+}
+
+.contador-ponto-green::after {
+    font-family: Arial;
+    font-size: 0.7em;
+    font-weight: 700;
+    position: absolute;
+    top: -10px;
+    right: -15px;
+    padding: 4px 6px;
+    line-height: 100%;
+    border: 2px #fff solid;
+    border-radius: 60px;
+    background: $primary-color-green;
+    opacity: 0;
+    content: attr(data-count);
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    transition: transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+
+.contador-ponto-green.notify::before {
+    -webkit-animation: ring 1.5s ease;
+    animation: ring 1.5s ease;
+}
+
+.contador-ponto-green.show-count::after {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+.x-form-text-textbold-green.x-tagfield {
+	padding: 3px 0 0 4px
+}
+
+.x-form-text-textbold-green .x-tagfield-input {
+	margin: 0 4px 3px 0
+}
+
+.x-form-text-textbold-green .x-tagfield-input-field {
+	height: 24px;
+	line-height: 24px
+}
+
+.x-form-text-textbold-green .x-tagfield-item {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-ms-border-radius: 0;
+	-o-border-radius: 0;
+	border-radius: 0;
+	background-color: #ececec;
+	border: 1px solid #ececec;
+	padding: 0 21px 0 5px;
+	margin: 0 4px 3px 0;
+	color: #404040;
+	line-height: 22px
+}
+
+.x-form-text-textbold-green .x-tagfield-item:hover {
+	background-color: #e5e5e5;
+	border-color: #e5e5e5;
+	color: #404040
+}
+
+.x-form-text-textbold-green .x-tagfield-item.x-tagfield-item-selected {
+	background-color: #7fb5e4;
+	border-color: #7fb5e4;
+	color: #fff
+}
+
+.x-form-text-textbold-green .x-tagfield-item-close {
+	width: 12px;
+	height: 12px;
+	top: 5px;
+	right: 3px;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+	opacity: 0.85;
+	font: 12px/1 FontAwesome;
+	color: #919191
+}
+
+.x-form-text-textbold-green .x-tagfield-item-close:before {
+	content: "\f00d"
+}
+
+.x-form-text-textbold-green .x-tagfield-item-close:hover {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=93)";
+	opacity: 0.93;
+	color: #919191
+}
+
+.x-form-text-textbold-green .x-tagfield-item-close:active {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	opacity: 1
+}
+
+.x-form-text-textbold-green .x-tagfield-item-selected .x-tagfield-item-close {
+	color: #fff
+}
+
+.x-form-text-textbold-green .x-tagfield-item-selected .x-tagfield-item-close:hover {
+	color: #fff
+}
+
+/*---------------------------------------------------*/
+
+
+
+/*Tema 3 - blue*/
+/*---------------------------------------------------*/
+.sencha-dash-dash-headerbar-blue {
+    padding:0 30px 0 0;
+    background: linear-gradient($secondary-color-blue, $tertiary-color-blue);
+    color: $darker-color-blue;
+    position:fixed;
+    width:100%;
+    z-index:10;
+    border-style: none none solid none !important;
+    border-width: 0.8px !important;
+    border-color: mix(white, $secondary-color-blue, 50%) !important;
+    .fundo-logo {
+        background-color: $tertiary-color-blue;
+        border-style: none solid none none !important;
+        border-width: 0.8px !important;
+        border-color: mix(white, $secondary-color-blue, 50%) !important;
+    }
+    .header-right-profile-image {
+        border-radius: 20px;
+    }
+    .top-user-name{
+        font-weight: bold;
+        color: $darker-color-blue;
+        font-size: 14px;
+    }
+}
+
+@include treelist-ui(
+    $ui: 'treelist-clean-blue',
+    $padding: 0 10px 0px 20px,
+    $background-color: $lighter-color-blue,
+    $toolstrip-background-color: $lighter-color-blue,
+    $tool-float-indicator-color: black,
+    $tool-float-indicator-width: 5px,
+    $tool-indicator-selected-color: black,
+    $tool-indicator-selected-width: 4px,
+    $row-over-background-color: mix($secondary-color-blue, $lighter-color-blue, 2%),
+    $item-expanded-background-color: mix($secondary-color-blue, $lighter-color-blue, 3%),
+    $row-selected-background-color: mix($secondary-color-blue, $lighter-color-blue, 7%),
+    $tool-selected-background-color: $lighter-color-blue,
+    $item-line-height : 30px,
+    $item-icon-color: $darker-color-blue,
+    $item-expander-color: $darker-color-blue,
+    $item-text-color: $darker-color-blue,
+    $item-icon-over-color: mix(white, $darker-color-blue, 10%),
+    $item-text-over-color: mix(white, $darker-color-blue, 15%),
+    $item-expander-over-color: mix($secondary-color-blue, $lighter-color-blue, 70%),
+    $item-text-font-size: 13px,
+    $item-icon-font-size: 20px,
+    $item-icon-width: 20px,
+    $item-expander-font-size: 13px,
+    $item-expander-width: 18px,
+    $row-indicator-width: 5px,
+    $row-indicator-selected-color: #F7F7F7,
+    $row-indicator-selected-over-color: #F7F7F7,
+    $row-indicator-over-color: #F7F7F7,
+    $item-expanded-child-background-color: $lighter-color-blue,
+    $item-selected-background-color: $lighter-color-blue
+);
+
+@include extjs-tab-panel-ui(
+    $ui: 'tabpanel-clean-blue',
+    $ui-tab-background-color: white,
+    $ui-tab-background-color-focus: white,
+    $ui-tab-background-color-over: white,
+    $ui-tab-background-color-active: white,
+    $ui-tab-background-color-focus-over: white,
+    $ui-tab-background-color-focus-active: white,
+    $ui-tab-background-color-disabled:white,
+    $ui-tab-border-radius : 2,
+    $ui-tab-border-width: 2,
+    $ui-tab-margin : 0px,
+    $ui-tab-padding: 3px 4px,
+    $ui-tab-text-padding:  5px,
+    $ui-tab-border-color:  white,
+    $ui-tab-border-color-focus:  white,
+    $ui-tab-border-color-over:  white,
+    $ui-tab-border-color-active: $primary-color-blue,
+    $ui-tab-border-color-focus-over: white,
+    $ui-tab-border-color-focus-active: $primary-color-blue,
+    $ui-tab-border-color-disabled: white,
+    $ui-tab-font-weight: bold,
+    $ui-tab-color: black,
+    $ui-tab-color-focus: black,
+    $ui-tab-color-over: black,
+    $ui-tab-color-active: black,
+    $ui-tab-color-focus-over: black,
+    $ui-tab-color-focus-active: black,
+    $ui-tab-color-disabled: black,
+    $ui-bar-padding: 0px,
+    $ui-tab-line-height: 25px,
+    $ui-tab-closable-icon-top: 15px,
+    $ui-tab-closable-icon-glyph-color: mix(black, white, 35%),
+    $ui-tab-closable-icon-glyph-color-over: mix(black, white, 35%)
+);
+
+.x-tab-bar-tabpanel-clean-blue-top > .x-tab-bar-body-tabpanel-clean-blue {
+    background: linear-gradient($tertiary-color-blue, white);
+}
+
+.x-tab.x-tab-tabpanel-clean-blue {
+    border-style: none none solid none;
+}
+
+.x-tab.x-tab-active.x-tab-tabpanel-clean-blue {
+    border-color: $primary-color-blue;
+}
+
+@include extjs-panel-ui(
+    $ui: 'formpanel-clean-blue',
+    $ui-header-color: $secondary-color-blue,
+    $ui-header-font-size: 16px,
+    $ui-header-border-style: none,
+    $ui-header-font-weight: bold,
+    $ui-header-background-color: #f5f5f5,
+    $ui-body-background-color: #f5f5f5
+);
+
+.x-panel-formpanel-clean-blue {
+    top: 0px !important;
+}
+
+.x-panel-header-formpanel-clean-blue {
+    background: rgba(225, 225, 225, 0.3) !important;
+}
+
+.x-panel-header-formpanel-noheader-blue-horizontal.x-header-noborder {
+    background: rgba(225,225,225,0.3) !important;
+}
+
+.x-panel-body-formpanel-noheader-blue {
+    background: rgba(225,225,225,0.3) !important;
+}
+
+.x-panel-body-formpanel-clean-blue {
+    background: rgba(225,225,225,0.3) !important;
+}
+
+@include extjs-panel-ui(
+    $ui: 'formpanel-noheader-blue',
+    $ui-header-line-height: 5px,
+    $ui-header-text-padding: 0px 10px 0 10px,
+    $ui-header-padding: 0px 10px 0 10px,
+    $ui-header-color: $secondary-color-blue,
+    $ui-header-font-size: 0px,
+    $ui-header-border-style: none,
+    $ui-header-font-weight: bold,
+    $ui-header-background-color: #f5f5f5,
+    $ui-body-background-color: #f5f5f5
+);
+
+@include extjs-panel-ui(
+    $ui: 'panel-clean-blue',
+    $ui-padding: 5px 20px 20px 20px
+);
+
+.x-panel-body-panel-clean-blue {
+    background-color: transparent;
+}
+
+.x-grid-with-row-lines .x-grid-item.x-grid-item-selected {
+    background-color: rgba(203, 203, 203, 0.8) !important;
+}
+
+@include extjs-menu-ui(
+    $ui: 'menu-clean-blue',
+    $ui-item-font-size: 14px,
+    $ui-item-font-weight: bold,
+    $ui-item-active-background-color: $primary-color-blue,
+    $ui-item-icon-size: 0px,
+    $ui-separator-border-color: $secondary-color-blue
+);
+
+.x-menu-item-focus .x-menu-item-text-menu-clean-blue,
+.x-menu-item-active .x-menu-item-text-menu-clean-blue {
+    color: black !important;
+    font-weight: bold !important;
+}
+
+@include extjs-text-field-ui(
+    $ui: 'textbold-blue',
+    $ui-color: black,
+    $ui-height: 30px,
+    $ui-font-size: 14px,
+    $ui-font-weight: bold,
+    $ui-border-radius: 5px,
+    $ui-border-style: solid,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-blue,
+    $ui-focus-border-color: $primary-color-blue
+);
+
+.x-form-text-wrap-textbold-blue {
+    border-radius: 5px;
+}
+
+.x-form-empty-field-textbold-blue {
+    color: black;
+}
+
+.x-form-trigger-textbold-blue {
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.x-form-trigger-gridtext-blue {
+    width: 20px !important;
+}
+
+@include extjs-label-ui(
+    $ui: 'textbold-blue',
+    $ui-error-msg-color: red
+);
+
+
+.x-form-text-textbold-blue {
+    padding: 5px !important;
+}
+
+.x-form-text-textbold-blue:not([readonly]):focus{
+    background-color: $tertiary-color-blue !important;
+}
+
+@include extjs-text-field-ui(
+    $ui: 'textarea-clean-blue',
+    $ui-font-weight: bold,
+    $ui-font-size: 14px,
+    $ui-border-style: solid,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-blue,
+    $ui-focus-border-color: $primary-color-blue
+);
+
+.x-form-text-textarea-clean-blue:not([readonly]):focus{
+    background-color: $tertiary-color-blue !important;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'primary-blue',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $primary-color-blue,
+    $border-color: $primary-color-blue
+);
+@include extjs-button-large-ui(
+    $ui: 'primary-blue',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $primary-color-blue,
+    $border-color: $primary-color-blue,
+    $line-height: 34px
+);
+@include extjs-button-toolbar-small-ui(
+    $ui: 'primary-blue',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $primary-color-blue,
+    $border-color: $primary-color-blue
+);
+
+.x-btn.x-btn-primary-blue-small{
+    box-shadow: 0 0 9px 0px #585858;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'secondary-blue',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $secondary-color-blue,
+    $border-color: $secondary-color-blue
+);
+@include extjs-button-large-ui(
+    $ui: 'secondary-blue',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $secondary-color-blue,
+    $border-color: $secondary-color-blue,
+    $line-height: 34px
+);
+@include extjs-button-toolbar-small-ui(
+    $ui: 'secondary-blue',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $secondary-color-blue,
+    $border-color: $secondary-color-blue
+);
+
+.x-btn.x-btn-secondary-blue-small{
+    box-shadow: 0 0 9px 0px black;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'tertiary-blue',
+    $border-radius: 5px,
+    $background-color: $tertiary-color-blue,
+    $border-color: $tertiary-color-blue
+);
+@include extjs-button-large-ui(
+    $ui: 'tertiary-blue',
+    $border-radius: 5px,
+    $background-color: $tertiary-color-blue,
+    $border-color: $tertiary-color-blue,
+    $line-height: 34px
+);
+@include extjs-button-toolbar-small-ui(
+    $ui: 'tertiary-blue',
+    $border-radius: 5px,
+    $background-color: $tertiary-color-blue,
+    $border-color: $tertiary-color-blue
+);
+
+.x-btn.x-btn-tertiary-blue-small{
+    box-shadow: 0 0 9px 0px #c8c8c8;
+
+    .x-btn-inner-default-small {
+        color: #4a4a4a !important;
+    }
+}
+.x-btn-inner-tertiary-blue-small{
+    color: #4a4a4a !important;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'danger-blue',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: #FF2819,
+    $border-color: #FF2819
+);
+@include extjs-button-large-ui(
+    $ui: 'danger-blue',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: #FF2819,
+    $border-color: #FF2819,
+    $line-height: 34px
+);
+@include extjs-button-toolbar-small-ui(
+    $ui: 'danger-blue',
+    $border-radius: 5px,
+    $color: white,
+    $background-color: #FF2819,
+    $border-color: #FF2819
+);
+
+.x-btn.x-btn-danger-blue-small{
+    box-shadow: 0 0 9px 0px #585858;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'light-blue',
+    $font-size: 14px,
+    $border-radius: 5px,
+    $color: $secondary-color-blue,
+    $background-color: transparent,
+    $background-color-over: #F1F1F1,
+    $border-width: 0
+);
+
+@include extjs-button-small-ui(
+    $ui: 'light-primary-blue',
+    $font-size: 14px,
+    $border-radius: 5px,
+    $color: $secondary-color-blue,
+    $background-color: #F1F1F1,
+    $background-color-over: #F1F1F1,
+    $border-width: 0
+);
+
+@include extjs-button-small-ui(
+    $ui: 'light-border-blue',
+    $font-size: 14px,
+    $border-radius: 5px,
+    $color: $secondary-color-blue,
+    $glyph-color: $secondary-color-blue,
+    $background-color: transparent,
+    $background-color-over: #F1F1F1,
+    $border-width: 1px,
+    $border-color: #F1F1F1
+);
+
+@include extjs-button-small-ui(
+    $ui: 'light-primary-border-blue',
+    $font-size: 14px,
+    $border-radius: 5px,
+    $color: $secondary-color-blue,
+    $background-color: #F1F1F1,
+    $background-color-over: #F1F1F1,
+    $border-width: 1px,
+    $border-color: #7E7E7E
+);
+
+@include extjs-button-small-ui(
+    $ui: 'transparent-blue',
+    $font-size: 14px,
+    $color: $primary-color-blue,
+    $border-radius: 5px,
+    $glyph-color: $primary-color-blue,
+    $background-color: transparent,
+    $border-width: 0
+);
+
+@include extjs-button-small-ui(
+    $ui: 'transparent-invert-blue',
+    $font-size: 14px,
+    $border-color: transparent,
+    $color: mix(black, $primary-color-blue, 15%),
+    $arrow-glyph-color: mix(black, $primary-color-blue, 15%),
+    $background-color: transparent
+);
+
+@include extjs-text-field-ui(
+    $ui: 'gridtext-blue',
+    $ui-color: black,
+    $ui-height: 30px,
+    $ui-font-size: 14px,
+    $ui-font-weight: bold,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-blue,
+    $ui-focus-border-color: none
+);
+
+@include extjs-checkbox-ui(
+    $ui: 'gridtext-blue'
+);
+
+.x-form-checkbox-gridtext-blue{
+    margin: 4px 0px 0px 35px !important;
+}
+
+@include extjs-tag-field-ui(
+    $ui: 'gridtext-blue'
+);
+
+.x-form-cb-wrap-gridtext-blue {
+    height: 29px !important;
+    border-left: 1px solid #D0D0D0 !important;
+    border-bottom: 1px solid #D0D0D0 !important;
+}
+
+.x-form-text-gridtext-blue:not([readonly]):focus{
+    background-color: $tertiary-color-blue !important;
+}
+
+.x-form-empty-field-gridtext-blue {
+    color: black;
+}
+
+.x-form-trigger-wrap-gridtext-blue {
+    border-style: none none solid solid;
+    border-color: #d0d0d0;
+}
+
+.gridformbackground .x-panel-body-default {
+    background: #f5f5f5;
+}
+
+@include extjs-text-field-ui(
+    $ui: 'comboEmpresa-blue',
+    $ui-background-color: transparent,
+    $ui-padding: 5px,
+    $ui-color: black !important,
+    $ui-font-weight: bold,
+    $ui-font-size: 13px,
+    $ui-border-style: solid,
+    $ui-border-width: 1px,
+    $ui-border-color:  $darker-color-blue,
+    $ui-focus-border-color: $tertiary-color-blue,
+    $ui-trigger-glyph-color: $tertiary-color-blue,
+    $ui-height: 20px
+);
+
+.x-form-trigger-comboEmpresa-blue {
+    width: 20px;
+    font: 20px/29px FontAwesome;
+    background: transparent;
+    color: black !important;
+}
+
+.x-form-empty-field-comboEmpresa-blue {
+    color: black !important;
+}
+
+@include extjs-text-field-ui(
+    $ui: 'textlist-blue',
+    $ui-height: 18px,
+    $ui-padding: 0px 5px 0px 5px,
+    $ui-font-weight: bold,
+    $ui-font-size: 14px,
+    $ui-border-style: solid,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-blue,
+    $ui-focus-border-color: $primary-color-blue
+);
+
+.x-form-text-textlist-blue:not([readonly]):focus{
+    background-color: $tertiary-color-blue !important;
+}
+
+.container-notificacao-blue {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.contador-notificacao-blue {
+    display: inline-block;
+    position: relative;
+    top: 0px;
+    padding: 0.6em;
+    background: $primary-color-blue;
+    border-radius: 0.2em;
+    font-size: 1.3em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.contador-notificacao-blue::before, 
+.contador-notificacao-blue::after {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.contador-notificacao-blue::before {
+    display: block;
+    content: "\f0f3";
+    font-family: "FontAwesome";
+    transform-origin: top center;
+}
+
+.contador-notificacao-blue::after {
+    font-family: Arial;
+    font-size: 0.7em;
+    font-weight: 700;
+    position: absolute;
+    top: -10px;
+    right: -15px;
+    padding: 4px 6px;
+    line-height: 100%;
+    border: 2px #fff solid;
+    border-radius: 60px;
+    background: $primary-color-blue;
+    opacity: 0;
+    content: attr(data-count);
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    transition: transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+
+.contador-notificacao-blue.notify::before {
+    -webkit-animation: ring 1.5s ease;
+    animation: ring 1.5s ease;
+}
+
+.contador-notificacao-blue.show-count::after {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+.container-ponto-blue {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.contador-ponto-blue {
+    display: inline-block;
+    position: relative;
+    top: 0px;
+    padding: 0.6em;
+    background: $primary-color-blue;
+    border-radius: 0.2em;
+    font-size: 1.3em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.contador-ponto-blue::before, 
+.contador-ponto-blue::after {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.contador-ponto-blue::before {
+    display: block;
+    content: "\f017";
+    font-family: "FontAwesome";
+    transform-origin: top center;
+}
+
+.contador-ponto-blue::after {
+    font-family: Arial;
+    font-size: 0.7em;
+    font-weight: 700;
+    position: absolute;
+    top: -10px;
+    right: -15px;
+    padding: 4px 6px;
+    line-height: 100%;
+    border: 2px #fff solid;
+    border-radius: 60px;
+    background: $primary-color-blue;
+    opacity: 0;
+    content: attr(data-count);
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    transition: transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+
+.contador-ponto-blue.notify::before {
+    -webkit-animation: ring 1.5s ease;
+    animation: ring 1.5s ease;
+}
+
+.contador-ponto-blue.show-count::after {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+.x-form-text-textbold-blue.x-tagfield {
+	padding: 3px 0 0 4px
+}
+
+.x-form-text-textbold-blue .x-tagfield-input {
+	margin: 0 4px 3px 0
+}
+
+.x-form-text-textbold-blue .x-tagfield-input-field {
+	height: 24px;
+	line-height: 24px
+}
+
+.x-form-text-textbold-blue .x-tagfield-item {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-ms-border-radius: 0;
+	-o-border-radius: 0;
+	border-radius: 0;
+	background-color: #ececec;
+	border: 1px solid #ececec;
+	padding: 0 21px 0 5px;
+	margin: 0 4px 3px 0;
+	color: #404040;
+	line-height: 22px
+}
+
+.x-form-text-textbold-blue .x-tagfield-item:hover {
+	background-color: #e5e5e5;
+	border-color: #e5e5e5;
+	color: #404040
+}
+
+.x-form-text-textbold-blue .x-tagfield-item.x-tagfield-item-selected {
+	background-color: #7fb5e4;
+	border-color: #7fb5e4;
+	color: #fff
+}
+
+.x-form-text-textbold-blue .x-tagfield-item-close {
+	width: 12px;
+	height: 12px;
+	top: 5px;
+	right: 3px;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+	opacity: 0.85;
+	font: 12px/1 FontAwesome;
+	color: #919191
+}
+
+.x-form-text-textbold-blue .x-tagfield-item-close:before {
+	content: "\f00d"
+}
+
+.x-form-text-textbold-blue .x-tagfield-item-close:hover {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=93)";
+	opacity: 0.93;
+	color: #919191
+}
+
+.x-form-text-textbold-blue .x-tagfield-item-close:active {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	opacity: 1
+}
+
+.x-form-text-textbold-blue .x-tagfield-item-selected .x-tagfield-item-close {
+	color: #fff
+}
+
+.x-form-text-textbold-blue .x-tagfield-item-selected .x-tagfield-item-close:hover {
+	color: #fff
+}
+
+/*---------------------------------------------------*/
+
+
+
+/*Tema 4 - gray*/
+/*---------------------------------------------------*/
+.sencha-dash-dash-headerbar-gray {
+    padding:0 30px 0 0;
+    background: linear-gradient($secondary-color-gray, $tertiary-color-gray);
+    color: $darker-color-gray;
+    position:fixed;
+    width:100%;
+    z-index:10;
+    border-style: none none solid none !important;
+    border-width: 0.8px !important;
+    border-color: mix(white, $secondary-color-gray, 50%) !important;
+    .fundo-logo {
+        background-color: $tertiary-color-gray;
+        border-style: none solid none none !important;
+        border-width: 0.8px !important;
+        border-color: mix(white, $secondary-color-gray, 50%) !important;
+    }
+    .header-right-profile-image {
+        border-radius: 20px;
+    }
+    .top-user-name{
+        font-weight: bold;
+        color: $darker-color-gray;
+        font-size: 14px;
+    }
+}
+
+@include treelist-ui(
+    $ui: 'treelist-clean-gray',
+    $padding: 0 10px 0px 20px,
+    $background-color: $lighter-color-gray,
+    $toolstrip-background-color: $lighter-color-gray,
+    $tool-float-indicator-color: black,
+    $tool-float-indicator-width: 5px,
+    $tool-indicator-selected-color: black,
+    $tool-indicator-selected-width: 4px,
+    $row-over-background-color: mix($secondary-color-gray, $lighter-color-gray, 2%),
+    $item-expanded-background-color: mix($secondary-color-gray, $lighter-color-gray, 3%),
+    $row-selected-background-color: mix($secondary-color-gray, $lighter-color-gray, 7%),
+    $tool-selected-background-color: $lighter-color-gray,
+    $item-line-height : 30px,
+    $item-icon-color: $darker-color-gray,
+    $item-expander-color: $darker-color-gray,
+    $item-text-color: $darker-color-gray,
+    $item-icon-over-color: mix(white, $darker-color-gray, 10%),
+    $item-text-over-color: mix(white, $darker-color-gray, 15%),
+    $item-expander-over-color: mix($secondary-color-gray, $lighter-color-gray, 70%),
+    $item-text-font-size: 13px,
+    $item-icon-font-size: 20px,
+    $item-icon-width: 20px,
+    $item-expander-font-size: 13px,
+    $item-expander-width: 18px,
+    $row-indicator-width: 5px,
+    $row-indicator-selected-color: #F7F7F7,
+    $row-indicator-selected-over-color: #F7F7F7,
+    $row-indicator-over-color: #F7F7F7,
+    $item-expanded-child-background-color: $lighter-color-gray,
+    $item-selected-background-color: $lighter-color-gray
+);
+
+@include extjs-tab-panel-ui(
+    $ui: 'tabpanel-clean-gray',
+    $ui-tab-background-color: white,
+    $ui-tab-background-color-focus: white,
+    $ui-tab-background-color-over: white,
+    $ui-tab-background-color-active: white,
+    $ui-tab-background-color-focus-over: white,
+    $ui-tab-background-color-focus-active: white,
+    $ui-tab-background-color-disabled:white,
+    $ui-tab-border-radius : 2,
+    $ui-tab-border-width: 2,
+    $ui-tab-margin : 0px,
+    $ui-tab-padding: 3px 4px,
+    $ui-tab-text-padding:  5px,
+    $ui-tab-border-color:  white,
+    $ui-tab-border-color-focus:  white,
+    $ui-tab-border-color-over:  white,
+    $ui-tab-border-color-active: $primary-color-gray,
+    $ui-tab-border-color-focus-over: white,
+    $ui-tab-border-color-focus-active: $primary-color-gray,
+    $ui-tab-border-color-disabled: white,
+    $ui-tab-font-weight: bold,
+    $ui-tab-color: black,
+    $ui-tab-color-focus: black,
+    $ui-tab-color-over: black,
+    $ui-tab-color-active: black,
+    $ui-tab-color-focus-over: black,
+    $ui-tab-color-focus-active: black,
+    $ui-tab-color-disabled: black,
+    $ui-bar-padding: 0px,
+    $ui-tab-line-height: 25px,
+    $ui-tab-closable-icon-top: 15px,
+    $ui-tab-closable-icon-glyph-color: mix(black, white, 35%),
+    $ui-tab-closable-icon-glyph-color-over: mix(black, white, 35%)
+);
+
+.x-tab-bar-tabpanel-clean-gray-top > .x-tab-bar-body-tabpanel-clean-gray {
+    background: linear-gradient($tertiary-color-gray, white);
+}
+
+.x-tab.x-tab-tabpanel-clean-gray {
+    border-style: none none solid none;
+}
+
+.x-tab.x-tab-active.x-tab-tabpanel-clean-gray {
+    border-color: $primary-color-gray;
+}
+
+@include extjs-panel-ui(
+    $ui: 'formpanel-clean-gray',
+    $ui-header-color: $secondary-color-gray,
+    $ui-header-font-size: 16px,
+    $ui-header-border-style: none,
+    $ui-header-font-weight: bold,
+    $ui-header-background-color: #f5f5f5,
+    $ui-body-background-color: #f5f5f5
+);
+
+.x-panel-formpanel-clean-gray {
+    top: 0px !important;
+}
+
+.x-panel-header-formpanel-clean-gray {
+    background: rgba(225, 225, 225, 0.3) !important;
+}
+
+.x-panel-header-formpanel-noheader-gray-horizontal.x-header-noborder {
+    background: rgba(225,225,225,0.3) !important;
+}
+
+.x-panel-body-formpanel-noheader-gray {
+    background: rgba(225,225,225,0.3) !important;
+}
+
+.x-panel-body-formpanel-clean-gray {
+    background: rgba(225,225,225,0.3) !important;
+}
+
+@include extjs-panel-ui(
+    $ui: 'formpanel-noheader-gray',
+    $ui-header-line-height: 5px,
+    $ui-header-text-padding: 0px 10px 0 10px,
+    $ui-header-padding: 0px 10px 0 10px,
+    $ui-header-color: $secondary-color-gray,
+    $ui-header-font-size: 0px,
+    $ui-header-border-style: none,
+    $ui-header-font-weight: bold,
+    $ui-header-background-color: #f5f5f5,
+    $ui-body-background-color: #f5f5f5
+);
+
+@include extjs-panel-ui(
+    $ui: 'panel-clean-gray',
+    $ui-padding: 5px 20px 20px 20px
+);
+
+.x-panel-body-panel-clean-gray {
+    background-color: transparent;
+}
+
+.x-grid-with-row-lines .x-grid-item.x-grid-item-selected {
+    background-color: rgba(203, 203, 203, 0.8) !important;
+}
+
+@include extjs-menu-ui(
+    $ui: 'menu-clean-gray',
+    $ui-item-font-size: 14px,
+    $ui-item-font-weight: bold,
+    $ui-item-active-background-color: $primary-color-gray,
+    $ui-item-icon-size: 0px,
+    $ui-separator-border-color: $secondary-color-gray
+);
+
+.x-menu-item-focus .x-menu-item-text-menu-clean-gray,
+.x-menu-item-active .x-menu-item-text-menu-clean-gray {
+    color: black !important;
+    font-weight: bold !important;
+}
+
+@include extjs-text-field-ui(
+    $ui: 'textbold-gray',
+    $ui-color: black,
+    $ui-height: 30px,
+    $ui-font-size: 14px,
+    $ui-font-weight: bold,
+    $ui-border-radius: 5px,
+    $ui-border-style: solid,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-gray,
+    $ui-focus-border-color: $primary-color-gray
+);
+
+.x-form-text-wrap-textbold-gray {
+    border-radius: 5px;
+}
+
+.x-form-empty-field-textbold-gray {
+    color: black;
+}
+
+.x-form-trigger-textbold-gray {
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.x-form-trigger-gridtext-gray {
+    width: 20px !important;
+}
+
+@include extjs-label-ui(
+    $ui: 'textbold-gray',
+    $ui-error-msg-color: red
+);
+
+.x-form-text-textbold-gray {
+    padding: 5px !important;
+    background-color: rgba(255,255,255,0.75) !important;
+}
+
+.x-form-text-textbold-gray:not([readonly]):focus{
+    background-color: $tertiary-color-gray !important;
+}
+
+@include extjs-text-field-ui(
+    $ui: 'textarea-clean-gray',
+    $ui-font-weight: bold,
+    $ui-font-size: 14px,
+    $ui-border-style: solid,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-gray,
+    $ui-focus-border-color: $primary-color-gray
+);
+
+.x-form-text-textarea-clean-gray:not([readonly]):focus{
+    background-color: $tertiary-color-gray !important;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'primary-gray',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $primary-color-gray,
+    $border-color: $primary-color-gray
+);
+@include extjs-button-large-ui(
+    $ui: 'primary-gray',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $primary-color-gray,
+    $border-color: $primary-color-gray,
+    $line-height: 34px
+);
+@include extjs-button-toolbar-small-ui(
+    $ui: 'primary-gray',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $primary-color-gray,
+    $border-color: $primary-color-gray
+);
+
+.x-btn.x-btn-primary-gray-small{
+    box-shadow: 0 0 9px 0px #585858;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'secondary-gray',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $secondary-color-gray,
+    $border-color: $secondary-color-gray
+);
+@include extjs-button-large-ui(
+    $ui: 'secondary-gray',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $secondary-color-gray,
+    $border-color: $secondary-color-gray,
+    $line-height: 34px
+);
+@include extjs-button-toolbar-small-ui(
+    $ui: 'secondary-gray',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $secondary-color-gray,
+    $border-color: $secondary-color-gray
+);
+
+.x-btn.x-btn-secondary-gray-small{
+    box-shadow: 0 0 9px 0px black;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'tertiary-gray',
+    $border-radius: 5px,
+    $background-color: $tertiary-color-gray,
+    $border-color: $tertiary-color-gray
+);
+@include extjs-button-large-ui(
+    $ui: 'tertiary-gray',
+    $border-radius: 5px,
+    $background-color: $tertiary-color-gray,
+    $border-color: $tertiary-color-gray,
+    $line-height: 34px
+);
+@include extjs-button-toolbar-small-ui(
+    $ui: 'tertiary-gray',
+    $border-radius: 5px,
+    $background-color: $tertiary-color-gray,
+    $border-color: $tertiary-color-gray
+);
+
+.x-btn.x-btn-tertiary-gray-small{
+    box-shadow: 0 0 9px 0px #c8c8c8;
+
+    .x-btn-inner-default-small {
+        color: #4a4a4a !important;
+    }
+}
+.x-btn-inner-tertiary-gray-small{
+    color: #4a4a4a !important;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'danger-gray',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: #FF2819,
+    $border-color: #FF2819
+);
+@include extjs-button-large-ui(
+    $ui: 'danger-gray',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: #FF2819,
+    $border-color: #FF2819,
+    $line-height: 34px
+);
+@include extjs-button-toolbar-small-ui(
+    $ui: 'danger-gray',
+    $border-radius: 5px,
+    $color: white,
+    $background-color: #FF2819,
+    $border-color: #FF2819
+);
+
+.x-btn.x-btn-danger-gray-small{
+    box-shadow: 0 0 9px 0px #585858;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'light-gray',
+    $font-size: 14px,
+    $border-radius: 5px,
+    $color: $secondary-color-gray,
+    $background-color: transparent,
+    $background-color-over: #F1F1F1,
+    $border-width: 0
+);
+
+@include extjs-button-small-ui(
+    $ui: 'light-primary-gray',
+    $font-size: 14px,
+    $border-radius: 5px,
+    $color: $secondary-color-gray,
+    $background-color: #F1F1F1,
+    $background-color-over: #F1F1F1,
+    $border-width: 0
+);
+
+@include extjs-button-small-ui(
+    $ui: 'light-border-gray',
+    $font-size: 14px,
+    $border-radius: 5px,
+    $color: $secondary-color-gray,
+    $glyph-color: $secondary-color-gray,
+    $background-color: transparent,
+    $background-color-over: #F1F1F1,
+    $border-width: 1px,
+    $border-color: #F1F1F1
+);
+
+@include extjs-button-small-ui(
+    $ui: 'light-primary-border-gray',
+    $font-size: 14px,
+    $border-radius: 5px,
+    $color: $secondary-color-gray,
+    $background-color: #F1F1F1,
+    $background-color-over: #F1F1F1,
+    $border-width: 1px,
+    $border-color: #7E7E7E
+);
+
+@include extjs-button-small-ui(
+    $ui: 'transparent-gray',
+    $font-size: 14px,
+    $color: $primary-color-gray,
+    $border-radius: 5px,
+    $glyph-color: $primary-color-gray,
+    $background-color: transparent,
+    $border-width: 0
+);
+
+@include extjs-button-small-ui(
+    $ui: 'transparent-invert-gray',
+    $font-size: 14px,
+    $border-color: transparent,
+    $color: mix(black, $primary-color-gray, 15%),
+    $arrow-glyph-color: mix(black, $primary-color-gray, 15%),
+    $background-color: transparent
+);
+
+@include extjs-text-field-ui(
+    $ui: 'gridtext-gray',
+    $ui-color: black,
+    $ui-height: 30px,
+    $ui-font-size: 14px,
+    $ui-font-weight: bold,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-gray,
+    $ui-focus-border-color: none
+);
+
+@include extjs-checkbox-ui(
+    $ui: 'gridtext-gray'
+);
+
+.x-form-checkbox-gridtext-gray{
+    margin: 4px 0px 0px 35px !important;
+}
+
+@include extjs-tag-field-ui(
+    $ui: 'gridtext-gray'
+);
+
+.x-form-cb-wrap-gridtext-gray {
+    height: 29px !important;
+    border-left: 1px solid #D0D0D0 !important;
+    border-bottom: 1px solid #D0D0D0 !important;
+}
+
+.x-form-text-gridtext-gray:not([readonly]):focus{
+    background-color: $tertiary-color-gray !important;
+}
+
+.x-form-empty-field-gridtext-gray {
+    color: black;
+}
+
+.x-form-trigger-wrap-gridtext-gray {
+    border-style: none none solid solid;
+    border-color: #d0d0d0;
+}
+
+.gridformbackground .x-panel-body-default {
+    background: #f5f5f5;
+}
+
+@include extjs-text-field-ui(
+    $ui: 'comboEmpresa-gray',
+    $ui-background-color: transparent,
+    $ui-padding: 5px,
+    $ui-color: black !important,
+    $ui-font-weight: bold,
+    $ui-font-size: 13px,
+    $ui-border-style: solid,
+    $ui-border-width: 1px,
+    $ui-border-color:  $darker-color-gray,
+    $ui-focus-border-color: $tertiary-color-gray,
+    $ui-trigger-glyph-color: $tertiary-color-gray,
+    $ui-height: 20px
+);
+
+.x-form-trigger-comboEmpresa-gray {
+    width: 20px;
+    font: 20px/29px FontAwesome;
+    background: transparent;
+    color: black !important;
+}
+
+.x-form-empty-field-comboEmpresa-gray {
+    color: black !important;
+}
+
+@include extjs-text-field-ui(
+    $ui: 'textlist-gray',
+    $ui-height: 18px,
+    $ui-padding: 0px 5px 0px 5px,
+    $ui-font-weight: bold,
+    $ui-font-size: 14px,
+    $ui-border-style: solid,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-gray,
+    $ui-focus-border-color: $primary-color-gray
+);
+
+.x-form-text-textlist-gray:not([readonly]):focus{
+    background-color: $tertiary-color-gray !important;
+}
+
+.container-notificacao-gray {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.contador-notificacao-gray {
+    display: inline-block;
+    position: relative;
+    top: 0px;
+    padding: 0.6em;
+    background: $primary-color-gray;
+    border-radius: 0.2em;
+    font-size: 1.3em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.contador-notificacao-gray::before, 
+.contador-notificacao-gray::after {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.contador-notificacao-gray::before {
+    display: block;
+    content: "\f0f3";
+    font-family: "FontAwesome";
+    transform-origin: top center;
+}
+
+.contador-notificacao-gray::after {
+    font-family: Arial;
+    font-size: 0.7em;
+    font-weight: 700;
+    position: absolute;
+    top: -10px;
+    right: -15px;
+    padding: 4px 6px;
+    line-height: 100%;
+    border: 2px #fff solid;
+    border-radius: 60px;
+    background: $primary-color-gray;
+    opacity: 0;
+    content: attr(data-count);
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    transition: transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+
+.contador-notificacao-gray.notify::before {
+    -webkit-animation: ring 1.5s ease;
+    animation: ring 1.5s ease;
+}
+
+.contador-notificacao-gray.show-count::after {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+.container-ponto-gray {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.contador-ponto-gray {
+    display: inline-block;
+    position: relative;
+    top: 0px;
+    padding: 0.6em;
+    background: $primary-color-gray;
+    border-radius: 0.2em;
+    font-size: 1.3em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.contador-ponto-gray::before, 
+.contador-ponto-gray::after {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.contador-ponto-gray::before {
+    display: block;
+    content: "\f017";
+    font-family: "FontAwesome";
+    transform-origin: top center;
+}
+
+.contador-ponto-gray::after {
+    font-family: Arial;
+    font-size: 0.7em;
+    font-weight: 700;
+    position: absolute;
+    top: -10px;
+    right: -15px;
+    padding: 4px 6px;
+    line-height: 100%;
+    border: 2px #fff solid;
+    border-radius: 60px;
+    background: $primary-color-gray;
+    opacity: 0;
+    content: attr(data-count);
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    transition: transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+
+.contador-ponto-gray.notify::before {
+    -webkit-animation: ring 1.5s ease;
+    animation: ring 1.5s ease;
+}
+
+.contador-ponto-gray.show-count::after {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+.x-form-text-textbold-gray.x-tagfield {
+	padding: 3px 0 0 4px
+}
+
+.x-form-text-textbold-gray .x-tagfield-input {
+	margin: 0 4px 3px 0
+}
+
+.x-form-text-textbold-gray .x-tagfield-input-field {
+	height: 24px;
+	line-height: 24px
+}
+
+.x-form-text-textbold-gray .x-tagfield-item {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-ms-border-radius: 0;
+	-o-border-radius: 0;
+	border-radius: 0;
+	background-color: #ececec;
+	border: 1px solid #ececec;
+	padding: 0 21px 0 5px;
+	margin: 0 4px 3px 0;
+	color: #404040;
+	line-height: 22px
+}
+
+.x-form-text-textbold-gray .x-tagfield-item:hover {
+	background-color: #e5e5e5;
+	border-color: #e5e5e5;
+	color: #404040
+}
+
+.x-form-text-textbold-gray .x-tagfield-item.x-tagfield-item-selected {
+	background-color: #7fb5e4;
+	border-color: #7fb5e4;
+	color: #fff
+}
+
+.x-form-text-textbold-gray .x-tagfield-item-close {
+	width: 12px;
+	height: 12px;
+	top: 5px;
+	right: 3px;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+	opacity: 0.85;
+	font: 12px/1 FontAwesome;
+	color: #919191
+}
+
+.x-form-text-textbold-gray .x-tagfield-item-close:before {
+	content: "\f00d"
+}
+
+.x-form-text-textbold-gray .x-tagfield-item-close:hover {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=93)";
+	opacity: 0.93;
+	color: #919191
+}
+
+.x-form-text-textbold-gray .x-tagfield-item-close:active {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	opacity: 1
+}
+
+.x-form-text-textbold-gray .x-tagfield-item-selected .x-tagfield-item-close {
+	color: #fff
+}
+
+.x-form-text-textbold-gray .x-tagfield-item-selected .x-tagfield-item-close:hover {
+	color: #fff
+}
+
+/*---------------------------------------------------*/
+
+
+
+/*Tema 5 - orange*/
+/*---------------------------------------------------*/
+.sencha-dash-dash-headerbar-orange {
+    padding:0 30px 0 0;
+    background: linear-gradient($secondary-color-orange, $tertiary-color-orange);
+    color: $darker-color-orange;
+    position:fixed;
+    width:100%;
+    z-index:10;
+    border-style: none none solid none !important;
+    border-width: 0.8px !important;
+    border-color: mix(white, $secondary-color-orange, 50%) !important;
+    .fundo-logo {
+        background-color: $tertiary-color-orange;
+        border-style: none solid none none !important;
+        border-width: 0.8px !important;
+        border-color: mix(white, $secondary-color-orange, 50%) !important;
+    }
+    .header-right-profile-image {
+        border-radius: 20px;
+    }
+    .top-user-name{
+        font-weight: bold;
+        color: $darker-color-orange;
+        font-size: 14px;
+    }
+}
+
+@include treelist-ui(
+    $ui: 'treelist-clean-orange',
+    $padding: 0 10px 0px 20px,
+    $background-color: $lighter-color-orange,
+    $toolstrip-background-color: $lighter-color-orange,
+    $tool-float-indicator-color: black,
+    $tool-float-indicator-width: 5px,
+    $tool-indicator-selected-color: black,
+    $tool-indicator-selected-width: 4px,
+    $row-over-background-color: mix($secondary-color-orange, $lighter-color-orange, 2%),
+    $item-expanded-background-color: mix($secondary-color-orange, $lighter-color-orange, 3%),
+    $row-selected-background-color: mix($secondary-color-orange, $lighter-color-orange, 7%),
+    $tool-selected-background-color: $lighter-color-orange,
+    $item-line-height : 30px,
+    $item-icon-color: $darker-color-orange,
+    $item-expander-color: $darker-color-orange,
+    $item-text-color: $darker-color-orange,
+    $item-icon-over-color: mix(white, $darker-color-orange, 10%),
+    $item-text-over-color: mix(white, $darker-color-orange, 15%),
+    $item-expander-over-color: mix($secondary-color-orange, $lighter-color-orange, 70%),
+    $item-text-font-size: 13px,
+    $item-icon-font-size: 20px,
+    $item-icon-width: 20px,
+    $item-expander-font-size: 13px,
+    $item-expander-width: 18px,
+    $row-indicator-width: 5px,
+    $row-indicator-selected-color: #F7F7F7,
+    $row-indicator-selected-over-color: #F7F7F7,
+    $row-indicator-over-color: #F7F7F7,
+    $item-expanded-child-background-color: $lighter-color-orange,
+    $item-selected-background-color: $lighter-color-orange
+);
+
+@include extjs-tab-panel-ui(
+    $ui: 'tabpanel-clean-orange',
+    $ui-tab-background-color: white,
+    $ui-tab-background-color-focus: white,
+    $ui-tab-background-color-over: white,
+    $ui-tab-background-color-active: white,
+    $ui-tab-background-color-focus-over: white,
+    $ui-tab-background-color-focus-active: white,
+    $ui-tab-background-color-disabled:white,
+    $ui-tab-border-radius : 2,
+    $ui-tab-border-width: 2,
+    $ui-tab-margin : 0px,
+    $ui-tab-padding: 3px 4px,
+    $ui-tab-text-padding:  5px,
+    $ui-tab-border-color:  white,
+    $ui-tab-border-color-focus:  white,
+    $ui-tab-border-color-over:  white,
+    $ui-tab-border-color-active: $primary-color-orange,
+    $ui-tab-border-color-focus-over: white,
+    $ui-tab-border-color-focus-active: $primary-color-orange,
+    $ui-tab-border-color-disabled: white,
+    $ui-tab-font-weight: bold,
+    $ui-tab-color: black,
+    $ui-tab-color-focus: black,
+    $ui-tab-color-over: black,
+    $ui-tab-color-active: black,
+    $ui-tab-color-focus-over: black,
+    $ui-tab-color-focus-active: black,
+    $ui-tab-color-disabled: black,
+    $ui-bar-padding: 0px,
+    $ui-tab-line-height: 25px,
+    $ui-tab-closable-icon-top: 15px,
+    $ui-tab-closable-icon-glyph-color: mix(black, white, 35%),
+    $ui-tab-closable-icon-glyph-color-over: mix(black, white, 35%)
+);
+
+.x-tab-bar-tabpanel-clean-orange-top > .x-tab-bar-body-tabpanel-clean-orange {
+    background: linear-gradient($tertiary-color-orange, white);
+}
+
+.x-tab.x-tab-tabpanel-clean-orange {
+    border-style: none none solid none;
+}
+
+.x-tab.x-tab-active.x-tab-tabpanel-clean-orange {
+    border-color: $primary-color-orange;
+}
+
+@include extjs-panel-ui(
+    $ui: 'formpanel-clean-orange',
+    $ui-header-color: $secondary-color-orange,
+    $ui-header-font-size: 16px,
+    $ui-header-border-style: none,
+    $ui-header-font-weight: bold,
+    $ui-header-background-color: #f5f5f5,
+    $ui-body-background-color: #f5f5f5
+);
+
+.x-panel-formpanel-clean-orange {
+    top: 0px !important;
+}
+
+.x-panel-header-formpanel-clean-orange {
+    background: rgba(225, 225, 225, 0.3) !important;
+}
+
+.x-panel-header-formpanel-noheader-orange-horizontal.x-header-noborder {
+    background: rgba(225,225,225,0.3) !important;
+}
+
+.x-panel-body-formpanel-noheader-orange {
+    background: rgba(225,225,225,0.3) !important;
+}
+
+.x-panel-body-formpanel-clean-orange {
+    background: rgba(225,225,225,0.3) !important;
+}
+
+@include extjs-panel-ui(
+    $ui: 'formpanel-noheader-orange',
+    $ui-header-line-height: 5px,
+    $ui-header-text-padding: 0px 10px 0 10px,
+    $ui-header-padding: 0px 10px 0 10px,
+    $ui-header-color: $secondary-color-orange,
+    $ui-header-font-size: 0px,
+    $ui-header-border-style: none,
+    $ui-header-font-weight: bold,
+    $ui-header-background-color: #f5f5f5,
+    $ui-body-background-color: #f5f5f5
+);
+
+@include extjs-panel-ui(
+    $ui: 'panel-clean-orange',
+    $ui-padding: 5px 20px 20px 20px
+);
+
+.x-panel-body-panel-clean-orange {
+    background-color: transparent;
+}
+
+.x-grid-with-row-lines .x-grid-item.x-grid-item-selected {
+    background-color: rgba(203, 203, 203, 0.8) !important;
+}
+
+@include extjs-menu-ui(
+    $ui: 'menu-clean-orange',
+    $ui-item-font-size: 14px,
+    $ui-item-font-weight: bold,
+    $ui-item-active-background-color: $primary-color-orange,
+    $ui-item-icon-size: 0px,
+    $ui-separator-border-color: $secondary-color-orange
+);
+
+.x-menu-item-focus .x-menu-item-text-menu-clean-orange,
+.x-menu-item-active .x-menu-item-text-menu-clean-orange {
+    color: black !important;
+    font-weight: bold !important;
+}
+
+@include extjs-text-field-ui(
+    $ui: 'textbold-orange',
+    $ui-color: black,
+    $ui-height: 30px,
+    $ui-font-size: 14px,
+    $ui-font-weight: bold,
+    $ui-border-radius: 5px,
+    $ui-border-style: solid,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-orange,
+    $ui-focus-border-color: $primary-color-orange
+);
+
+.x-form-text-wrap-textbold-orange {
+    border-radius: 5px;
+}
+
+.x-form-empty-field-textbold-orange {
+    color: black;
+}
+
+.x-form-trigger-textbold-orange {
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.x-form-trigger-gridtext-orange {
+    width: 20px !important;
+}
+
+@include extjs-label-ui(
+    $ui: 'textbold-orange',
+    $ui-error-msg-color: red
+);
+
+.x-form-text-textbold-orange {
+    padding: 5px !important;
+    background-color: rgba(255,255,255,0.75) !important;
+}
+
+.x-form-text-textbold-orange:not([readonly]):focus{
+    background-color: $tertiary-color-orange !important;
+}
+
+@include extjs-text-field-ui(
+    $ui: 'textarea-clean-orange',
+    $ui-font-weight: bold,
+    $ui-font-size: 14px,
+    $ui-border-style: solid,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-orange,
+    $ui-focus-border-color: $primary-color-orange
+);
+
+.x-form-text-textarea-clean-orange:not([readonly]):focus{
+    background-color: $tertiary-color-orange !important;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'primary-orange',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $primary-color-orange,
+    $border-color: $primary-color-orange
+);
+@include extjs-button-large-ui(
+    $ui: 'primary-orange',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $primary-color-orange,
+    $border-color: $primary-color-orange,
+    $line-height: 34px
+);
+@include extjs-button-toolbar-small-ui(
+    $ui: 'primary-orange',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $primary-color-orange,
+    $border-color: $primary-color-orange
+);
+
+.x-btn.x-btn-primary-orange-small{
+    box-shadow: 0 0 9px 0px #585858;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'secondary-orange',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $secondary-color-orange,
+    $border-color: $secondary-color-orange
+);
+@include extjs-button-large-ui(
+    $ui: 'secondary-orange',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $secondary-color-orange,
+    $border-color: $secondary-color-orange,
+    $line-height: 34px
+);
+@include extjs-button-toolbar-small-ui(
+    $ui: 'secondary-orange',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: $secondary-color-orange,
+    $border-color: $secondary-color-orange
+);
+
+.x-btn.x-btn-secondary-orange-small{
+    box-shadow: 0 0 9px 0px black;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'tertiary-orange',
+    $border-radius: 5px,
+    $background-color: $tertiary-color-orange,
+    $border-color: $tertiary-color-orange
+);
+@include extjs-button-large-ui(
+    $ui: 'tertiary-orange',
+    $border-radius: 5px,
+    $background-color: $tertiary-color-orange,
+    $border-color: $tertiary-color-orange,
+    $line-height: 34px
+);
+@include extjs-button-toolbar-small-ui(
+    $ui: 'tertiary-orange',
+    $border-radius: 5px,
+    $background-color: $tertiary-color-orange,
+    $border-color: $tertiary-color-orange
+);
+
+.x-btn.x-btn-tertiary-orange-small{
+    box-shadow: 0 0 9px 0px #c8c8c8;
+
+    .x-btn-inner-default-small {
+        color: #4a4a4a !important;
+    }
+}
+.x-btn-inner-tertiary-orange-small{
+    color: #4a4a4a !important;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'danger-orange',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: #FF2819,
+    $border-color: #FF2819
+);
+@include extjs-button-large-ui(
+    $ui: 'danger-orange',
+    $color: white,
+    $border-radius: 5px,
+    $background-color: #FF2819,
+    $border-color: #FF2819,
+    $line-height: 34px
+);
+@include extjs-button-toolbar-small-ui(
+    $ui: 'danger-orange',
+    $border-radius: 5px,
+    $color: white,
+    $background-color: #FF2819,
+    $border-color: #FF2819
+);
+
+.x-btn.x-btn-danger-orange-small{
+    box-shadow: 0 0 9px 0px #585858;
+}
+
+@include extjs-button-small-ui(
+    $ui: 'light-orange',
+    $font-size: 14px,
+    $border-radius: 5px,
+    $color: $secondary-color-orange,
+    $background-color: transparent,
+    $background-color-over: #F1F1F1,
+    $border-width: 0
+);
+
+@include extjs-button-small-ui(
+    $ui: 'light-primary-orange',
+    $font-size: 14px,
+    $border-radius: 5px,
+    $color: $secondary-color-orange,
+    $background-color: #F1F1F1,
+    $background-color-over: #F1F1F1,
+    $border-width: 0
+);
+
+@include extjs-button-small-ui(
+    $ui: 'light-border-orange',
+    $font-size: 14px,
+    $border-radius: 5px,
+    $color: $secondary-color-orange,
+    $glyph-color: $secondary-color-orange,
+    $background-color: transparent,
+    $background-color-over: #F1F1F1,
+    $border-width: 1px,
+    $border-color: #F1F1F1
+);
+
+@include extjs-button-small-ui(
+    $ui: 'light-primary-border-orange',
+    $font-size: 14px,
+    $border-radius: 5px,
+    $color: $secondary-color-orange,
+    $background-color: #F1F1F1,
+    $background-color-over: #F1F1F1,
+    $border-width: 1px,
+    $border-color: #7E7E7E
+);
+
+@include extjs-button-small-ui(
+    $ui: 'transparent-orange',
+    $font-size: 14px,
+    $color: $primary-color-orange,
+    $border-radius: 5px,
+    $glyph-color: $primary-color-orange,
+    $background-color: transparent,
+    $border-width: 0
+);
+
+@include extjs-button-small-ui(
+    $ui: 'transparent-invert-orange',
+    $font-size: 14px,
+    $border-color: transparent,
+    $color: mix(black, $primary-color-orange, 15%),
+    $arrow-glyph-color: mix(black, $primary-color-orange, 15%),
+    $background-color: transparent
+);
+
+@include extjs-text-field-ui(
+    $ui: 'gridtext-orange',
+    $ui-color: black,
+    $ui-height: 30px,
+    $ui-font-size: 14px,
+    $ui-font-weight: bold,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-orange,
+    $ui-focus-border-color: none
+);
+
+@include extjs-checkbox-ui(
+    $ui: 'gridtext-orange'
+);
+
+.x-form-checkbox-gridtext-orange{
+    margin: 4px 0px 0px 35px !important;
+}
+
+@include extjs-tag-field-ui(
+    $ui: 'gridtext-orange'
+);
+
+.x-form-cb-wrap-gridtext-orange {
+    height: 29px !important;
+    border-left: 1px solid #D0D0D0 !important;
+    border-bottom: 1px solid #D0D0D0 !important;
+}
+
+.x-form-text-gridtext-orange:not([readonly]):focus{
+    background-color: $tertiary-color-orange !important;
+}
+
+.x-form-empty-field-gridtext-orange {
+    color: black;
+}
+
+.x-form-trigger-wrap-gridtext-orange {
+    border-style: none none solid solid;
+    border-color: #d0d0d0;
+}
+
+.gridformbackground .x-panel-body-default {
+    background: #f5f5f5;
+}
+
+@include extjs-text-field-ui(
+    $ui: 'comboEmpresa-orange',
+    $ui-background-color: transparent,
+    $ui-padding: 5px,
+    $ui-color: black !important,
+    $ui-font-weight: bold,
+    $ui-font-size: 13px,
+    $ui-border-style: solid,
+    $ui-border-width: 1px,
+    $ui-border-color:  $darker-color-orange,
+    $ui-focus-border-color: $tertiary-color-orange,
+    $ui-trigger-glyph-color: $tertiary-color-orange,
+    $ui-height: 20px
+);
+
+.x-form-trigger-comboEmpresa-orange {
+    width: 20px;
+    font: 20px/29px FontAwesome;
+    background: transparent;
+    color: black !important;
+}
+
+.x-form-empty-field-comboEmpresa-orange {
+    color: black !important;
+}
+
+@include extjs-text-field-ui(
+    $ui: 'textlist-orange',
+    $ui-height: 18px,
+    $ui-padding: 0px 5px 0px 5px,
+    $ui-font-weight: bold,
+    $ui-font-size: 14px,
+    $ui-border-style: solid,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-orange,
+    $ui-focus-border-color: $primary-color-orange
+);
+
+.x-form-text-textlist-orange:not([readonly]):focus{
+    background-color: $tertiary-color-orange !important;
+}
+
+.container-notificacao-orange {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.contador-notificacao-orange {
+    display: inline-block;
+    position: relative;
+    top: 0px;
+    padding: 0.6em;
+    background: $primary-color-orange;
+    border-radius: 0.2em;
+    font-size: 1.3em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.contador-notificacao-orange::before, 
+.contador-notificacao-orange::after {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.contador-notificacao-orange::before {
+    display: block;
+    content: "\f0f3";
+    font-family: "FontAwesome";
+    transform-origin: top center;
+}
+
+.contador-notificacao-orange::after {
+    font-family: Arial;
+    font-size: 0.7em;
+    font-weight: 700;
+    position: absolute;
+    top: -10px;
+    right: -15px;
+    padding: 4px 6px;
+    line-height: 100%;
+    border: 2px #fff solid;
+    border-radius: 60px;
+    background: $primary-color-orange;
+    opacity: 0;
+    content: attr(data-count);
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    transition: transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+
+.contador-notificacao-orange.notify::before {
+    -webkit-animation: ring 1.5s ease;
+    animation: ring 1.5s ease;
+}
+
+.contador-notificacao-orange.show-count::after {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+.container-ponto-orange {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.contador-ponto-orange {
+    display: inline-block;
+    position: relative;
+    top: 0px;
+    padding: 0.6em;
+    background: $primary-color-orange;
+    border-radius: 0.2em;
+    font-size: 1.3em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.contador-ponto-orange::before, 
+.contador-ponto-orange::after {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.contador-ponto-orange::before {
+    display: block;
+    content: "\f017";
+    font-family: "FontAwesome";
+    transform-origin: top center;
+}
+
+.contador-ponto-orange::after {
+    font-family: Arial;
+    font-size: 0.7em;
+    font-weight: 700;
+    position: absolute;
+    top: -10px;
+    right: -15px;
+    padding: 4px 6px;
+    line-height: 100%;
+    border: 2px #fff solid;
+    border-radius: 60px;
+    background: $primary-color-orange;
+    opacity: 0;
+    content: attr(data-count);
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    transition: transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+}
+
+.contador-ponto-orange.notify::before {
+    -webkit-animation: ring 1.5s ease;
+    animation: ring 1.5s ease;
+}
+
+.contador-ponto-orange.show-count::after {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+.x-form-text-textbold-orange.x-tagfield {
+	padding: 3px 0 0 4px
+}
+
+.x-form-text-textbold-orange .x-tagfield-input {
+	margin: 0 4px 3px 0
+}
+
+.x-form-text-textbold-orange .x-tagfield-input-field {
+	height: 24px;
+	line-height: 24px
+}
+
+.x-form-text-textbold-orange .x-tagfield-item {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-ms-border-radius: 0;
+	-o-border-radius: 0;
+	border-radius: 0;
+	background-color: #ececec;
+	border: 1px solid #ececec;
+	padding: 0 21px 0 5px;
+	margin: 0 4px 3px 0;
+	color: #404040;
+	line-height: 22px
+}
+
+.x-form-text-textbold-orange .x-tagfield-item:hover {
+	background-color: #e5e5e5;
+	border-color: #e5e5e5;
+	color: #404040
+}
+
+.x-form-text-textbold-orange .x-tagfield-item.x-tagfield-item-selected {
+	background-color: #7fb5e4;
+	border-color: #7fb5e4;
+	color: #fff
+}
+
+.x-form-text-textbold-orange .x-tagfield-item-close {
+	width: 12px;
+	height: 12px;
+	top: 5px;
+	right: 3px;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+	opacity: 0.85;
+	font: 12px/1 FontAwesome;
+	color: #919191
+}
+
+.x-form-text-textbold-orange .x-tagfield-item-close:before {
+	content: "\f00d"
+}
+
+.x-form-text-textbold-orange .x-tagfield-item-close:hover {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=93)";
+	opacity: 0.93;
+	color: #919191
+}
+
+.x-form-text-textbold-orange .x-tagfield-item-close:active {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	opacity: 1
+}
+
+.x-form-text-textbold-orange .x-tagfield-item-selected .x-tagfield-item-close {
+	color: #fff
+}
+
+.x-form-text-textbold-orange .x-tagfield-item-selected .x-tagfield-item-close:hover {
+	color: #fff
+}
+
+/*---------------------------------------------------*/
+
+
+
+
+
+
+/*A partir daqui vale para todos os temas*/
+
+input:-webkit-autofill {
+    box-shadow: 0 0 0 30px white inset;
+    -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+.x-webkit .x-form-text {
+    height: calc(100% + 1px);
+}
+
+.x-form-fieldcontainer {
+    margin: -1px 5px 4px 0px !important;
+}
+
+.shadow {
+    @include box-shadow(0 1px 2px 0 rgba(0,0,0,0.2));
+}
+
+.x-combo-grayed-out-item {
+    color: lightgray;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.x-treelist-item-text{
+    font-weight: bold;
+    color: #f7f7f7;
+}
+
+.x-treelist{
+    border-style: none solid none none;
+    border-width: 1px;
+    border-color: mix(white, #3a3a3a, 70%);
+}
+
+.x-panel-bodyWrap{
+    box-shadow: 0 0 5px 0px #b1b1b1;
+}
+
+.x-tabpanel-child {
+    background-color: white;
+}
+
+.x-tabpanel-child {
+    background: rgba(255,255,255,0.9) !important;
+}
+
+.x-tool-expand-bottom:before {
+    content: "\f0d7";
+    color: black;
+}
+
+.x-tool-collapse-top {
+    font: 24px/1 FontAwesome;
+    background: none;
+}
+
+.x-tool-collapse-top:before {
+    content: "\f0d8";
+    color: black;
+}
+.x-tool-close:before{
+    content:"\f00d";
+    color: black;
+}
+
+$grid-column-header-border-style: solid;
+$grid-column-header-focus-background-color: #F7F7F7;
+$grid-column-header-font-weight: bold;
+$grid-row-cell-font-weight: bold;
+$grid-row-cell-line-height: 17px;
+$grid-body-border-style : solid;
+$grid-row-cell-alt-background-color : transparent;
+$grid-row-cell-background-color : transparent;
+$grid-row-cell-border-style: solid;
+$grid-row-cell-border-width : 1px;
+$grid-row-cell-color: #4a4a4a;
+$grid-row-cell-focus-background-color: rgba(247,247,247,0.3);
+$grid-row-cell-focus-border-style : solid;
+$grid-row-cell-focus-border-width : 1px;
+$grid-column-header-line-height: 30px;
+$grid-row-cell-over-background-color : rgba(247,247,247,0.3);
+$grid-row-cell-over-border-style : solid;
+$grid-row-cell-selected-border-style : solid;
+
+.x-grid-cell{
+    position:relative;
+}
+
+.x-grid-item{
+    background-color: transparent !important;
+}
+
+$toolbar-horizontal-spacing: 20px;
+
+@include extjs-text-field-ui(
+    $ui: 'field-readonly',
+    $ui-padding: 4px 10px 3px 10px,
+    $ui-height: 30px,
+    $ui-font-weight: bold,
+    $ui-border-radius: 5px,
+    $ui-font-size: 14px,
+    $ui-border-style: solid,
+    $ui-border-width: 2px,
+    $ui-border-color: #a1a1a1,
+    $ui-focus-border-color: #a1a1a1,
+    $ui-background-color: #f5f5f5
+);
+
+.x-form-text-field-readonly {
+    padding: 4px !important;
+}
+
+.x-form-field-readonly {
+    box-sizing: border-box;
+}
+
+.x-form-item-label-inner {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+@include extjs-fieldset-ui(
+    $ui: 'fieldset-clean',
+    $ui-border-style: none,
+    $ui-border-width: 0px,
+    $ui-border-color: white
+);
+
+@include extjs-checkbox-ui(
+    $ui: 'checkbold',
+    $ui-checkbox-size : 16px,
+    $ui-label-font-weight: bold,
+    $ui-label-font-size: 14px
+);
+
+@include extjs-window-ui(
+    $ui: 'window-clean',
+    $ui-border-color: white,
+    $ui-border-width: 0px,
+    $ui-header-background-color: white
+);
+
+.x-window-body-window-clean {
+    background: #f7f7f7 !important;
+}
+
+.x-window-header-window-clean-top {
+    background-color: #fff !important;
+    border-color: #fff !important;
+}
+
+.x-btn-inner-default-small {
+    font-weight: bold !important;
+}
+.x-btn-inner {
+    font-weight: bold !important;
+}
+
+@-webkit-keyframes ring {
+    0% {
+        -webkit-transform: rotate(35deg);
+    }
+    12.5% {
+        -webkit-transform: rotate(-30deg);
+    }
+    25% {
+        -webkit-transform: rotate(25deg);
+    }
+    37.5% {
+        -webkit-transform: rotate(-20deg);
+    }
+    50% {
+        -webkit-transform: rotate(15deg);
+    }
+    62.5% {
+        -webkit-transform: rotate(-10deg);
+    }
+    75% {
+        -webkit-transform: rotate(5deg);
+    }
+    100% {
+        -webkit-transform: rotate(0deg);
+    }
+}
+
+@keyframes ring {
+    0% {
+        -webkit-transform: rotate(35deg);
+        transform: rotate(35deg);
+    }
+    12.5% {
+        -webkit-transform: rotate(-30deg);
+        transform: rotate(-30deg);
+    }
+    25% {
+        -webkit-transform: rotate(25deg);
+        transform: rotate(25deg);
+    }
+    37.5% {
+        -webkit-transform: rotate(-20deg);
+        transform: rotate(-20deg);
+    }
+    50% {
+        -webkit-transform: rotate(15deg);
+        transform: rotate(15deg);
+    }
+    62.5% {
+        -webkit-transform: rotate(-10deg);
+        transform: rotate(-10deg);
+    }
+    75% {
+        -webkit-transform: rotate(5deg);
+        transform: rotate(5deg);
+    }
+    100% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+}
+
+.x-tagfield-body {
+	vertical-align: top
+}
+
+.x-tagfield {
+	height: auto!important;
+	cursor: text;
+	overflow-y: auto
+}
+
+.x-tagfield .x-tagfield-list {
+	padding: 0;
+	margin: 0
+}
+
+.x-tagfield-list.x-tagfield-singleselect {
+	white-space: nowrap;
+	overflow: hidden
+}
+
+.x-tagfield-input,
+.x-tagfield-item {
+	vertical-align: top;
+	display: inline-block;
+	position: relative
+}
+
+.x-tagfield-input-field {
+	font: inherit;
+	border: 0;
+	margin: 0;
+	background: none;
+	width: 100%
+}
+
+.x-tagfield-stacked .x-tagfield-item {
+	display: block
+}
+
+.x-tagfield-item {
+	cursor: default
+}
+
+.x-tagfield-item-close {
+	cursor: pointer;
+	position: absolute
+}
+
+.x-tagfield-arialist {
+	list-style-type: none;
+	position: absolute;
+	clip: rect(0, 0, 0, 0)
+}
+
+.x-tagfield-arialist-item {
+	list-style-type: none
+}
+
+.x-tool-refresh:before {
+    content: "\f021";
+    color: black !important;
+}
+
+
+//text blue para grid
+@include extjs-text-field-ui(
+    $ui: 'gridtextblue',
+    $ui-color: blue,
+    $ui-height: 30px,
+    $ui-font-size: 14px,
+    $ui-font-weight: bold,
+    $ui-border-width: 1px,
+    $ui-border-color: $secondary-color-basic,
+    $ui-focus-border-color: none
+);
+
+@include extjs-checkbox-ui(
+    $ui: 'gridtextblue'
+);
+
+.x-form-checkbox-gridtextblue{
+    margin: 4px 0px 0px 35px !important;
+}
+
+.x-form-cb-wrap-gridtextblue {
+    height: 29px !important;
+    border-left: 1px solid #D0D0D0 !important;
+    border-bottom: 1px solid #D0D0D0 !important;
+}
+
+.x-form-text-gridtextblue:not([readonly]):focus{
+    background-color: $tertiary-color-basic !important;
+}
+
+.x-form-empty-field-gridtextblue {
+    color: blue;
+}
+
+.x-form-trigger-wrap-gridtextblue {
+    border-style: none none solid solid;
+    border-color: #d0d0d0;
+}

@@ -1,0 +1,512 @@
+/*Blocos de temas*/
+
+/*Tema 1 - basic*/
+/*---------------------------------------------------*/
+.logo-samos-basic {
+    position:absolute;
+    top: 0px;
+    left: 130px;
+    background-image: url('images/inicio/basic.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin: 0px;
+    padding: 0px;
+    width: 325px;
+    height: 100px;
+}
+
+.center-color-basic-1 {
+    position:absolute;
+    top: 0px;
+    left: 32px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #E23015;
+    border-radius: 10px;
+}
+
+.center-color-basic-2 {
+    position:absolute;
+    top: 35px;
+    left: 29px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #E23015;
+    border-radius: 10px;
+}
+
+.center-color-basic-3 {
+    position:absolute;
+    top: 70px;
+    left: 26px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #E23015;
+    border-radius: 10px;
+}
+
+.left-color-basic {
+    position:absolute;
+    top: 14.5px;
+    left: 4px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #E23015;
+    border-radius: 10px;
+    -webkit-animation-name: left-to-right; /* Safari 4.0 - 8.0 */
+    animation-name: left-to-right;
+}
+
+.right-color-basic {
+    position:absolute;
+    top: 54px;
+    left: 53px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #E23015;
+    border-radius: 10px;
+    -webkit-animation-name: right-to-left; /* Safari 4.0 - 8.0 */
+    animation-name: right-to-left;
+}
+/*---------------------------------------------------*/
+
+
+
+/*Tema 2 - green*/
+/*---------------------------------------------------*/
+.logo-samos-green {
+    position:absolute;
+    top: 0px;
+    left: 130px;
+    background-image: url('images/inicio/green.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin: 0px;
+    padding: 0px;
+    width: 325px;
+    height: 100px;
+}
+
+.center-color-green-1 {
+    position:absolute;
+    top: 0px;
+    left: 32px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #337837;
+    border-radius: 10px;
+}
+
+.center-color-green-2 {
+    position:absolute;
+    top: 35px;
+    left: 29px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #337837;
+    border-radius: 10px;
+}
+
+.center-color-green-3 {
+    position:absolute;
+    top: 70px;
+    left: 26px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #337837;
+    border-radius: 10px;
+}
+
+.left-color-green {
+    position:absolute;
+    top: 14.5px;
+    left: 4px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #337837;
+    border-radius: 10px;
+    -webkit-animation-name: left-to-right; /* Safari 4.0 - 8.0 */
+    animation-name: left-to-right;
+}
+
+.right-color-green {
+    position:absolute;
+    top: 54px;
+    left: 53px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #337837;
+    border-radius: 10px;
+    -webkit-animation-name: right-to-left; /* Safari 4.0 - 8.0 */
+    animation-name: right-to-left;
+}
+/*---------------------------------------------------*/
+
+
+
+/*Tema 3 - blue*/
+/*---------------------------------------------------*/
+.logo-samos-blue {
+    position:absolute;
+    top: 0px;
+    left: 130px;
+    background-image: url('images/inicio/blue.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin: 0px;
+    padding: 0px;
+    width: 325px;
+    height: 100px;
+}
+
+.center-color-blue-1 {
+    position:absolute;
+    top: 0px;
+    left: 32px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #0385BF;
+    border-radius: 10px;
+}
+
+.center-color-blue-2 {
+    position:absolute;
+    top: 35px;
+    left: 29px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #0385BF;
+    border-radius: 10px;
+}
+
+.center-color-blue-3 {
+    position:absolute;
+    top: 70px;
+    left: 26px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #0385BF;
+    border-radius: 10px;
+}
+
+.left-color-blue {
+    position:absolute;
+    top: 14.5px;
+    left: 4px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #0385BF;
+    border-radius: 10px;
+    -webkit-animation-name: left-to-right; /* Safari 4.0 - 8.0 */
+    animation-name: left-to-right;
+}
+
+.right-color-blue {
+    position:absolute;
+    top: 54px;
+    left: 53px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #0385BF;
+    border-radius: 10px;
+    -webkit-animation-name: right-to-left; /* Safari 4.0 - 8.0 */
+    animation-name: right-to-left;
+}
+/*---------------------------------------------------*/
+
+
+
+/*Tema 4 - gray*/
+/*---------------------------------------------------*/
+.logo-samos-gray {
+    position:absolute;
+    top: 0px;
+    left: 130px;
+    background-image: url('images/inicio/gray.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin: 0px;
+    padding: 0px;
+    width: 325px;
+    height: 100px;
+}
+
+.center-color-gray-1 {
+    position:absolute;
+    top: 0px;
+    left: 32px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #535353;
+    border-radius: 10px;
+}
+
+.center-color-gray-2 {
+    position:absolute;
+    top: 35px;
+    left: 29px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #535353;
+    border-radius: 10px;
+}
+
+.center-color-gray-3 {
+    position:absolute;
+    top: 70px;
+    left: 26px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #535353;
+    border-radius: 10px;
+}
+
+.left-color-gray {
+    position:absolute;
+    top: 14.5px;
+    left: 4px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #535353;
+    border-radius: 10px;
+    -webkit-animation-name: left-to-right; /* Safari 4.0 - 8.0 */
+    animation-name: left-to-right;
+}
+
+.right-color-gray {
+    position:absolute;
+    top: 54px;
+    left: 53px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #535353;
+    border-radius: 10px;
+    -webkit-animation-name: right-to-left; /* Safari 4.0 - 8.0 */
+    animation-name: right-to-left;
+}
+/*---------------------------------------------------*/
+
+
+
+/*Tema 5 - orange*/
+/*---------------------------------------------------*/
+.logo-samos-orange {
+    position:absolute;
+    top: 0px;
+    left: 130px;
+    background-image: url('images/inicio/orange.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin: 0px;
+    padding: 0px;
+    width: 325px;
+    height: 100px;
+}
+
+.center-color-orange-1 {
+    position:absolute;
+    top: 0px;
+    left: 32px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #ff711b;
+    border-radius: 10px;
+}
+
+.center-color-orange-2 {
+    position:absolute;
+    top: 35px;
+    left: 29px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #ff711b;
+    border-radius: 10px;
+}
+
+.center-color-orange-3 {
+    position:absolute;
+    top: 70px;
+    left: 26px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #ff711b;
+    border-radius: 10px;
+}
+
+.left-color-orange {
+    position:absolute;
+    top: 14.5px;
+    left: 4px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #ff711b;
+    border-radius: 10px;
+    -webkit-animation-name: left-to-right; /* Safari 4.0 - 8.0 */
+    animation-name: left-to-right;
+}
+
+.right-color-orange {
+    position:absolute;
+    top: 54px;
+    left: 53px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: #ff711b;
+    border-radius: 10px;
+    -webkit-animation-name: right-to-left; /* Safari 4.0 - 8.0 */
+    animation-name: right-to-left;
+}
+/*---------------------------------------------------*/
+
+
+
+
+/*Daqui pra frente serve para todos temas*/
+#loading-mask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -20000;
+    background-color: #FFFCFC
+}
+
+#loading {
+    position:absolute;
+    left:50%;
+    top:50%;
+    margin-left:-220px;
+    margin-top:-40px;
+}
+
+.logo-animation {
+    position:absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.left-black {
+    position:absolute;
+    top: 54px;
+    left: 0px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: white;
+    border-radius: 10px;
+    border: 5px solid #535353;
+    box-sizing: border-box;
+
+    -webkit-animation-name: left-to-right; /* Safari 4.0 - 8.0 */
+    animation-name: left-to-right;
+}
+
+.right-black {
+    position:absolute;
+    top: 14.5px;
+    left: 58px;
+    margin: 0px;
+    padding: 0px;
+    width: 25.5px;
+    height: 20px;
+    background: white;
+    border-radius: 10px;
+    border: 5px solid #535353;
+    box-sizing: border-box;
+
+    -webkit-animation-name: right-to-left; /* Safari 4.0 - 8.0 */
+    animation-name: right-to-left;
+}
+
+.animation-settings {
+    -webkit-animation-duration: 1s; /* Safari 4.0 - 8.0 */
+    -webkit-animation-iteration-count: infinite; /* Safari 4.0 - 8.0 */
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes left-to-right {
+    0%   { transform: translateX(0); }
+    50%  { transform: translateX(54px); }
+    65%  { transform: translateX(54px); }
+    90%  { transform: translateX(0); }
+    100% { transform: translateX(0); }
+}
+    
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes left-to-right {
+    0%   { transform: translateX(0); }
+    50%  { transform: translateX(54px); }
+    65%  { transform: translateX(54px); }
+    90%  { transform: translateX(0); }
+    100% { transform: translateX(0); }
+}
+
+@keyframes right-to-left {
+    0%   { transform: translateX(0); }
+    50%  { transform: translateX(-54px); }
+    65%  { transform: translateX(-54px); }
+    90%  { transform: translateX(0); }
+    100% { transform: translateX(0); }
+}
+    
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes right-to-left {
+    0%   { transform: translateX(0); }
+    50%  { transform: translateX(-54px); }
+    65%  { transform: translateX(-54px); }
+    90%  { transform: translateX(0); }
+    100% { transform: translateX(0); }
+}

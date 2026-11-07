@@ -1,0 +1,631 @@
+Sencha Cmd 7.5.1.20 - Crash report
+================================================
+An error occurred while executing the following command: app build --dev
+
+Diagnostic information:
+=======================
+                     app.appCacheEnabled : true                                              
+                      app.bootstrap.base : C:\webserver\samos-ws\SamosAdmin\server\samosadmin\classic
+                        app.cache.deltas : true                                              
+                        app.cache.enable : true                                              
+                          app.compressor : null                                              
+                          app.config.dir : C:\Users\Administrador\bin\Sencha\Cmd\7.5.1.20\ant\build\app
+                app.cordova.cache.enable : false                                             
+                   app.cordova.config.id : com.domain.SamosAdmin                             
+                 app.cordova.config.name : SamosAdmin                                        
+                 app.cordova.config.path : C:\webserver\samos-ws\SamosAdmin\server\samosadmin\classic/cordova
+               app.cordova.config.target :                                                   
+              app.cordova.config.verbose : false                                             
+                   app.cordova.js.0.path : cordova.js                                        
+               app.cordova.js.0.priority : 1000                                              
+                 app.cordova.js.0.remote : true                                              
+                   app.cordova.js.length : 1                                                 
+                 app.cordova.microloader : C:\Users\Administrador\bin\Sencha\Cmd\7.5.1.20\ant\build\app/Microloader.js
+      app.cordova.output.appCache.enable : false                                             
+                 app.cordova.output.base : C:\webserver\samos-ws\SamosAdmin\server\samosadmin\classic/cordova/www
+             app.cordova.output.manifest : ${build.id}.json                                  
+                 app.cordova.output.page : index.html                                        
+                                 app.dir : C:\webserver\samos-ws\SamosAdmin\server\samosadmin\classic
+              app.fashion.inliner.enable : false                                             
+                           app.framework : ext                                               
+                                app.hash : 9f7e0df44d6fe38c1cd59f9a344f39709aac9fd3          
+                                  app.id : 565d1213-8226-4a52-a22f-152f137f5925              
+                       app.indexHtmlPath : index.html                                        
+                        app.loader.cache : 20260925163300                                    
+                   app.loader.cacheParam : _dc                                               
+                              app.locale : pt_BR                                             
+                                app.name : SamosAdmin                                        
+                           app.namespace : SamosAdmin                                        
+              app.output.appCache.enable : false                                             
+                         app.output.base : C:\webserver\samos-ws/build/${build.environment}/SamosAdmin
+           app.output.microloader.enable : true                                              
+                 app.packages.charts.css : true                                              
+            app.packages.charts.included : true                                              
+           app.packages.charts.namespace : Ext                                               
+            app.packages.charts.required : true                                              
+            app.packages.charts.requires : ext,core,classic                                  
+          app.packages.charts.requires.0 : ext                                               
+          app.packages.charts.requires.1 : core                                              
+          app.packages.charts.requires.2 : classic                                           
+     app.packages.charts.requires.length : 3                                                 
+             app.packages.charts.version : 6.2.0.589                                         
+                app.packages.classic.css : true                                              
+           app.packages.classic.included : true                                              
+          app.packages.classic.namespace : Ext                                               
+           app.packages.classic.required : true                                              
+           app.packages.classic.requires : ext,core                                          
+         app.packages.classic.requires.0 : ext                                               
+         app.packages.classic.requires.1 : core                                              
+    app.packages.classic.requires.length : 2                                                 
+            app.packages.classic.version : 6.2.0.589                                         
+                app.packages.cmd.current : 7.3.1.27                                          
+                app.packages.cmd.version : 7.5.1.20                                          
+                   app.packages.core.css : true                                              
+              app.packages.core.included : true                                              
+              app.packages.core.required : true                                              
+              app.packages.core.requires : ext,classic                                       
+            app.packages.core.requires.0 : ext                                               
+            app.packages.core.requires.1 : classic                                           
+       app.packages.core.requires.length : 2                                                 
+               app.packages.core.version : 6.2.0.589                                         
+                    app.packages.ext.css : true                                              
+               app.packages.ext.included : true                                              
+                app.packages.ext.license : beta                                              
+              app.packages.ext.namespace : Ext                                               
+               app.packages.ext.required : true                                              
+               app.packages.ext.requires :                                                   
+        app.packages.ext.requires.length : 0                                                 
+                app.packages.ext.version : 6.2.0.589                                         
+           app.packages.font-awesome.css : true                                              
+      app.packages.font-awesome.included : true                                              
+     app.packages.font-awesome.namespace : Ext                                               
+      app.packages.font-awesome.required : true                                              
+      app.packages.font-awesome.requires : ext,core,classic,theme-base,theme-neutral,theme-neptune
+    app.packages.font-awesome.requires.0 : ext                                               
+    app.packages.font-awesome.requires.1 : core                                              
+    app.packages.font-awesome.requires.2 : classic                                           
+    app.packages.font-awesome.requires.3 : theme-base                                        
+    app.packages.font-awesome.requires.4 : theme-neutral                                     
+    app.packages.font-awesome.requires.5 : theme-neptune                                     
+app.packages.font-awesome.requires.length : 6                                                 
+         app.packages.font-awesome.theme : theme-neptune                                     
+       app.packages.font-awesome.version : 6.2.0.589                                         
+               app.packages.font-ext.css : true                                              
+          app.packages.font-ext.included : true                                              
+         app.packages.font-ext.namespace : Ext                                               
+          app.packages.font-ext.required : true                                              
+          app.packages.font-ext.requires : ext,core,classic,theme-base,theme-neutral,theme-neptune
+        app.packages.font-ext.requires.0 : ext                                               
+        app.packages.font-ext.requires.1 : core                                              
+        app.packages.font-ext.requires.2 : classic                                           
+        app.packages.font-ext.requires.3 : theme-base                                        
+        app.packages.font-ext.requires.4 : theme-neutral                                     
+        app.packages.font-ext.requires.5 : theme-neptune                                     
+   app.packages.font-ext.requires.length : 6                                                 
+             app.packages.font-ext.theme : theme-neptune                                     
+           app.packages.font-ext.version : 6.2.0.589                                         
+                 app.packages.locale.css : true                                              
+            app.packages.locale.included : true                                              
+           app.packages.locale.namespace : Ext                                               
+            app.packages.locale.required : true                                              
+            app.packages.locale.requires : ext,core,classic                                  
+          app.packages.locale.requires.0 : ext                                               
+          app.packages.locale.requires.1 : core                                              
+          app.packages.locale.requires.2 : classic                                           
+     app.packages.locale.requires.length : 3                                                 
+             app.packages.locale.version : 6.2.0.589                                         
+      app.packages.samos-financeiros.css : true                                              
+ app.packages.samos-financeiros.included : true                                              
+app.packages.samos-financeiros.namespace : SamosFinanceiros                                  
+ app.packages.samos-financeiros.required : true                                              
+ app.packages.samos-financeiros.requires : ext,core,classic,theme-base,theme-neutral,theme-neptune,font-awesome,font-ext,theme-triton,charts,samos-utils,samos-widgets,samos-module
+app.packages.samos-financeiros.requires.0 : ext                                               
+app.packages.samos-financeiros.requires.1 : core                                              
+app.packages.samos-financeiros.requires.10 : samos-utils                                       
+app.packages.samos-financeiros.requires.11 : samos-widgets                                     
+app.packages.samos-financeiros.requires.12 : samos-module                                      
+app.packages.samos-financeiros.requires.2 : classic                                           
+app.packages.samos-financeiros.requires.3 : theme-base                                        
+app.packages.samos-financeiros.requires.4 : theme-neutral                                     
+app.packages.samos-financeiros.requires.5 : theme-neptune                                     
+app.packages.samos-financeiros.requires.6 : font-awesome                                      
+app.packages.samos-financeiros.requires.7 : font-ext                                          
+app.packages.samos-financeiros.requires.8 : theme-triton                                      
+app.packages.samos-financeiros.requires.9 : charts                                            
+app.packages.samos-financeiros.requires.length : 13                                                
+    app.packages.samos-financeiros.theme : theme-triton                                      
+  app.packages.samos-financeiros.version : 1.0.0.0                                           
+            app.packages.samos-login.css : true                                              
+       app.packages.samos-login.included : true                                              
+      app.packages.samos-login.namespace : SamosLogin                                        
+       app.packages.samos-login.required : true                                              
+       app.packages.samos-login.requires : ext,core,classic,theme-base,theme-neutral,theme-neptune,font-awesome,font-ext,theme-triton,charts,samos-utils,samos-widgets
+     app.packages.samos-login.requires.0 : ext                                               
+     app.packages.samos-login.requires.1 : core                                              
+    app.packages.samos-login.requires.10 : samos-utils                                       
+    app.packages.samos-login.requires.11 : samos-widgets                                     
+     app.packages.samos-login.requires.2 : classic                                           
+     app.packages.samos-login.requires.3 : theme-base                                        
+     app.packages.samos-login.requires.4 : theme-neutral                                     
+     app.packages.samos-login.requires.5 : theme-neptune                                     
+     app.packages.samos-login.requires.6 : font-awesome                                      
+     app.packages.samos-login.requires.7 : font-ext                                          
+     app.packages.samos-login.requires.8 : theme-triton                                      
+     app.packages.samos-login.requires.9 : charts                                            
+app.packages.samos-login.requires.length : 12                                                
+          app.packages.samos-login.theme : theme-triton                                      
+        app.packages.samos-login.version : 1.0.0.0                                           
+           app.packages.samos-module.css : true                                              
+      app.packages.samos-module.included : true                                              
+     app.packages.samos-module.namespace : SamosModule                                       
+      app.packages.samos-module.required : true                                              
+      app.packages.samos-module.requires : ext,core,classic,theme-base,theme-neutral,theme-neptune,font-awesome,font-ext,theme-triton,charts,samos-utils,samos-widgets
+    app.packages.samos-module.requires.0 : ext                                               
+    app.packages.samos-module.requires.1 : core                                              
+   app.packages.samos-module.requires.10 : samos-utils                                       
+   app.packages.samos-module.requires.11 : samos-widgets                                     
+    app.packages.samos-module.requires.2 : classic                                           
+    app.packages.samos-module.requires.3 : theme-base                                        
+    app.packages.samos-module.requires.4 : theme-neutral                                     
+    app.packages.samos-module.requires.5 : theme-neptune                                     
+    app.packages.samos-module.requires.6 : font-awesome                                      
+    app.packages.samos-module.requires.7 : font-ext                                          
+    app.packages.samos-module.requires.8 : theme-triton                                      
+    app.packages.samos-module.requires.9 : charts                                            
+app.packages.samos-module.requires.length : 12                                                
+         app.packages.samos-module.theme : theme-triton                                      
+       app.packages.samos-module.version : 1.0.0.0                                           
+            app.packages.samos-utils.css : true                                              
+       app.packages.samos-utils.included : true                                              
+      app.packages.samos-utils.namespace : SamosUtils                                        
+       app.packages.samos-utils.required : true                                              
+       app.packages.samos-utils.requires : ext,core,classic                                  
+     app.packages.samos-utils.requires.0 : ext                                               
+     app.packages.samos-utils.requires.1 : core                                              
+     app.packages.samos-utils.requires.2 : classic                                           
+app.packages.samos-utils.requires.length : 3                                                 
+        app.packages.samos-utils.version : 1.0.10.5                                          
+         app.packages.samos-viewport.css : true                                              
+    app.packages.samos-viewport.included : true                                              
+   app.packages.samos-viewport.namespace : SamosViewport                                     
+    app.packages.samos-viewport.required : true                                              
+    app.packages.samos-viewport.requires : ext,core,classic,theme-base,theme-neutral,theme-neptune,font-awesome,font-ext,theme-triton,samos-utils
+  app.packages.samos-viewport.requires.0 : ext                                               
+  app.packages.samos-viewport.requires.1 : core                                              
+  app.packages.samos-viewport.requires.2 : classic                                           
+  app.packages.samos-viewport.requires.3 : theme-base                                        
+  app.packages.samos-viewport.requires.4 : theme-neutral                                     
+  app.packages.samos-viewport.requires.5 : theme-neptune                                     
+  app.packages.samos-viewport.requires.6 : font-awesome                                      
+  app.packages.samos-viewport.requires.7 : font-ext                                          
+  app.packages.samos-viewport.requires.8 : theme-triton                                      
+  app.packages.samos-viewport.requires.9 : samos-utils                                       
+app.packages.samos-viewport.requires.length : 10                                                
+       app.packages.samos-viewport.theme : theme-triton                                      
+     app.packages.samos-viewport.version : 1.0.0.0                                           
+          app.packages.samos-widgets.css : true                                              
+     app.packages.samos-widgets.included : true                                              
+    app.packages.samos-widgets.namespace : SamosWidgets                                      
+     app.packages.samos-widgets.required : true                                              
+     app.packages.samos-widgets.requires : ext,core,classic,theme-base,theme-neutral,theme-neptune,font-awesome,font-ext,theme-triton,charts,samos-utils
+   app.packages.samos-widgets.requires.0 : ext                                               
+   app.packages.samos-widgets.requires.1 : core                                              
+  app.packages.samos-widgets.requires.10 : samos-utils                                       
+   app.packages.samos-widgets.requires.2 : classic                                           
+   app.packages.samos-widgets.requires.3 : theme-base                                        
+   app.packages.samos-widgets.requires.4 : theme-neutral                                     
+   app.packages.samos-widgets.requires.5 : theme-neptune                                     
+   app.packages.samos-widgets.requires.6 : font-awesome                                      
+   app.packages.samos-widgets.requires.7 : font-ext                                          
+   app.packages.samos-widgets.requires.8 : theme-triton                                      
+   app.packages.samos-widgets.requires.9 : charts                                            
+app.packages.samos-widgets.requires.length : 11                                                
+        app.packages.samos-widgets.theme : theme-triton                                      
+      app.packages.samos-widgets.version : 1.0.7.14                                          
+             app.packages.theme-base.css : true                                              
+        app.packages.theme-base.included : true                                              
+       app.packages.theme-base.namespace : Ext                                               
+        app.packages.theme-base.required : true                                              
+        app.packages.theme-base.requires : ext,core,classic                                  
+      app.packages.theme-base.requires.0 : ext                                               
+      app.packages.theme-base.requires.1 : core                                              
+      app.packages.theme-base.requires.2 : classic                                           
+ app.packages.theme-base.requires.length : 3                                                 
+         app.packages.theme-base.version : 6.2.0.589                                         
+          app.packages.theme-neptune.css : true                                              
+       app.packages.theme-neptune.extend : theme-neutral                                     
+     app.packages.theme-neptune.included : true                                              
+    app.packages.theme-neptune.namespace : Ext                                               
+     app.packages.theme-neptune.required : true                                              
+     app.packages.theme-neptune.requires : ext,core,classic,theme-base,theme-neutral         
+   app.packages.theme-neptune.requires.0 : ext                                               
+   app.packages.theme-neptune.requires.1 : core                                              
+   app.packages.theme-neptune.requires.2 : classic                                           
+   app.packages.theme-neptune.requires.3 : theme-base                                        
+   app.packages.theme-neptune.requires.4 : theme-neutral                                     
+app.packages.theme-neptune.requires.length : 5                                                 
+      app.packages.theme-neptune.version : 6.2.0.589                                         
+          app.packages.theme-neutral.css : true                                              
+       app.packages.theme-neutral.extend : theme-base                                        
+     app.packages.theme-neutral.included : true                                              
+    app.packages.theme-neutral.namespace : Ext                                               
+     app.packages.theme-neutral.required : true                                              
+     app.packages.theme-neutral.requires : ext,core,classic,theme-base                       
+   app.packages.theme-neutral.requires.0 : ext                                               
+   app.packages.theme-neutral.requires.1 : core                                              
+   app.packages.theme-neutral.requires.2 : classic                                           
+   app.packages.theme-neutral.requires.3 : theme-base                                        
+app.packages.theme-neutral.requires.length : 4                                                 
+      app.packages.theme-neutral.version : 6.2.0.589                                         
+           app.packages.theme-triton.css : true                                              
+        app.packages.theme-triton.extend : theme-neptune                                     
+      app.packages.theme-triton.included : true                                              
+     app.packages.theme-triton.namespace : Ext                                               
+      app.packages.theme-triton.required : true                                              
+      app.packages.theme-triton.requires : ext,core,classic,theme-base,theme-neutral,theme-neptune,font-awesome,font-ext
+    app.packages.theme-triton.requires.0 : ext                                               
+    app.packages.theme-triton.requires.1 : core                                              
+    app.packages.theme-triton.requires.2 : classic                                           
+    app.packages.theme-triton.requires.3 : theme-base                                        
+    app.packages.theme-triton.requires.4 : theme-neutral                                     
+    app.packages.theme-triton.requires.5 : theme-neptune                                     
+    app.packages.theme-triton.requires.6 : font-awesome                                      
+    app.packages.theme-triton.requires.7 : font-ext                                          
+app.packages.theme-triton.requires.length : 8                                                 
+       app.packages.theme-triton.version : 6.2.0.589                                         
+                     app.packages.ux.css : true                                              
+                app.packages.ux.included : true                                              
+               app.packages.ux.namespace : Ext                                               
+                app.packages.ux.required : true                                              
+                app.packages.ux.requires : ext,core,classic                                  
+              app.packages.ux.requires.0 : ext                                               
+              app.packages.ux.requires.1 : core                                              
+              app.packages.ux.requires.2 : classic                                           
+         app.packages.ux.requires.length : 3                                                 
+                 app.packages.ux.version : 6.2.0.589                                         
+               app.phonegap.cache.enable : false                                             
+                  app.phonegap.config.id : com.domain.SamosAdmin                             
+                app.phonegap.config.name : SamosAdmin                                        
+                app.phonegap.config.path : C:\webserver\samos-ws\SamosAdmin\server\samosadmin\classic/phonegap
+              app.phonegap.config.remote : false                                             
+             app.phonegap.config.verbose : false                                             
+                  app.phonegap.js.0.path : cordova.js                                        
+              app.phonegap.js.0.priority : 1000                                              
+                app.phonegap.js.0.remote : true                                              
+                  app.phonegap.js.length : 1                                                 
+                app.phonegap.microloader : C:\Users\Administrador\bin\Sencha\Cmd\7.5.1.20\ant\build\app/Microloader.js
+     app.phonegap.output.appCache.enable : false                                             
+                app.phonegap.output.base : C:\webserver\samos-ws\SamosAdmin\server\samosadmin\classic/phonegap/www
+            app.phonegap.output.manifest : ${build.id}.json                                  
+                app.phonegap.output.page : index.html                                        
+             app.production.cache.enable : true                                              
+          app.production.compressor.type : cmd                                               
+                             app.profile :                                                   
+                        app.sass.dynamic : true                                              
+                        app.sass.fashion : true                                              
+                 app.slicer.cache.enable : false                                             
+        app.slicer.js.0.isWidgetManifest : true                                              
+                    app.slicer.js.0.path : C:\webserver\samos-ws\SamosAdmin\server\samosadmin\classic/sass/example/custom.js
+                    app.slicer.js.length : 1                                                 
+       app.slicer.output.appCache.enable : false                                             
+                               app.theme : theme-triton                                      
+                             app.toolkit : classic                                           
+                             app.version : 2.0.2442.0                                        
+                    buildenvironment.dir : C:\webserver\samos-ws\SamosAdmin\server\samosadmin\classic
+               buildenvironment.load.dir : C:\webserver\samos-ws\SamosAdmin\server\samosadmin\classic
+                          cmd.config.dir : C:\Users\Administrador\bin\Sencha\Cmd\7.5.1.20    
+                                 cmd.dir : C:\Users\Administrador\bin\Sencha\Cmd\7.5.1.20    
+                    cmd.framework.minver : 5.5.0                                             
+                   cmd.framework.version : 99.99                                             
+                            cmd.jvm.args : -Xms2048m -Xmx12288m -XX:MaxPermSize=512m         
+              cmd.merge.tool.args.araxis : -wait -merge -3 -a1 {base} {user} {generated} {out}
+              cmd.merge.tool.args.kdiff3 : {base} {user} {generated} -o {out}                
+             cmd.merge.tool.args.p4merge : {base} {user} {generated} {out}                   
+           cmd.merge.tool.args.smartsync : {user} {generated} {base}                         
+          cmd.merge.tool.args.sourcegear : --merge --result={out} {user} {base} {generated}  
+            cmd.merge.tool.args.tortoise : -base:{base} -theirs:{generated} -mine:{user} -merged:{out}
+                              cmd.minver : 3.0.0.0                                           
+                            cmd.platform : windows                                           
+                     cmd.unicode.escapes : C:\Users\Administrador\bin\Sencha\Cmd\7.5.1.20/unicode-escapes.json
+                             cmd.version : 7.5.1.20                                          
+                            cmd.web.port : 1841                                              
+                     config.skipDownload : true                                              
+                      config.skipInherit : false                                             
+                        ext.license.name : beta                                              
+                     framework.build.dir : ${package.output.base}                            
+                     framework.classpath : ${package.dir}/src                                
+                    framework.cmd.minver : 6.2.0.46                                          
+                   framework.cmd.version : 6.2.0.46                                          
+                 framework.compatVersion : 6.2.0                                             
+                    framework.config.dir : C:\Users\Administrador\bin\Sencha\Cmd\7.5.1.20\plugins\ext\current
+                       framework.creator : Sencha                                            
+           framework.detailedDescription : Sencha Ext JS JavaScript Framework                
+                           framework.dir : C:\webserver\samos-ws\ext                         
+                  framework.example.apps : admin-dashboard,executive-dashboard,feed-viewer,kitchensink,calendar,classic/desktop,classic/ticket-app,classic/portal,classic/simple-tasks,classic/responsive-app,classic/aria,modern/addressbook,modern/blackberry,modern/energy,modern/stockapp,modern/states,modern/geocongress,modern/oreilly
+                framework.example.apps.0 : admin-dashboard                                   
+                framework.example.apps.1 : executive-dashboard                               
+               framework.example.apps.10 : classic/aria                                      
+               framework.example.apps.11 : modern/addressbook                                
+               framework.example.apps.12 : modern/blackberry                                 
+               framework.example.apps.13 : modern/energy                                     
+               framework.example.apps.14 : modern/stockapp                                   
+               framework.example.apps.15 : modern/states                                     
+               framework.example.apps.16 : modern/geocongress                                
+               framework.example.apps.17 : modern/oreilly                                    
+                framework.example.apps.2 : feed-viewer                                       
+                framework.example.apps.3 : kitchensink                                       
+                framework.example.apps.4 : calendar                                          
+                framework.example.apps.5 : classic/desktop                                   
+                framework.example.apps.6 : classic/ticket-app                                
+                framework.example.apps.7 : classic/portal                                    
+                framework.example.apps.8 : classic/simple-tasks                              
+                framework.example.apps.9 : classic/responsive-app                            
+           framework.example.apps.length : 18                                                
+                  framework.example.path : examples,templates                                
+                framework.example.path.0 : examples                                          
+                framework.example.path.1 : templates                                         
+           framework.example.path.length : 2                                                 
+                        framework.format : 1                                                 
+                          framework.isV5 : true                                              
+                          framework.isV6 : true                                              
+                         framework.isV62 : true                                              
+                          framework.name : ext                                               
+                     framework.namespace : Ext                                               
+                        framework.output : ${package.dir}/build                              
+                     framework.overrides : ${package.dir}/overrides                          
+                  framework.packages.dir : C:\webserver\samos-ws\ext/packages/,C:\webserver\samos-ws\ext/classic
+                framework.resource.paths : resources                                         
+              framework.resource.paths.0 : resources                                         
+         framework.resource.paths.length : 1                                                 
+                      framework.sass.etc : ${package.dir}/sass/etc/all.scss                  
+                  framework.sass.fashion : true                                              
+                framework.sass.namespace : Ext                                               
+                      framework.sass.src : ${package.dir}/sass/src                           
+                      framework.sass.var : ${package.dir}/sass/var                           
+                       framework.subpkgs : classic/classic,modern/modern,packages/charts,packages/amf,packages/soap,packages/ux,packages/google,packages/legacy,packages/font-awesome,packages/font-pictos,packages/font-ext
+                     framework.subpkgs.0 : classic/classic                                   
+                     framework.subpkgs.1 : modern/modern                                     
+                    framework.subpkgs.10 : packages/font-ext                                 
+                     framework.subpkgs.2 : packages/charts                                   
+                     framework.subpkgs.3 : packages/amf                                      
+                     framework.subpkgs.4 : packages/soap                                     
+                     framework.subpkgs.5 : packages/ux                                       
+                     framework.subpkgs.6 : packages/google                                   
+                     framework.subpkgs.7 : packages/legacy                                   
+                     framework.subpkgs.8 : packages/font-awesome                             
+                     framework.subpkgs.9 : packages/font-pictos                              
+                framework.subpkgs.length : 11                                                
+                       framework.summary : Ext JS                                            
+                          framework.type : framework                                         
+                       framework.version : 6.2.0.589                                         
+                       inspector.address : http://localhost:1839/                            
+                             locale.name : pt_BR                                             
+                    package.sass.dynamic : true                                              
+                          repo.local.dir : C:\Users\Administrador\bin\Sencha\Cmd\repo        
+                       shared.sencha.dir : true                                              
+        system.java.net.useSystemProxies : true                                              
+                              theme.name : theme-triton                                      
+                            toolkit.name : classic                                           
+                          workspace.apps : SamosAdmin/classic,SamosAdmin/modern,SamosDelphi/modern,SamosOsteon/classic,SamosColector/modern,SamosDelphi/classic,SamosColetor,SamosColetor/SamosColetor
+                        workspace.apps.0 : SamosAdmin/classic                                
+                        workspace.apps.1 : SamosAdmin/modern                                 
+                        workspace.apps.2 : SamosDelphi/modern                                
+                        workspace.apps.3 : SamosOsteon/classic                               
+                        workspace.apps.4 : SamosColector/modern                              
+                        workspace.apps.5 : SamosDelphi/classic                               
+                        workspace.apps.6 : SamosColetor                                      
+                        workspace.apps.7 : SamosColetor/SamosColetor                         
+                   workspace.apps.length : 8                                                 
+                     workspace.build.dir : C:\webserver\samos-ws/build                       
+                    workspace.config.dir : C:\Users\Administrador\bin\Sencha\Cmd\7.5.1.20\ant\build\workspace
+                           workspace.dir : C:\webserver\samos-ws                             
+           workspace.frameworks.ext.path : C:\webserver\samos-ws\ext                         
+        workspace.frameworks.ext.version : 6.2.0.589                                         
+        workspace.frameworks.ext670.path : C:\webserver\samos-ws\ext670                      
+     workspace.frameworks.ext670.version : 6.7.0.210                                         
+                  workspace.packages.dir : C:\webserver\samos-ws/packages/local,C:\webserver\samos-ws/packages
+              workspace.packages.extract : C:\webserver\samos-ws/packages/remote             
+
+Exception information:
+=======================
+C:\Users\Administrador\bin\Sencha\Cmd\7.5.1.20\plugin.xml:333: The following error occurred while executing this line:
+java.io.FileNotFoundException: C:\webserver\samos-ws\SamosAdmin\server\samosadmin\classic\build.xml (O sistema não pode encontrar o arquivo especificado)
+     at com.sencha.ant.AntScript.execute(AntScript.java:121)
+     at com.sencha.command.plugin.PluginManager.execute(PluginManager.java:104)
+     at com.sencha.command.plugin.PluginManager.executeReverseFirst(PluginManager.java:145)
+     at com.sencha.command.environment.BuildEnvironment.execute(BuildEnvironment.java:309)
+     at com.sencha.command.environment.AppOrPackageEnvironment.execute(AppOrPackageEnvironment.java:729)
+     at com.sencha.command.BasePluginCommands$BasePluginCommand.doExecute(BasePluginCommands.java:125)
+     at com.sencha.command.app.AppCommands$BuildCommand.execute(AppCommands.java:470)
+     at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+     at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     at java.lang.reflect.Method.invoke(Method.java:498)
+     at com.sencha.util.MethodInvoker$Arguments.invoke(MethodInvoker.java:175)
+     at com.sencha.cli.Command.dispatch(Command.java:43)
+     at com.sencha.command.BasePluginCommands$BasePluginCommand.dispatch(BasePluginCommands.java:289)
+     at com.sencha.cli.Commands.dispatch(Commands.java:64)
+     at com.sencha.cli.Commands.dispatch(Commands.java:64)
+     at com.sencha.command.Sencha.dispatch(Sencha.java:80)
+     at com.sencha.command.Sencha.main(Sencha.java:151)
+     at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+     at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     at java.lang.reflect.Method.invoke(Method.java:498)
+     at com.exe4j.runtime.LauncherEngine.launch(LauncherEngine.java:84)
+     at com.exe4j.runtime.WinLauncher.main(WinLauncher.java:94)
+     at com.install4j.runtime.launcher.WinLauncher.main(WinLauncher.java:25)
+   Caused by: The following error occurred while executing this line:
+java.io.FileNotFoundException: C:\webserver\samos-ws\SamosAdmin\server\samosadmin\classic\build.xml (O sistema não pode encontrar o arquivo especificado)
+     at org.apache.tools.ant.ProjectHelper.addLocationToBuildException(ProjectHelper.java:551)
+     at org.apache.tools.ant.taskdefs.Ant.execute(Ant.java:395)
+     at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+     at sun.reflect.GeneratedMethodAccessor32.invoke(Unknown Source)
+     at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     at java.lang.reflect.Method.invoke(Method.java:498)
+     at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+     at org.apache.tools.ant.Task.perform(Task.java:348)
+     at org.apache.tools.ant.taskdefs.Sequential.execute(Sequential.java:68)
+     at net.sf.antcontrib.logic.IfTask.execute(IfTask.java:217)
+     at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+     at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     at java.lang.reflect.Method.invoke(Method.java:498)
+     at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+     at org.apache.tools.ant.TaskAdapter.execute(TaskAdapter.java:154)
+     at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+     at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+     at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     at java.lang.reflect.Method.invoke(Method.java:498)
+     at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+     at org.apache.tools.ant.Task.perform(Task.java:348)
+     at org.apache.tools.ant.Target.execute(Target.java:392)
+     at org.apache.tools.ant.Target.performTasks(Target.java:413)
+     at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1399)
+     at org.apache.tools.ant.Project.executeTarget(Project.java:1368)
+     at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+     at org.apache.tools.ant.Project.executeTargets(Project.java:1251)
+     at com.sencha.ant.AntScript.execute(AntScript.java:117)
+     at com.sencha.command.plugin.PluginManager.execute(PluginManager.java:104)
+     at com.sencha.command.plugin.PluginManager.executeReverseFirst(PluginManager.java:145)
+     at com.sencha.command.environment.BuildEnvironment.execute(BuildEnvironment.java:309)
+     at com.sencha.command.environment.AppOrPackageEnvironment.execute(AppOrPackageEnvironment.java:729)
+     at com.sencha.command.BasePluginCommands$BasePluginCommand.doExecute(BasePluginCommands.java:125)
+     at com.sencha.command.app.AppCommands$BuildCommand.execute(AppCommands.java:470)
+     at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+     at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     at java.lang.reflect.Method.invoke(Method.java:498)
+     at com.sencha.util.MethodInvoker$Arguments.invoke(MethodInvoker.java:175)
+     at com.sencha.cli.Command.dispatch(Command.java:43)
+     at com.sencha.command.BasePluginCommands$BasePluginCommand.dispatch(BasePluginCommands.java:289)
+     at com.sencha.cli.Commands.dispatch(Commands.java:64)
+     at com.sencha.cli.Commands.dispatch(Commands.java:64)
+     at com.sencha.command.Sencha.dispatch(Sencha.java:80)
+     at com.sencha.command.Sencha.main(Sencha.java:151)
+     at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+     at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     at java.lang.reflect.Method.invoke(Method.java:498)
+     at com.exe4j.runtime.LauncherEngine.launch(LauncherEngine.java:84)
+     at com.exe4j.runtime.WinLauncher.main(WinLauncher.java:94)
+     at com.install4j.runtime.launcher.WinLauncher.main(WinLauncher.java:25)
+   Caused by: java.io.FileNotFoundException: C:\webserver\samos-ws\SamosAdmin\server\samosadmin\classic\build.xml (O sistema não pode encontrar o arquivo especificado)
+     at org.apache.tools.ant.helper.ProjectHelper2.parse(ProjectHelper2.java:328)
+     at org.apache.tools.ant.helper.ProjectHelper2.parse(ProjectHelper2.java:178)
+     at org.apache.tools.ant.ProjectHelper.configureProject(ProjectHelper.java:82)
+     at org.apache.tools.ant.taskdefs.Ant.execute(Ant.java:393)
+     at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+     at sun.reflect.GeneratedMethodAccessor32.invoke(Unknown Source)
+     at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     at java.lang.reflect.Method.invoke(Method.java:498)
+     at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+     at org.apache.tools.ant.Task.perform(Task.java:348)
+     at org.apache.tools.ant.taskdefs.Sequential.execute(Sequential.java:68)
+     at net.sf.antcontrib.logic.IfTask.execute(IfTask.java:217)
+     at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+     at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     at java.lang.reflect.Method.invoke(Method.java:498)
+     at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+     at org.apache.tools.ant.TaskAdapter.execute(TaskAdapter.java:154)
+     at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+     at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+     at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     at java.lang.reflect.Method.invoke(Method.java:498)
+     at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+     at org.apache.tools.ant.Task.perform(Task.java:348)
+     at org.apache.tools.ant.Target.execute(Target.java:392)
+     at org.apache.tools.ant.Target.performTasks(Target.java:413)
+     at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1399)
+     at org.apache.tools.ant.Project.executeTarget(Project.java:1368)
+     at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+     at org.apache.tools.ant.Project.executeTargets(Project.java:1251)
+     at com.sencha.ant.AntScript.execute(AntScript.java:117)
+     at com.sencha.command.plugin.PluginManager.execute(PluginManager.java:104)
+     at com.sencha.command.plugin.PluginManager.executeReverseFirst(PluginManager.java:145)
+     at com.sencha.command.environment.BuildEnvironment.execute(BuildEnvironment.java:309)
+     at com.sencha.command.environment.AppOrPackageEnvironment.execute(AppOrPackageEnvironment.java:729)
+     at com.sencha.command.BasePluginCommands$BasePluginCommand.doExecute(BasePluginCommands.java:125)
+     at com.sencha.command.app.AppCommands$BuildCommand.execute(AppCommands.java:470)
+     at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+     at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     at java.lang.reflect.Method.invoke(Method.java:498)
+     at com.sencha.util.MethodInvoker$Arguments.invoke(MethodInvoker.java:175)
+     at com.sencha.cli.Command.dispatch(Command.java:43)
+     at com.sencha.command.BasePluginCommands$BasePluginCommand.dispatch(BasePluginCommands.java:289)
+     at com.sencha.cli.Commands.dispatch(Commands.java:64)
+     at com.sencha.cli.Commands.dispatch(Commands.java:64)
+     at com.sencha.command.Sencha.dispatch(Sencha.java:80)
+     at com.sencha.command.Sencha.main(Sencha.java:151)
+     at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+     at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     at java.lang.reflect.Method.invoke(Method.java:498)
+     at com.exe4j.runtime.LauncherEngine.launch(LauncherEngine.java:84)
+     at com.exe4j.runtime.WinLauncher.main(WinLauncher.java:94)
+     at com.install4j.runtime.launcher.WinLauncher.main(WinLauncher.java:25)
+   Caused by: C:\webserver\samos-ws\SamosAdmin\server\samosadmin\classic\build.xml (O sistema não pode encontrar o arquivo especificado)
+     at java.io.FileInputStream.open0(Native Method)
+     at java.io.FileInputStream.open(FileInputStream.java:195)
+     at java.io.FileInputStream.<init>(FileInputStream.java:138)
+     at org.apache.tools.ant.helper.ProjectHelper2.parse(ProjectHelper2.java:278)
+     at org.apache.tools.ant.helper.ProjectHelper2.parse(ProjectHelper2.java:178)
+     at org.apache.tools.ant.ProjectHelper.configureProject(ProjectHelper.java:82)
+     at org.apache.tools.ant.taskdefs.Ant.execute(Ant.java:393)
+     at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+     at sun.reflect.GeneratedMethodAccessor32.invoke(Unknown Source)
+     at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     at java.lang.reflect.Method.invoke(Method.java:498)
+     at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+     at org.apache.tools.ant.Task.perform(Task.java:348)
+     at org.apache.tools.ant.taskdefs.Sequential.execute(Sequential.java:68)
+     at net.sf.antcontrib.logic.IfTask.execute(IfTask.java:217)
+     at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+     at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     at java.lang.reflect.Method.invoke(Method.java:498)
+     at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+     at org.apache.tools.ant.TaskAdapter.execute(TaskAdapter.java:154)
+     at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:291)
+     at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+     at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     at java.lang.reflect.Method.invoke(Method.java:498)
+     at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:106)
+     at org.apache.tools.ant.Task.perform(Task.java:348)
+     at org.apache.tools.ant.Target.execute(Target.java:392)
+     at org.apache.tools.ant.Target.performTasks(Target.java:413)
+     at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1399)
+     at org.apache.tools.ant.Project.executeTarget(Project.java:1368)
+     at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+     at org.apache.tools.ant.Project.executeTargets(Project.java:1251)
+     at com.sencha.ant.AntScript.execute(AntScript.java:117)
+     at com.sencha.command.plugin.PluginManager.execute(PluginManager.java:104)
+     at com.sencha.command.plugin.PluginManager.executeReverseFirst(PluginManager.java:145)
+     at com.sencha.command.environment.BuildEnvironment.execute(BuildEnvironment.java:309)
+     at com.sencha.command.environment.AppOrPackageEnvironment.execute(AppOrPackageEnvironment.java:729)
+     at com.sencha.command.BasePluginCommands$BasePluginCommand.doExecute(BasePluginCommands.java:125)
+     at com.sencha.command.app.AppCommands$BuildCommand.execute(AppCommands.java:470)
+     at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+     at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     at java.lang.reflect.Method.invoke(Method.java:498)
+     at com.sencha.util.MethodInvoker$Arguments.invoke(MethodInvoker.java:175)
+     at com.sencha.cli.Command.dispatch(Command.java:43)
+     at com.sencha.command.BasePluginCommands$BasePluginCommand.dispatch(BasePluginCommands.java:289)
+     at com.sencha.cli.Commands.dispatch(Commands.java:64)
+     at com.sencha.cli.Commands.dispatch(Commands.java:64)
+     at com.sencha.command.Sencha.dispatch(Sencha.java:80)
+     at com.sencha.command.Sencha.main(Sencha.java:151)
+     at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+     at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+     at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+     at java.lang.reflect.Method.invoke(Method.java:498)
+     at com.exe4j.runtime.LauncherEngine.launch(LauncherEngine.java:84)
+     at com.exe4j.runtime.WinLauncher.main(WinLauncher.java:94)
+     at com.install4j.runtime.launcher.WinLauncher.main(WinLauncher.java:25)
+

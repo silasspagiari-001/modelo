@@ -1,0 +1,1484 @@
+Ext.define('SamosAdmin.movimentos.cupomeletronico.form.ViewController', {
+    extend: 'SamosModule.form.ViewController',
+    alias: 'controller.formcupomeletronico',
+
+    mixins: {
+        cartoes:  'SamosAdmin.movimentos.cupomeletronico.form.caixa.cartoes.Mixin',
+        produtos: 'SamosAdmin.movimentos.cupomeletronico.form.mixins.Produtos',
+        status:   'SamosAdmin.movimentos.cupomeletronico.form.mixins.Status'
+    },
+
+    onUpdateField: function (txt) {
+        txt.getEl().dom.onkeyup = event => {
+            if(
+                SamosUtils.Events.isEnter(event) ||
+                SamosUtils.Events.isTab(event)
+            ) { return; }
+
+            try {
+                this.atualizarCalculos(txt, event);
+            } catch(error) {
+                console.error(error);
+            }
+        }
+    },
+
+    atualizarCalculos: async function(txt, event) {
+        try {
+            this.iniciarEdicao();
+
+            //verifica se a alteração foi disparada no cabecalho ou na grid de itens
+            const alteracaoCabecalho = !txt.fromGridItems;
+
+            //caso a alteracao tenha sido feita em um item
+            //pega os valores dos campos da linha alterada e coloca na variavel "produto"
+            const formProduto = alteracaoCabecalho ? null : txt.up('form').getForm();
+
+            //pega o nome do campo alterado (se for do cabecalho pega do bind)
+            const fieldName = alteracaoCabecalho ? txt.bind.value.stub.name : txt.name
+
+            //pega o movimento e os produtos
+            //que são as referencias confiáveis usadas nos calculos
+            const movimento = this.getRecord();
+
+            const result = CupomEletronico.calculos.RecalculoSync.calcular({
+                produto   : formProduto ? formProduto.getValues() : null,
+                movimento : Object.assign({}, movimento.data),//não envia o model apenas os valores
+                event     : event ? event.type : null,
+                fieldName : fieldName
+            });
+
+            this.efetivarCalculos(result, formProduto, alteracaoCabecalho);
+
+            if(result.mensagem) {
+                Ext.Note('warning', result.mensagem);
+                txt.focus(true);
+            }
+
+            if(result.senhaNivel  && !configs.getMovimentos().desativaSenha) {
+                const options = {
+                    produto   : formProduto ? formProduto.getValues() : null,
+                    movimento : Object.assign({}, movimento.data),
+                    event     : null,
+                    fieldName : fieldName
+                };
+
+                try {
+                    await Ext.create({ xtype: 'samoswidgets-senhanivel' }).iniciar(result.senhaNivel.nivel);
+                    result.senhaNivel.autorizar(options);
+                } catch(error) {
+                    result.senhaNivel.rejeitar(options);
+                }
+
+                const resultAtualizado = CupomEletronico.calculos.RecalculoSync.calcular(options);
+
+                this.efetivarCalculos(resultAtualizado, formProduto, alteracaoCabecalho);
+            }
+
+        } catch(error) {
+            console.error(`[atualizarCalculos] Erro`)
+            console.error(error);
+        }
+    },
+
+    efetivarCalculos: function(result, formProduto, alteracaoCabecalho) {
+        const movimento = this.getRecord();
+
+        //atualiza o model, que é sempre a referencia mais confiável
+        movimento.set(result.movimento);
+
+        //se a alteração foi feita em um campo do cabecalho
+        if(alteracaoCabecalho) {
+            //aguarda o usuário ficar mais de 2s sem digitar (para evitar delays durante a digitação)
+            clearTimeout(this.loadItemsTimeout || 0);
+            this.loadItemsTimeout = setTimeout(() => {
+                this.loadItemsTimeout = 0;
+                //atualiza toda a grid de itens com os novos valores calculados
+                this.lookup('produtos').carregar(result.movimento['MOVIMENTOS_ITENS']);
+            }, 2000);
+
+        //se um produto foi apagado
+        } else if(result.produto && result.produto['MOVIMENTOSITENS_ID_PRODUTOS'] == '') {
+            //atualiza toda a grid de itens com os novos valores calculados
+            this.lookup('produtos').carregar(result.movimento['MOVIMENTOS_ITENS']);
+        } else {
+            //se a alteração foi feita diretamente no item
+            //atualiza os campos apenas para visualizacao
+            if(result.produto && result.produto['MOVIMENTOSITENS_ID_PRODUTOS'] != '') {
+                formProduto.setValues(result.produto);
+            } else {
+                formProduto.reset();
+            }
+        }
+    },
+
+    onNovoClick: async function () {
+        const view = this.getView();
+
+        try {
+            const nomeDocumento = 'Cupom Eletrônico';
+            await this.callParent(arguments);
+            await CupomEletronico.services.Model.definirValoresPadrao(view, nomeDocumento);
+            
+        } catch(error) {
+            SamosUtils.Msg.error(error, 'Não foi possível incluir um novo movimento');
+        }
+
+        this.lookup('pessoa').focus(true);        
+
+        return view;
+    },
+
+    /**Função para atualizar o campo LOG apos gravar */
+    atualizarLog: async function( modelParam ){
+        const view  = this.getView(),
+              vm    = this.getViewModel();
+
+        Ext.defer( async()=>{
+            view.lookupReference('log').setValue( modelParam.get('MOVIMENTOS_LOG') );
+
+        }, 200, this );
+    },
+
+    onAlterarClick: function (btn, event) {
+        const form = this.getView();
+        const model = this.getRecord();
+        const thisController = this;
+
+        if(
+            !this.permiteAlteracao && 
+            !configs.getMovimentos().desativaSenha &&
+            !configs.getUsuario().privilegiado
+        ){
+            const nivel = 1;
+
+            Ext.create({ xtype: 'samoswidgets-senhanivel' })
+                .iniciar(nivel)
+                .then(() => {
+                    this.permiteAlteracao = true;
+                    model.getProxy().setExtraParam('senhaNivel', 'true');
+                    this.onAlterarClick();
+                })
+                .catch(() => {/*acao ao sair*/});
+        } else  {
+            const id      = model.get('MOVIMENTOS_ID');
+            const numero  = model.get('MOVIMENTOS_NUMERO');
+            const serie   = model.get('MOVIMENTOS_SERIE');
+            const empresa = model.get('MOVIMENTOS_ID_EMPRESAS');
+
+            model.getProxy().setExtraParam('log', `PUT /cupomeletronico/${id} (${numero}|${serie}|${empresa})`);
+            CupomEletronico.services.Model.bloquearParaEdicao(model, form);
+
+            //ajusta para pegar padrão como digitado em dinheiro
+            const tipoDesconto = model.get('DOCUMENTOS_DESCONTOITEM');
+            const digitouDescontoCabecalho = tipoDesconto == 'F' || tipoDesconto == 'A';
+
+            form.getViewModel().set({
+                digitouDescontoCabecalho:             digitouDescontoCabecalho,
+                digitouDescontoCabecalhoEmDinheiro:   digitouDescontoCabecalho,
+                digitouDescontoCabecalhoEmPercentual: false,
+                digitouDescontoItem:                  tipoDesconto == 'T'
+            });
+
+            this.callParent(arguments);
+            delete this.permiteAlteracao;
+        }
+    },
+
+    onCancelarClick: async function(btn, event) {
+        const view = this.getView();
+        const model = this.getRecord();
+
+        if(!model.get('MOVIMENTOS_PROTOCOLO')) {
+            if(await SamosUtils.Msg.confirm('O cupom será excluido. .Continuar?')) {
+                view.initGauge('Excluindo...');
+                this.colocarFilhosNoModel(model);
+
+                const id      = model.get('MOVIMENTOS_ID');
+                const numero  = model.get('MOVIMENTOS_NUMERO');
+                const serie   = model.get('MOVIMENTOS_SERIE');
+                const empresa = model.get('MOVIMENTOS_ID_EMPRESAS');
+
+                model.getProxy().setExtraParam('log', `DELETE /cupomeletronico/${id} (${numero}|${serie}|${empresa})`);
+                model.getProxy().setExtraParam('empresa', model.get('MOVIMENTOS_ID_EMPRESAS'));
+                model.getProxy().setExtraParam('idsProdutos', model.get('MOVIMENTOS_ITENS').reduce((str, item) => {
+                    return str += item['MOVIMENTOSITENS_ID_PRODUTOS'] + ',';
+                }, ''));
+
+                await model.erase();
+
+                this.getListView().down('grid').getStore().load();
+
+                setTimeout(() => {
+                    this.onSairClick();
+                    this.getListView().down('toolbar').focus(true);
+                }, 500);
+
+                view.stopGauge();
+            }
+
+        } else {
+            Ext.Msg.confirmCancel(btn => {
+                if (btn == 'yes') {
+                    this.cancelar();
+                }
+            });
+        }
+    },
+
+    cancelar: async function() {
+        const view = this.getView();
+        const vm = this.getViewModel();
+        const model = this.getRecord();
+        const previousModel = this.getViewModel().get('previousModel');
+
+        SamosUtils.Events.disableWarnReload();
+
+        if (previousModel || (model && model.isNew && !model.isNew())) {
+            if(previousModel) {
+                try {
+                    vm.set('model', previousModel);
+                } catch (error) {
+                    this.onSairClick();
+                    return
+                }
+            } else {
+                CupomEletronico.services.Model.liberarParaEdicao(model, view);
+
+                try {
+                    model.set(vm.get('initialValues'));
+                } catch (error) {
+                    this.onSairClick();
+                    return
+                }
+            }
+
+            this.finalizarEdicao();
+            this.setReadOnly(true);
+            setTimeout(() => {
+                this.lookup('sair').getEl().focus();
+            }, 200);
+            
+        } else {
+            this.onSairClick();
+        }
+    },
+
+    onExcluirClick: function (btn, event) {
+        const model = this.getRecord();
+
+        if(!this.permiteExclusao && !configs.getUsuario().privilegiado){
+            const nivel = 1;
+
+            Ext.create({ xtype: 'samoswidgets-senhanivel' })
+                .iniciar(nivel)
+                .then(() => {
+                    this.permiteExclusao = true;
+                    model.getProxy().setExtraParam('senhaNivel', 'true');
+                    this.onExcluirClick();
+                })
+                .catch(() => {/*acao ao sair*/});
+
+        } else {
+            delete this.permiteExclusao;
+
+            const id      = model.get('MOVIMENTOS_ID');
+            const numero  = model.get('MOVIMENTOS_NUMERO');
+            const serie   = model.get('MOVIMENTOS_SERIE');
+            const empresa = model.get('MOVIMENTOS_ID_EMPRESAS');
+
+            Ext.Msg.confirmDelete(btn => {
+                if (btn == 'yes') {
+                    this.getView().initGauge('Excluindo...');
+                    this.colocarFilhosNoModel(model);
+
+                    model.getProxy().setExtraParam('log', `DELETE /cupomeletronico/${id} (${numero}|${serie}|${empresa})`);
+                    model.getProxy().setExtraParam('empresa', model.get('MOVIMENTOS_ID_EMPRESAS'));
+                    model.getProxy().setExtraParam('idsProdutos', model.get('MOVIMENTOS_ITENS').reduce((str, item) => {
+                        return str += item['MOVIMENTOSITENS_ID_PRODUTOS'] + ',';
+                    }, ''));
+    
+                    model.erase()
+                        .then(() => {
+                            this.getView().stopGauge();
+                            this.getListView().down('grid').getStore().load();
+                            Ext.Note('success', 'Registro excluído');
+                            setTimeout(() => {
+                                this.onSairClick();
+                                this.getListView().down('toolbar').focus(true);
+                            }, 500);
+                        })
+                        .catch(() => Ext.Note('error', 'Erro no servidor'))
+                        .finally(() => this.getView().stopGauge())
+                }
+            });
+        }
+    },
+
+    onGravarClick: async function (btn, event) {
+        const view = this.getView();
+        const vm = this.getViewModel();
+
+        view.initGauge('Gravando...');
+
+        await SamosUtils.Utils.sleep(100);
+        view.query('samoswidgets-griditems').forEach(grid => grid.finalizarEdicao());
+
+        if(cents(view.model.get('MOVIMENTOS_TOTAL')) > 1000000) {
+            Ext.Note('warning', 'O valor do cupom não pode exceder R$ 10.000,00;');
+            view.stopGauge(true);
+            return;
+        }
+
+        try {
+            await this.validarCabecalho();
+            const valido = CupomEletronico.services.Caixa.validarReceber();
+
+            if(valido){
+                await CupomEletronico.services.Impostos.calcular(view);
+                this.checarValoresCabecalho(view);
+                this.finalizarEdicao();
+            } else {
+                return
+            }
+
+            const movimento = this.getRecord();
+
+            if(movimento.isNew()) {
+                movimento.set('COMANDA_NUMERO', configs.getMovimentos().usaComanda ? await this.obterNumeroComanda() : '');
+            }
+
+            let status = movimento.get('MOVIMENTOS_STATUS');
+
+            if(status == 'B'){//cancelado em uso
+                status = 'C';
+            } else if(status == 'M'){//nao faturado em uso
+                status = 'N';
+            } else if(status == 'E'){//faturado em uso
+                status = 'F';
+            }
+
+            movimento.set('MOVIMENTOS_STATUS', status);
+
+            this.colocarFilhosNoModel(movimento);
+
+            if(
+                CupomEletronico.services.Caixa.financeiroValido()
+            ) {
+                movimento.set({
+                    'MOVIMENTOS_LOG': SamosUtils.Info.getLog(),
+                    'MOVIMENTOS_STATUS': 'F'
+                });
+
+                const btnCaixa = view.down('button[text="Caixa"]');
+
+                if(btnCaixa) {
+                    btnCaixa.getEl().dom.style.backgroundColor = '';
+                    btnCaixa.getEl().dom.querySelector('.x-btn-inner').style.color = '';
+                }
+
+                const temEntradaSaida = momentTz(movimento.get('MOVIMENTOS_ENTRADASAIDA') || '1899-12-30').isAfter('1900-01-01');
+
+                if(!temEntradaSaida) {
+                    movimento.set('MOVIMENTOS_ENTRADASAIDA', momentServer().format('YYYY-MM-DD'));
+                }
+            }
+
+            (movimento.data['MOVIMENTOS_FINANCEIROS'] || []).forEach(titulo => {
+                titulo['FINANCEIROS_ID_EMPRESAORIGEM'] = titulo['FINANCEIROS_ID_EMPRESAORIGEM']  || 0;
+                titulo['FINANCEIROS_NUMEROORIGEM']     = titulo['FINANCEIROS_NUMEROORIGEM']      || 0;
+                titulo['FINANCEIROS_SERIEORIGEM']      = titulo['FINANCEIROS_SERIEORIGEM']       || 0;
+                titulo['FINANCEIROS_BOLETO']           = titulo['FINANCEIROS_BOLETO']            || '';
+
+                if (
+                    titulo['PESSOAS_TIPO'] != configs.getFinanceiros().tipoFinanceira && 
+                    titulo['FINANCEIROS_ID_PESSOAS'] != '999999'
+                ){
+                    titulo['FINANCEIROS_ID_PESSOAS'] = movimento.get('MOVIMENTOS_ID_PESSOAS');
+                }
+            });
+
+            (movimento.data['MOVIMENTOS_CAIXA'] || []).forEach(caixa => {
+                caixa['MOVIMENTOSCAIXA_ID_PESSOAS'] = movimento.get('MOVIMENTOS_ID_PESSOAS');
+            });
+            
+            movimento.set('USUARIOS_LOGIN', configs.getUsuario().login);
+            movimento.set('MOVIMENTOS_ITENSANTIGOS', vm.get('initialValues')['MOVIMENTOS_ITENS']);
+
+            const movimentoSalvo = await movimento.save();
+            
+            this.onGravacaoSucesso(movimentoSalvo);
+
+        } catch(error) {
+            console.error(error)
+            if(error && error.error == 'Divergência'){
+                this.iniciarEdicao();
+                error = 'Há divergência entre os valores do movimento. Tente novamente.';
+            }
+
+            SamosUtils.Msg.error(error, 'Falha ao gravar');
+            view.stopGauge();
+            throw error;
+        }
+
+        SamosUtils.Events.disableWarnReload();
+    },
+
+    onVisualizarClick: async function(btn, e){
+        const view = this.getView(),
+              vm   = this.getViewModel(),
+              model = vm.get('model');
+
+        const idMovimento = model.get('MOVIMENTOS_ID');
+        const idEmpresa   = model.get('MOVIMENTOS_ID_EMPRESAS');
+
+        if( !await SamosUtils.Msg.confirm('Deseja realmente visualizar?') ){
+            return;
+        }
+
+        //COMENTE O CÒDIGO ABAIXO PARA REALIZAR TESTES LOCAIS
+        if( model.get('MOVIMENTOS_PROTOCOLO').length == 0 ){
+            SamosUtils.Request.nodeApi({
+                url: `/processos/movimentosredis`,
+                method: 'POST',
+                data: {
+                    'MOVIMENTOSREDIS_ID'         : idMovimento,
+                    'MOVIMENTOSREDIS_EMPRESA'    : idEmpresa,
+                    'MOVIMENTOSREDIS_TABELA'     : 'MOVIMENTOS', 
+                    'MOVIMENTOSREDIS_IMPRESSORA' : 'CUPOMVISUALIZAR',
+                    'MOVIMENTOSREDIS_LAYOUT'     : 'PosPrinter',
+                    'MOVIMENTOSREDIS_PAGINAS'    : 1,
+                    'MOVIMENTOSREDIS_PARAMETROS' : 'EMITIR'
+                }
+            });
+        }
+
+        /*
+        Gera um QRCODE a partir de uma string, transforma em base64 e retorna
+        */
+        async function generateHiddenQrcodeBase64(data, width=128, height=128)
+        {
+            return new Promise( async(resolve)=>{
+
+                const qrel = document.createElement('div');
+
+                //Esconde o elemento do usuario antes de mostrar
+                qrel.setAttribute('style', 'diplay:none;visibility:hidden;position:absolute;top:0px;left:0px;right:0px;bottom:0px;');
+                
+                Ext.defer( ()=>{
+                    if( data == '' || data == null || data == undefined ){
+                        console.warn('GERA QRCODE CUPOM: Valor de "data" foi passado incorretamente', data);
+                    }
+
+                    document.body.prepend(qrel);
+                    
+                    const qrcode = new QRCode(qrel, {
+                        text: data,
+                        width: width,
+                        height: height,
+                        colorDark : "#000000",
+                        colorLight : "#ffffff",
+                        correctLevel : QRCode.CorrectLevel.H
+                    });
+
+                    const img = qrel.querySelector('img');
+
+                    img.onload = function(){
+                        console.log( 'GERA QRCODE CUPOM: carregou callback imagem', img, img.src );
+                        const base64 = img.src;
+                        qrel.remove();
+                        resolve(base64);
+                    }
+
+                }, 100, this );
+
+            } );
+        }
+
+        async function base64HttpEncode(s) {
+            let result = btoa(s);
+            result = result.replace(/\+/g, '-');
+            result = result.replace(/\//g, '_');
+            result = result.replace(/=+$/, '');
+
+            return result;
+        }
+
+        async function renderizarPdf( resultsPDF )
+        {
+            const view = this.getView(),
+                  vm   = this.getViewModel(),
+                  model = vm.get('model'),
+                  movimentosObservacoes = model.get('MOVIMENTOS_OBSERVACOES');
+
+            const retiradosPipes = movimentosObservacoes.split('|');
+            const base64qrcode = (await generateHiddenQrcodeBase64( retiradosPipes[ retiradosPipes.length-1 ] ));
+
+            Ext.defer( async()=>{
+                
+                const queryPDF = await SamosUtils.Request.nodeApi({
+                    url: `/relatorios/${configs.getClientName()}/cupompdf`,
+                    method: 'GET',
+                    query: {
+                        cancelado     : vm.get('isCancelado'),
+                        base64qrcode  : (await base64HttpEncode(base64qrcode)),
+                        dataModel     : model.data,
+                        id            : model.get('MOVIMENTOS_ID'),
+                        empresa       : configs.getEmpresa().id,
+                        empresacnpj   : configs.getEmpresa().cnpj,
+                        empresanome   : configs.getEmpresa().nome,        
+                        documento     : model.get('MOVIMENTOS_ID_DOCUMENTOS'),
+                        start         : 0,
+                        limit         : 1
+                    }
+                });
+    
+                await SamosUtils.Utils.sleep(500);
+    
+                SamosUtils.Pdf.exibir({
+                    local: 'tab',
+                    caminho: queryPDF.results[0]['name'], 
+                    serverType: 'nodejs'
+                });
+
+            }, 100, this );
+        }
+
+        let contagem = 0;
+        let jaRodouCallback = false;
+        const contextoController = this;
+
+        view.initGauge('Emitindo cupom, aguarde 5 segundos ...');
+        const timerId = setInterval( async()=>{
+            //Busca
+            const consultaCupom = await SamosUtils.Request.nodeApi({
+                url: `/movimentos/${idMovimento}`,
+                method: 'GET',
+                data: {}
+            });
+            const jsonData = consultaCupom.results[0];
+            const NFE = jsonData['MOVIMENTOS_NFE'];
+            const PROTOCOLO = jsonData['MOVIMENTOS_PROTOCOLO'];
+            
+            //DESCOMENTE O CODIGO ABAIXO E COMENTE O DE CIMA PARA REALIZAR TESTES LOCAIS
+            //const NFE       = model.get('MOVIMENTOS_NFE');
+            //const PROTOCOLO = model.get('MOVIMENTOS_PROTOCOLO');
+
+            if( PROTOCOLO.length > 0 ){
+                //Atualiza o model
+                model.set({
+                    'MOVIMENTOS_NFE'       : NFE,
+                    'MOVIMENTOS_PROTOCOLO' : PROTOCOLO
+                });
+                
+                if(!jaRodouCallback){
+                    view.stopGauge();
+                    const resultsPDF = [];
+                    renderizarPdf.bind(contextoController)( resultsPDF );
+                    jaRodouCallback = true;
+                }
+
+                clearInterval(timerId);
+                return;
+            }
+
+            if( contagem > 5 ){
+                //SE NAO FOI ENVIADO
+                if( PROTOCOLO.length == 0 ){
+                    view.stopGauge();
+                    Ext.Note('error', 'Problemas no envio do cupom.');
+                }
+
+                clearInterval(timerId);
+                return;
+            }
+
+            contagem++;
+
+        }, 1000 );
+    },
+
+    onSefazClick: Ext.emptyFn,
+
+    onEmitirClick: async function(btn, e){
+        const view = this.getView(),
+              vm   = this.getViewModel(),
+              model = vm.get('model');
+
+        const idMovimento = model.get('MOVIMENTOS_ID');
+        const idEmpresa   = model.get('MOVIMENTOS_ID_EMPRESAS');
+
+        if( !await SamosUtils.Msg.confirm('Deseja realmente emitir?') ){
+            return;
+        }
+
+        //Atualiza o model localmente para testes
+        /*
+        model.set({
+            'MOVIMENTOS_NFE'       : '1111',
+            'MOVIMENTOS_PROTOCOLO' : '0000'
+        });
+        */
+
+        //COMENTE O CODIGO ABAIXO PARA TESTAR A EMISSAO LOCAL
+        SamosUtils.Request.nodeApi({
+            url: `/processos/movimentosredis`,
+            method: 'POST',
+            data: {
+                'MOVIMENTOSREDIS_ID'         : idMovimento,
+                'MOVIMENTOSREDIS_EMPRESA'    : idEmpresa,
+                'MOVIMENTOSREDIS_TABELA'     : 'MOVIMENTOS', 
+                'MOVIMENTOSREDIS_IMPRESSORA' : 'CUPOM',
+                'MOVIMENTOSREDIS_LAYOUT'     : 'PosPrinter',
+                'MOVIMENTOSREDIS_PAGINAS'    : 1,
+                'MOVIMENTOSREDIS_PARAMETROS' : 'EMITIR'
+            }
+        });
+
+        let contagem = 0;
+        let jaMostrouMensagem = false;
+        const contextoController = this;
+
+        view.initGauge('Emitindo cupom, aguarde 5 segundos ...');
+        const timerId = setInterval( async()=>{
+            //Busca
+            const consultaCupom = await SamosUtils.Request.nodeApi({
+                url: `/movimentos/${idMovimento}`,
+                method: 'GET',
+                data: {}
+            });
+            const jsonData = consultaCupom.results[0];
+
+            //COMENTE ESSE CODIGO PARA TESTAR A EMISSAO LOCAL
+            const NFE         = jsonData['MOVIMENTOS_NFE'];
+            const PROTOCOLO   = jsonData['MOVIMENTOS_PROTOCOLO'];
+            const OBSERVACOES = jsonData['MOVIMENTOS_OBSERVACOES'];
+
+            //DESCOMENTE ESSE CODIGO PARA REALIZAR TESTES LOCAIS
+            //const NFE = model.get('MOVIMENTOS_NFE');
+            //const PROTOCOLO = model.get('MOVIMENTOS_PROTOCOLO');
+    
+            if( PROTOCOLO.length > 0 ){
+                //Atualiza o model
+                model.set({
+                    'MOVIMENTOS_NFE'         : NFE,
+                    'MOVIMENTOS_PROTOCOLO'   : PROTOCOLO,
+                    'MOVIMENTOS_OBSERVACOES' : OBSERVACOES
+                });
+
+                if(!jaMostrouMensagem){
+                    view.stopGauge();
+                    Ext.Note('success', 'Emitido com sucesso!');
+                    jaMostrouMensagem = true;
+
+                    Ext.defer( async()=>{
+                        //Forçar a atualização das formulas
+                        vm.set('isEnviado', true);
+
+                    }, 200 );
+                }
+
+                clearInterval(timerId);
+                return;
+            }
+
+            if( contagem > 5 ){
+                //SE NAO FOI ENVIADO
+                if( PROTOCOLO.length == 0 ){
+                    view.stopGauge();
+                    Ext.Note('error', 'Problemas no envio do cupom.');
+                }
+
+                clearInterval(timerId);
+                return;
+            }
+
+            contagem++;
+
+        }, 1000 );
+    },
+
+    onReemitirClick: async function(btn, e){
+        const view = this.getView(),
+              vm   = this.getViewModel(),
+              model = vm.get('model');
+
+        const idMovimento = model.get('MOVIMENTOS_ID');
+        const idEmpresa   = model.get('MOVIMENTOS_ID_EMPRESAS');
+
+        if( !await SamosUtils.Msg.confirm('Deseja realmente emitir novamente?') ){
+            return;
+        }
+
+        SamosUtils.Request.nodeApi({
+            url: `/processos/movimentosredis`,
+            method: 'POST',
+            data: {
+                'MOVIMENTOSREDIS_ID'         : idMovimento,
+                'MOVIMENTOSREDIS_EMPRESA'    : idEmpresa,
+                'MOVIMENTOSREDIS_TABELA'     : 'MOVIMENTOS', 
+                'MOVIMENTOSREDIS_IMPRESSORA' : 'CUPOM',
+                'MOVIMENTOSREDIS_LAYOUT'     : 'PosPrinter',
+                'MOVIMENTOSREDIS_PAGINAS'    : 1,
+                'MOVIMENTOSREDIS_PARAMETROS' : 'REEMITIR'
+            }
+        });
+
+        Ext.Note('success', 'Reemitido com sucesso!');
+    },
+    
+    onCancelamentoClick: async function(btn, e){
+        const view = this.getView(),
+              vm   = this.getViewModel(),
+              model = vm.get('model');
+
+        const idMovimento = model.get('MOVIMENTOS_ID');
+        const idEmpresa   = model.get('MOVIMENTOS_ID_EMPRESAS');
+
+        if( !await SamosUtils.Msg.confirm('Deseja realmente cancelar?') ){
+            return;
+        }
+
+        SamosUtils.Request.nodeApi({
+            url: `/processos/movimentosredis`,
+            method: 'POST',
+            data: {
+                'MOVIMENTOSREDIS_ID'         : idMovimento,
+                'MOVIMENTOSREDIS_EMPRESA'    : idEmpresa,
+                'MOVIMENTOSREDIS_TABELA'     : 'MOVIMENTOS', 
+                'MOVIMENTOSREDIS_IMPRESSORA' : 'CUPOM',
+                'MOVIMENTOSREDIS_LAYOUT'     : 'PosPrinter',
+                'MOVIMENTOSREDIS_PAGINAS'    : 1,
+                'MOVIMENTOSREDIS_PARAMETROS' : 'CANCELAMENTO'
+            }
+        });
+
+        //Cria requisição para verificar se foi enviado
+        let contagem = 0;
+        view.initGauge('Realizando cancelamento, aguarde 5 segundos ...');
+        const timerId = setInterval( async()=>{
+            //Busca
+            const consultaCupom = await SamosUtils.Request.nodeApi({
+                url: `/movimentos/${idMovimento}`,
+                method: 'GET',
+                data: {}
+            });
+            const jsonData = consultaCupom.results[0];
+            const STATUS = jsonData['MOVIMENTOS_STATUS'];
+            if(STATUS == 'C'){
+                //Atualiza o model
+                model.set({
+                    'MOVIMENTOS_STATUS'    : 'C'
+                });
+
+                //Atualiza o view model com os bindings
+                Ext.defer( async()=>{
+                    view.stopGauge();
+
+                    //Forçar a atualização das formulas
+                    vm.set('isCancelado', true);
+
+                }, 200 );
+
+                clearInterval(timerId);
+                return;
+            }
+
+            if( contagem > 5 ){
+                //SE NAO FOI CANCELADO
+                if( STATUS != 'C' ){
+                    view.stopGauge();
+                    Ext.Note('error', 'Problemas no cancelamento.');
+                }
+
+                clearInterval(timerId);
+                return;
+            }
+
+            contagem++;
+
+        }, 1000 );
+    },
+
+    onEmailClick: async function(btn, e){
+        const view = this.getView(),
+              vm   = this.getViewModel(),
+              model = vm.get('model');
+
+        const idMovimento           = model.get('MOVIMENTOS_ID');
+        const idEmpresa             = model.get('MOVIMENTOS_ID_EMPRESAS');
+        const movimentosObservacoes = model.get('MOVIMENTOS_OBSERVACOES');
+
+        /*
+        Gera um QRCODE a partir de uma string, transforma em base64 e retorna
+        */
+        async function generateHiddenQrcodeBase64(data, width=128, height=128)
+        {
+            return new Promise( async(resolve)=>{
+
+                const qrel = document.createElement('div');
+
+                //Esconde o elemento do usuario antes de mostrar
+                qrel.setAttribute('style', 'diplay:none;visibility:hidden;position:absolute;top:0px;left:0px;right:0px;bottom:0px;');
+                
+                Ext.defer( ()=>{
+                    if( data == '' || data == null || data == undefined ){
+                        console.warn('GERA QRCODE CUPOM: Valor de "data" foi passado incorretamente', data);
+                    }
+
+                    document.body.prepend(qrel);
+                    
+                    const qrcode = new QRCode(qrel, {
+                        text: data,
+                        width: width,
+                        height: height,
+                        colorDark : "#000000",
+                        colorLight : "#ffffff",
+                        correctLevel : QRCode.CorrectLevel.H
+                    });
+
+                    const img = qrel.querySelector('img');
+
+                    img.onload = function(){
+                        console.log( 'GERA QRCODE CUPOM: carregou callback imagem', img, img.src );
+                        const base64 = img.src;
+                        qrel.remove();
+                        resolve(base64);
+                    }
+
+                }, 100, this );
+
+            } );
+        }
+
+        async function base64HttpEncode(s) {
+            let result = btoa(s);
+            result = result.replace(/\+/g, '-');
+            result = result.replace(/\//g, '_');
+            result = result.replace(/=+$/, '');
+
+            return result;
+        }
+        
+        //ENVIAR O EMAIL ANEXANDO O PDF
+        try {
+            const retiradosPipes = movimentosObservacoes.split('|');
+            const base64qrcode = (await generateHiddenQrcodeBase64( retiradosPipes[ retiradosPipes.length-1 ] ));
+            const base64Codificado = (await base64HttpEncode(base64qrcode));
+
+            //Parametros adicionais passados pela view
+            view.parametrosEnviarEmail = {
+                cancelado     : vm.get('isCancelado'),
+                base64qrcode  : base64Codificado,
+                dataModel     : model.data,
+                empresacnpj   : configs.getEmpresa().cnpj,
+                empresanome   : configs.getEmpresa().nome  
+            };
+
+            await Movimento.services.Email.enviar(view);
+            view.stopGauge();
+
+        } catch (error) {
+            SamosUtils.Msg.error(error, 'Falha ao enviar email');
+        }
+
+        /*
+        SamosUtils.Request.nodeApi({
+            url: `/processos/movimentosredis`,
+            method: 'POST',
+            data: {
+                'MOVIMENTOSREDIS_ID'         : idMovimento,
+                'MOVIMENTOSREDIS_EMPRESA'    : idEmpresa,
+                'MOVIMENTOSREDIS_TABELA'     : 'MOVIMENTOS', 
+                'MOVIMENTOSREDIS_IMPRESSORA' : 'CUPOM',
+                'MOVIMENTOSREDIS_LAYOUT'     : 'PosPrinter',
+                'MOVIMENTOSREDIS_PAGINAS'    : 1,
+                'MOVIMENTOSREDIS_PARAMETROS' : 'EMAIL'
+            }
+        });*/
+    },
+
+    onCaixaClick: async function (btn, e) {
+        const view = this.getView();
+        const vm = this.getViewModel();
+        let statusCaixa = '';
+
+        try {
+            const movimentoFaturado = vm.get('isFaturado');
+        
+            if(!movimentoFaturado) {
+                if(configs.getEmpresa().regimeCaixa) {
+                    view.initGauge('Verificando caixa diário...');
+        
+                    const data = this.getRecord().get('MOVIMENTOS_EMISSAO');
+                    statusCaixa = await Caixa.services.Model.getStatus(data);
+            
+                    view.stopGauge(true);    
+                } else {
+                    statusCaixa = 'A';
+                }
+        
+                if(statusCaixa == 'A') {
+                    CupomEletronico.services.Caixa.criarJanelaReceber();
+                } else if(statusCaixa == 'F') {
+                    throw 'O caixa diário está fechado!';
+                } else if(!statusCaixa) {
+                    throw 'O caixa diário não foi aberto!';
+                }
+            } else { 
+                CupomEletronico.services.Caixa.criarJanelaReceber();
+            }
+
+        } catch(error) {
+            SamosUtils.Msg.error(error, 'Falha ao abrir caixa');
+        }
+
+        view.stopGauge(true);
+    },
+
+    onImportarClick: Ext.emptyFn,
+    onOpcoesClick: Ext.emptyFn,
+    
+    onDeOrcamentoClick: function(itemMenu, e) {
+        const btnImportar = itemMenu.up('samoswidgets-dinamicbutton'); 
+
+        CupomEletronico.services.ImportacaoExportacao.deOrcamento(btnImportar);
+    },
+    
+    onDeRequisicaoClick: function(itemMenu, e) {
+        const btnImportar = itemMenu.up('samoswidgets-dinamicbutton');     
+        
+        CupomEletronico.services.ImportacaoExportacao.deRequisicao(btnImportar);
+    },
+    
+    onDePedidoClick: function(itemMenu, e) {
+        const btnImportar = itemMenu.up('samoswidgets-dinamicbutton');     
+        
+        CupomEletronico.services.ImportacaoExportacao.dePedido(btnImportar);
+    },
+
+    checarValoresCabecalho: function(form) {
+        const produtos = this.lookup('produtos').getStore().data.items || [];
+        const desconto = cents(form.model.get('MOVIMENTOS_DESCONTOS'));
+        const casasDecimaisPreco = configs.getMovimentos().casasDecimaisPreco || 2;
+
+        const somaProdutos = produtos.reduce((total, produto) => {
+            //converte o preco para inteiro, ex: R$ 1,234567 fica 1234567 (para bater os calculos no javascript)
+            const precoInt = toPrecision(produto.get('MOVIMENTOSITENS_PRECO'), casasDecimaisPreco);
+            const qtde     = grams(produto.get('MOVIMENTOSITENS_QUANTIDADE')) || 0;
+            
+            return total + Math.round((precoInt * qtde) / 1000);
+        }, 0);
+
+        //após calcular divide pelas casas decimais novamente e arredonda para centavos para calcular os outros campos
+        const somaProdutosCents = Math.round(somaProdutos / Math.pow(10, (casasDecimaisPreco - 2)));
+
+        form.model.set('MOVIMENTOS_PRODUTOS', somaProdutosCents / 100);
+        form.model.set('MOVIMENTOS_TOTAL', (somaProdutosCents - desconto) / 100);
+    },
+
+    onPessoasEditClick: function(txt) {
+        CupomEletronico.services.Documento.iniciarVendaConsumidor(this.getView());
+        Ext.defer(txt.focus, 100, txt, [true]);
+    },
+
+    onPessoasCloseClick: function(txt) {
+        CupomEletronico.services.Documento.cancelarVendaConsumidor(this.getView());
+        Ext.defer(txt.focus, 100, txt, [true]);
+    },
+
+    onPessoasChange: function(){
+        CupomEletronico.services.Documento.checkVendaConsumidor(this.getView());
+    },
+
+    updateLog: function(txt, record) {
+        const time = momentServer().format('HH:mm:ss');
+        const logon = record.get('USUARIOS_LOGIN');
+        const result = logon + ' ' + time;
+        
+        if(!configs.getMovimentos().carregaVendedorPessoa) {
+            this.getRecord().set('MOVIMENTOS_LOG', result);
+        }
+        
+        if(!configs.getMovimentos().carregaVendedor){
+            const gridItems = this.lookup('produtos');
+            Ext.defer(gridItems.focarNovoItem, 200, gridItems);
+        }
+    },
+
+    changeCpfCnpj: function(txt) {
+        const vm = this.getViewModel();
+        const cpfCnpj = SamosUtils.String.onlyNumbers(txt.getValue());
+
+        if(vm.get('readOnly') || !vm.get('isVendaConsumidor')) { 
+            if(cpfCnpj.length == 11) {
+                txt.setTextMask('___.___.___-__', cpfCnpj);
+                txt.setFieldLabel('CPF');
+            } else {
+                txt.setTextMask('__.___.___/____-__', cpfCnpj);            
+                txt.setFieldLabel('CNPJ');
+            }
+        } else {
+            txt.setTextMask('___.___.___-__', cpfCnpj);
+            txt.setFieldLabel('CPF');
+        }
+    },
+
+    validateCpf: function (txt, event) {
+        if (SamosUtils.Events.isTab(event) || SamosUtils.Events.isEnter(event)) {
+            if(!SamosUtils.String.isCpf(txt.getValue())) {
+                Ext.Note('warning', 'CPF Inválido');
+                Ext.defer(txt.focus, 100, txt, [true]);
+            }
+        }
+    },
+
+    aposBuscarPessoa: async function(txt, record) {
+        this.lookup('produto0').focus(true);
+    },
+    
+    onGravacaoSucesso: async function(movimentoNovo) {
+        const model = this.getRecord();
+        const thisController = this;
+
+        CupomEletronico.services.Recuperacao.apagar(movimentoNovo, Ext.NAVEGADOR_TAB_ID);
+        CupomEletronico.services.Model.updateUltimoDoctoCFE();
+        
+        this.finalizarEdicao();
+        Ext.defer(this.getViewModel().set, 600, this.getViewModel(), ['forceChangeId', Math.random()]);
+
+        this.getViewModel().set('initialValues', Object.assign({}, movimentoNovo.data));
+        movimentoNovo.store = true;//para mostrar que ja esta gravado
+        
+        setTimeout(() => {
+            this.setReadOnly(true);
+            Ext.asap(() => this.getListView().getController().onBuscarClick());
+        }, 100);
+
+        this.getView().stopGauge();
+
+        /*
+        try {
+            const caminhoPDF = await this.gerarPDF();
+    
+            await SamosUtils.Utils.sleep(600);
+    
+            if(caminhoPDF) {
+                SamosUtils.Pdf.exibir({
+                    local: 'window',
+                    caminho: caminhoPDF, 
+                    serverType: 'nodejs'
+                });
+            }
+        } catch (error) {
+            SamosUtils.Msg.alert('Erro', error);
+            this.permiteAlteracao = true;
+            this.onAlterarClick();
+        }*/
+
+        setTimeout(() => {
+            const serie    = movimentoNovo.get('MOVIMENTOS_SERIE');
+            const empresa  = configs.getEmpresa().id;
+            const produtos = this.lookup('produtos').getStore().getData().items || [];
+
+            produtos
+                .filter(produto => cents(produto.get('MOVIMENTOSITENS_PRECO')) < cents(produto.get(configs.getMovimentos().tipoPreco == 'vista' ? 'SALDOS_PRECO' : 'SALDOS_PRAZO')))
+                .forEach(produto => {
+                    const idItem = produto.get('MOVIMENTOSITENS_ID');
+
+                    SamosUtils.Request.nodeApi({
+                        url: `/processos/gerarlog`,
+                        method: 'POST',
+                        query: {
+                            senhaNivel: true,
+                            log: `Preço a menor cupom eletrônico|MOVIMENTOSITENS|${empresa}|${idItem}|${serie}`
+                        }
+                    });
+                });
+
+                thisController.atualizarLog( model );
+                Ext.Note('success', 'Gravado com sucesso!');
+        }, 1000);
+    },
+
+    /*
+    gerarPDF: async function() {
+        const movimento = this.getRecord();
+        const id = movimento.get('MOVIMENTOS_ID');
+    
+        const cupom = await this.gerarChamadaCupom({
+            'MOVIMENTOS_ID'       : id,
+            'MOVIMENTOS_CAIXA'    : localStorage.getItem('numeroCaixa') || await this.getNumeroCaixa(),
+            'MOVIMENTOS_ACAO'     : 'emitir',
+            'MOVIMENTOS_STATUS'   : 'F',
+            'MOVIMENTOS_NFE'      : '',
+            'MOVIMENTOS_PROTOCOLO': ''
+        });
+
+        let queryPDF;
+
+        if(cupom['MOVIMENTOS_PDF']) {
+            queryPDF = await SamosUtils.Request.nodeApi({
+                url: `/processos/gravaarquivo`,
+                method: 'POST',
+                data: {
+                    nomeArquivo: `PDF_DACFE_${new Date().getTime()}.pdf`,
+                    base64     : cupom['MOVIMENTOS_PDF']
+                }
+            });
+        }
+
+        const protocolo = cupom['MOVIMENTOS_JSON']['protocolo'];
+
+        if(protocolo){
+            this.getViewModel().set('hasProtocolo', true);
+            movimento.set('MOVIMENTOS_PROTOCOLO', protocolo || '');
+        }
+
+        movimento.set('MOVIMENTOS_NFE', cupom['MOVIMENTOS_JSON']['cfe'] || '');
+
+        if(cupom['MOVIMENTOS_JSON']['erro']) {
+            throw cupom['MOVIMENTOS_JSON']['erro'];
+        }
+
+        movimento.set('MOVIMENTOS_STATUS', 'F');
+
+        return cupom['MOVIMENTOS_PDF'] ? queryPDF.results : null;
+    },*/
+
+    /*
+    getNumeroCaixa: async function() {
+        const numeroCaixa = await SamosUtils.Msg.prompt('Email', 'Digite o número do caixa em operação', '');
+            
+        if(numeroCaixa === false) { //cancelado pelo usuario
+            Ext.Note('warning', 'Informe o número do caixa');
+            return await this.getNumeroCaixa();
+        } else {
+            localStorage.setItem('numeroCaixa', numeroCaixa);
+            return numeroCaixa;
+        }
+    },*/
+
+    //para de checar automaticamente em 1 minuto
+    /*
+    gerarChamadaCupom: async function(data, timeout = 30000) {
+        let progress;
+        let inicio;
+
+        try {
+            progress = Ext.Progress(10000, 'Gerando Cupom Eletrônico');
+        
+            async function verificarStatus () {
+                await SamosUtils.Utils.sleep(3000);
+        
+                const queryCupom = await SamosUtils.Request.nodeApi({
+                    url: `/processos/cupomeletronico/${data['MOVIMENTOS_ID']}`,
+                    method: 'GET'
+                });
+
+                const cupom = queryCupom[0];
+
+                if(timeout && moment().diff(inicio) >= timeout){
+                    throw 'Chamada expirada, tente novamente';
+                }
+
+                if(cupom['MOVIMENTOS_STATUS'] != 'F') {
+                    try {
+                        await SamosUtils.Request.nodeApi({
+                            url: `/processos/cupomeletronico/${data['MOVIMENTOS_ID']}`,
+                            method: 'DELETE'
+                        });
+
+                        clearInterval(progress);
+                        Ext.MessageBox.hide();
+                        
+                        return cupom;
+                    } catch(error) {
+                        console.error(cupom);
+                        throw error;
+                    }
+
+                } else {
+                    return await verificarStatus();
+                }
+            }
+
+            await SamosUtils.Request.nodeApi({
+                url: `/processos/cupomeletronico`,
+                method: 'POST',
+                data: data
+            });
+
+            inicio = moment();
+            
+            return await verificarStatus();
+    
+        } catch(error){ 
+            clearInterval(progress);
+            Ext.MessageBox.hide();  
+            throw error;
+        }
+    },*/
+
+    onGravacaoFalha: function (error) {
+        console.error(error);
+        Ext.Note('error', 'Erro no servidor');
+        try {
+            SamosUtils.Events.disableWarnReload();
+            this.getView().stopGauge();
+        } catch(e) {}
+    },
+
+    aposGravar: Ext.emptyFn,
+
+    validarQtdeMaxima: function(txt, event) {
+        if(txt.readOnly) { return; }
+
+        const produto = txt.up('form').getForm().getValues();
+        const id      = produto['MOVIMENTOSITENS_ID_PRODUTOS'];
+        const qtde    = grams(produto['MOVIMENTOSITENS_QUANTIDADE']);
+
+        if(configs.getMovimentos().avisarSaldoInsuficiente) { 
+            const saldoLocal = grams(produto['SALDOS_DISPONIVEL']);
+    
+            if(qtde > saldoLocal) {
+                Ext.Note('warning', `Produto: ${id} - Saldo Insuficiente (Local: ${parseInt(saldoLocal / 1000)})`, 4000);
+            }
+        }
+    },
+
+    onAlterarEmissaoClick: function(btn, e) {
+        const movimento = this.getRecord();
+
+        const win = Ext.create({
+            xtype: 'window',
+            title: 'Alterar Emissão',
+            autoShow: true,
+            width: 200,
+            heigth: 300,
+            layout: {
+                type: 'vbox',
+                align: 'stretch'
+            },
+            bodyPadding: 10,
+            items: [
+                {
+                    xtype: 'datefield',
+                    fieldLabel: 'Nova Emissão',
+                    value: momentServer().format('YYYY-MM-DD')
+                },
+                {
+                    xtype: 'container',
+                    layout: {
+                        type: 'hbox',
+                        align: 'center',
+                        pack: 'center'
+                    },
+                    items: [
+                        {
+                            xtype: 'button',
+                            text: 'Gravar',
+                            margin: '10 7 7 7',
+                            ui: `primary-${configs.getTema()}`,
+                            handler: gravar
+                        },
+                        {
+                            xtype: 'button',
+                            text: 'Cancelar',
+                            margin: '10 7 7 0',
+                            ui: `tertiary-${configs.getTema()}`,
+                            handler: function() {
+                                win.destroy();
+                            }
+                        }
+                    ]
+                }
+            ]
+        });
+
+        async function gravar() {
+            try {
+                win.initGauge();
+
+                const novaEmissao = moment(win.down('datefield').getValue()).format('YYYY-MM-DD');
+
+                if(momentTz(novaEmissao).isBefore(momentServer().startOf('month').format('YYYY-MM-DD'))) {
+                    Ext.Note('warning', 'Data anterior à permitida');
+                    win.stopGauge(true);                    
+                    return;
+                }
+
+                if(momentTz(novaEmissao).isAfter(momentServer().endOf('month').format('YYYY-MM-DD'))) {
+                    Ext.Note('warning', 'Data posterior à permitida');
+                    win.stopGauge(true);                    
+                    return;
+                }                
+
+                await SamosUtils.Request.nodeApi({
+                    url: `/processos/movimentos/alteraremissao/${movimento.get('MOVIMENTOS_ID')}`,
+                    method: 'PUT',
+                    data: {
+                        'MOVIMENTOS_EMISSAO': novaEmissao
+                    },
+                    query: {
+                        senhaNivel: true
+                    }
+                });
+
+                Ext.Note('success', 'Emissão alterada com sucesso');
+
+                movimento.set('MOVIMENTOS_EMISSAO', novaEmissao);
+
+                win.destroy();
+            } catch(error) {
+                win.stopGauge(true);
+                SamosUtils.Msg.error(error, 'Falha ao alterar data da emissão');
+            }
+        }
+    },
+
+    onAlterarVendedorClick: function(btn, e) {
+        const movimento = this.getRecord();
+
+        const win = Ext.create({
+            xtype: 'window',
+            title: 'Alterar Vendedor',
+            autoShow: true,
+            width: 200,
+            heigth: 300,
+            layout: {
+                type: 'vbox',
+                align: 'stretch'
+            },
+            bodyPadding: 10,
+            items: [
+                {
+                    xtype: 'numberfield',
+                    enableKeyEvents: true,
+                    hideTrigger: true,
+                    fieldStyle: 'text-align: right;',
+                    reference: 'novoVendedor',
+                    fieldLabel: 'Novo Vendedor',
+                    minValue: 1,
+                    allowDecimals: false,
+                },
+                {
+                    xtype: 'container',
+                    layout: {
+                        type: 'hbox',
+                        align: 'center',
+                        pack: 'center'
+                    },
+                    items: [
+                        {
+                            xtype: 'button',
+                            text: 'Gravar',
+                            margin: '10 7 7 7',
+                            ui: `primary-${configs.getTema()}`,
+                            handler: gravar
+                        },
+                        {
+                            xtype: 'button',
+                            text: 'Cancelar',
+                            margin: '10 7 7 0',
+                            ui: `tertiary-${configs.getTema()}`,
+                            handler: function() {
+                                win.destroy();
+                            }
+                        }
+                    ]
+                }
+            ]
+        });
+
+        async function gravar() {
+            try {
+                win.initGauge();
+
+                const novoVendedor = win.down('numberfield').getValue();
+
+                const searchVendedor = await SamosUtils.Request.nodeApi({
+                    url: `/usuarios`,
+                    method: 'GET',
+                    query: {
+                        conteudo: '.' + novoVendedor
+                    }
+                });
+
+                if(searchVendedor.results.length > 0) {
+                    await SamosUtils.Request.nodeApi({
+                        url: `/processos/movimentos/alterarvendedor/${movimento.get('MOVIMENTOS_ID')}`,
+                        method: 'PUT',
+                        data: {
+                            'MOVIMENTOS_ID_USUARIOS': novoVendedor
+                        }
+                    });
+    
+                    Ext.Note('success', 'Vendedor alterado com sucesso');
+    
+                    const nomeVendedor = searchVendedor.results[0]['USUARIOS_NOME'] || '';
+
+                    movimento.set('MOVIMENTOS_ID_USUARIOS', novoVendedor);    
+                    movimento.set('USUARIOS_NOME', nomeVendedor);    
+                    
+                    win.destroy();
+
+                }
+
+            } catch(error) {
+                win.stopGauge(true);
+                SamosUtils.Msg.error(error, 'Falha ao alterar Vendedor');
+            }
+        }
+    },
+
+    obterNumeroComanda: function() {
+        return new Promise(resolve => {
+            const win = Ext.create({
+                xtype: 'window',
+                title: 'Informe a Comanda',
+                autoShow: true,
+                closable: false,
+                width: 200,
+                heigth: 300,
+                layout: {
+                    type: 'vbox',
+                    align: 'stretch'
+                },
+                bodyPadding: 10,
+                items: [
+                    {
+                        xtype: 'numberfield',
+                        enableKeyEvents: true,
+                        hideTrigger: true,
+                        fieldStyle: 'text-align: right;',
+                        reference: 'novoVendedor',
+                        fieldLabel: 'Código',
+                        minValue: 1,
+                        allowDecimals: false,
+                    },
+                    {
+                        xtype: 'container',
+                        layout: {
+                            type: 'hbox',
+                            align: 'center',
+                            pack: 'center'
+                        },
+                        items: [
+                            {
+                                xtype: 'button',
+                                text: 'Confirmar',
+                                margin: '10 7 7 7',
+                                ui: `primary-${configs.getTema()}`,
+                                handler: () => {
+                                    resolve(win.down('numberfield').getValue());
+                                    win.destroy();
+                                }
+                            }
+                        ]
+                    }
+                ]
+            });
+        })
+    }
+});

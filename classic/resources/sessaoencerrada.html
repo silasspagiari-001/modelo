@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Sistema SamosAdmin</title>
+	</head>
+	<body bgcolor="#f7f7f7">
+		<div>&nbsp;</div>
+		<table align="center" border="0">
+			<tr>
+				<h1 id='sessaotext'>Sessão Encerrada!</h1>
+			</tr>
+			<tr>
+				<td align="center">
+					<img id='logo'/>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<h3>
+						<a id='link'>Fazer login novamente</a>
+					</h3>
+				</td>
+			</tr>
+			<tr>
+				<h1><center><font color = '157fcc'>
+					
+			</tr>
+		</table>
+	</body>
+
+	<script type="text/javascript">
+		(async function(){
+			const text = document.getElementById('sessaotext');
+			const link = document.getElementById('link');
+			const logo = document.getElementById('logo');
+	
+			const search = location.search.slice(1);
+			const partes = search.split('&');
+			const queries = {};
+			
+			partes.forEach(parte => {
+				const chaveValor = parte.split('=');
+				const chave = chaveValor[0];
+				const valor = chaveValor[1];
+				queries[chave] = valor;
+			});
+			
+			text.style.align    = 'center';
+			text.style.margin   = '0 auto';
+			text.style.width    = '20%';
+			text.style.fontSize = '33px';
+	
+			link.style.align    = 'center';
+			link.style.margin   = '0 auto';
+			link.style.width    = '20%';
+			link.href           = location.href.split('resources')[0];
+	
+			try {
+				const url = `${queries['url']}/clientes/getimage?caminho=logos/main/${queries['cnpj']}.png`;
+				const query = await fetch(url);
+	
+				if(query.status == 200) {
+					logo.src = URL.createObjectURL(await query.blob())
+				} else {
+					throw query.statusText;
+				}
+	
+			} catch(error) {
+				logo.src = `${location.origin}/samosadmin/classic/resources/images/main/${queries['tema']}.png`;
+			}
+	
+			logo.width  = window.innerHeight - 200;
+		})()
+	</script>
+</html>

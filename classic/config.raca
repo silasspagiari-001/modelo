@@ -1,0 +1,761 @@
+{
+    "apiNode": [
+        "http://localhost:3000"
+    ],
+    "apiDelphi": [
+        "http://localhost:8050"
+    ],
+    "impressoras": {},
+    "redis":true, 	
+    "notificacoes": false,
+    "licenca": {
+        "api": "https://automacao.samosweb.com.br",
+        "notificarUsuarios": [
+            1
+        ],
+        "diasAviso": 5,
+        "regra": "QSsxKGludmVydGlkbyl8QysyKGludmVydGlkbyk"
+    },
+    "clientName": "racaforte",
+    "timezone": "America/Sao_Paulo",
+    "tema": "green",
+    "isDMVC": true,
+    "case": "uppercase",
+    "multiEmpresa": false,
+    "exibicaoPdf": "window",
+    "maquinasCartao": ["Rede","GetNet","Cielo"],
+    "login": {
+        "case": "uppercase",
+        "salvarSenha": true,
+        "ocultarEsqueciSenha": false,
+        "validarExpediente": false,
+        "baterPonto": false,
+        "diasBloquearAcesso": 0,
+        "aparelhosPermitidos": {
+            "phone": true,
+            "tablet": true,
+            "desktop": true
+        }
+    },
+    "dashboard": {
+        "faturamento": {
+            "usuarios": []
+        }
+    },
+   "pessoas": {
+        "ordemBusca": 0,
+        "foto": false,
+        "labelFantasia": "Email",
+        "labelPagina": "Email2",
+        "precoEspecifico": false,
+        "propriedades": true,
+        "tipoCusto": "Z",
+        "impedirCnpjRepetido": true,
+        "carregarCnpjExistente": true,
+        "tipos": [
+            ["A","Clientes", "#0000FF"],
+            ["B","Fornecedores", "#008000"],
+            ["V","Veterinários", "#008000"],
+            ["C","Contas", "#008000"],
+            ["D","Bancos", "#008000"],
+            ["E","Veiculos", "#008000"],
+            ["F","Funcionários", "#008000"]
+        ]
+    },
+    "usuarios": {
+        "foto": false,
+        "tipoVendedor": "2",
+        "tipos": [
+            ["0","Diretores"],
+            ["1","Gerentes"],
+            ["2","Vendedores"],
+            ["3","Supervisores"],
+            ["4","Administrativo"],
+            ["5","Fiscal"],
+            ["6","Veterinários"]
+        ]
+    },
+    "produtos": {
+        "ordemBusca": 0,
+        "labelPreco": "R$ Venda",
+        "labelPrazo": "Ø",
+        "labelReferencia": "Prozperar",
+        "labelReservado": "Custo Médio",
+        "labelTransferencia": "Transferência",
+        "labelMarca": "Código/SKU",
+        "labelFabrica": "Fábrica",
+        "labelEmbalagem": "Doses(Vacina)",
+        "labelAplicacao": "Unidade Tributária",
+        "labelListaPreco": "Lista Preço",
+        "labelDerivado": "Informar Partida",
+        "descricao": {
+            "label": "PIS/Cofins/Isento(P)RPJ",
+            "readOnly": false
+        },
+        "vacinas": true,
+        "fabValInicial": "01/01/2020",
+        "statusConsultaPreco": "T",
+        "precoMargemMinimo": false,
+        "local": true,
+        "comissaoVista": true,
+        "comissaoPrazo": false,
+        "hideEmbalagem": false,
+        "sat": false,
+        "lotes": true,
+        "loteObrigatorio": true,
+        "montagemProdutos": false,
+        "exibirSaldoApenasLocalEDeposito": false,
+        "calculoPreco": {
+            "vista": "custo + (custo * (margem *.01))",
+            "prazo": "custo + (custo * (margem *.01))",
+            "margem": "(vista - custo) / (custo * 0.01)"
+        },
+        "atualizaPreco": [
+            {
+                "field": "SALDOS_COMISSAO",
+                "ativo": false,
+                "title": "% Comissao"
+            },
+            {
+                "field": "SALDOS_MARKUP",
+                "ativo": false,
+                "title": "% Markup"
+            },
+            {
+                "field": "SALDOS_CUSTO",
+                "ativo": true,
+                "title": "R$ Custo",
+                "recalcular": {
+                    "SALDOS_PRECO": true,
+                    "SALDOS_PRECOMINIMO": false
+                }
+            },
+            {
+                "field": "SALDOS_MARGEM",
+                "ativo": true,
+                "title": "% Margem",
+                "recalcular": {
+                    "SALDOS_PRECO": true
+                }
+            },
+            {
+                "field": "SALDOS_PRECO",
+                "ativo": true,
+                "title": "R$ Preco",
+                "recalcular": {
+                    "SALDOS_MARGEM": true,
+                    "SALDOS_PRAZO": false
+                }
+            },
+            {
+                "field": "SALDOS_PRAZO",
+                "ativo": false,
+                "title": "R$ Prazo",
+                "recalcular": {
+                    "SALDOS_PRECO": false
+                }
+            },
+            {
+                "field": "SALDOS_MARGEMMINIMA",
+                "ativo": false,
+                "title": "% MargemMin",
+                "recalcular": {
+                    "SALDOS_PRECOMINIMO": false
+                }
+            },
+            {
+                "field": "SALDOS_PRECOMINIMO",
+                "ativo": false,
+                "title": "R$ PrecoMin",
+                "recalcular": {
+                    "SALDOS_MARGEMMINIMA": false
+                }
+            }
+        ],
+        "grid": {
+            "PRODUTOS_MARCA": false,
+            "PRODUTOS_FABRICA": false,
+            "PRODUTOS_APLICACAO": false,
+            "PRODUTOS_UNIDADE": true,
+            "SALDOS_LOCAL": false,
+            "SALDOS_DISPONIVEL": true,
+            "SALDOS_PRECO": true,
+            "SALDOS_PRAZO": false
+        },
+        "status": [
+            ["","Todos"],
+            ["T","Ativo"],
+            ["P","Produção"],
+            ["R","Revenda"],
+            ["F","Inativo"]
+        ],
+        "derivado": [
+            ["T","Sim"],
+            ["V", "Vacina"],
+            ["M", "Medicamento"],
+            ["H", "Herbicida"],
+            ["F","Não"]
+        ],
+        "unidades": [
+            ["AMP","Ampola"],
+            ["BG","Bisnaga"],
+            ["BLD","Balde"],
+            ["BR","Barra"],
+            ["CJ","Conjunto"],
+            ["CP","Comprimido"],
+            ["CX","Caixa"],
+            ["DZ","Dúzia"],
+            ["ENV","Envelope"],
+            ["FA","FA"],
+            ["FL","Folha"],
+            ["FR","Frasco"],
+            ["GL","GL"],
+            ["ICA","ICA"],
+            ["JG","Jogo"],
+            ["KG","KG"],
+            ["KIT","Kit"],
+            ["LAM","LAM"],
+            ["LT","Litro"],
+            ["MT","Metro"],
+            ["PAR","Par"],
+            ["PC","Peça"],
+            ["PCT","Pacote"],
+            ["PTE","Pote"],
+            ["RL","Rolo"],
+            ["SC","Saco"],
+            ["TB","TB"],
+            ["UN","Unidade"],
+            ["VC","VC"],
+            ["VD","Vidro"]
+        ],
+	"origem": [
+            ["0","0 - Nacional (exceto as indicadas nos códigos 3, 4, 5 e 8)"],
+            ["1","1 - Estrangeira - importação direta (exceto a indicada no código 6)"],
+            ["2","2 - Estrangeira - adquirida no mercado interno (exceto a indicada no código 7)"],
+            ["3","3 - Nacional - conteúdo de importação > 40% e = 70%"],
+            ["4","4 - Nacional - produção conforme processos produtivos básicos"],
+            ["5","5 - Nacional - conteúdo de importação = 40%"], 
+            ["6","6 - Estrangeira - importação direta, sem similar nacional (resolução CAMEX e gás natural)"],
+            ["7","7 - Estrangeira - adquirida no mercado interno, sem similar nacional (CAMEX e gás natural)"],
+            ["8","8 - Nacional - conteúdo de importação > 70%"]
+        ],
+        "cstlocal": [
+            ["00","00 - Tributado"],
+            ["10","10 - Substituição"],
+            ["20","20 - Redução Base"],
+            ["30","30 - Isenta Substituição"],
+            ["40","40 - Isenta"],
+            ["41","41 - Não Tributada"],
+            ["50","50 - Suspensão"],
+            ["51","51 - Diferido"],
+            ["60","60 - Antecipado"],
+            ["70","70 - Substituição Reduzida"],
+            ["90","90 - Outros"],
+            ["101","101 - Tributado Simples"],
+            ["102","102 - Tributado Simples"],
+            ["201","201 - Tributado Simples"],
+            ["300","300 - Imune"],
+            ["400","400 - Não tributada"],
+            ["500","500 - Antecipado"],
+            ["900","900 - Outros"]
+        ],
+        "cstoutros": [
+            ["00","00 - Tributado"],
+            ["10","10 - Substituição"],
+            ["20","20 - Redução Base"],
+            ["30","30 - Isenta Substituição"],
+            ["40","40 - Isenta"],
+            ["41","41 - Não Tributada"],
+            ["50","50 - Suspensão"],
+            ["51","51 - Diferido"],
+            ["60","60 - Antecipado"],
+            ["70","70 - Substituição Reduzida"],
+            ["90","90 - Outros"],
+            ["101","101 - Tributado Simples"],
+            ["102","102 - Tributado Simples"],
+            ["201","201 - Tributado Simples"],
+            ["300","300 - Imune"],
+            ["400","400 - Não tributada"],
+            ["500","500 - Antecipado"],
+            ["900","900 - Outros"]
+        ],
+        "percentuaisIcms": {
+            "simplesLocal": 0,
+            "simplesRegiao1": 0,
+            "simplesRegiao2": 0,
+            "normalLocal": 18,
+            "normalRegiao1": 7,
+            "normalRegiao2": 12
+        },
+        "coresSaldos": {
+            "zerado": "color: red;",
+            "baixo": "color: yellow;",
+            "normal": "color: green;"
+        },
+        "cstsubstPadrao": "010",
+        "cstsubst": [
+            ["010","010 - Substituição"],
+            ["999","999 - Outros"]
+        ],
+        "conveniolocal": [
+			["N","NENHUM"],
+			["AC","SUBST.TRIB.CFE.ARTIGO 313-A DO RICMS/SP"],
+			["AD","RED.ICMS CFE. ARTIGO 54,INCISO XV, ALINEA D DO RICMS/SP"],
+			["AE","ISENTO ICMS CONVENIO 100/97 ART.41 INCISO I DO ANEXO I DO RICMS"],
+			["AF","ICMS DIFERIDO DECR.51608/2007"],
+			["A1","ICMS ISENTO CFE LIVRO I ART.9 INCISO LXXXV DO DECRETO 37699/97"],
+			["CE","SUBST.TRIB.CONF. ART. 313Y"],
+			["AB","RED.BASE DE CALC.CONF.ANEXO I CONV.ICMS52/1991"],
+			["RR","SUBST. TRIBUTARIA ARTIGO 313-G DO RICMS/SP"],
+			["BC","REDUCAO ICMS CONVENIO 52/91 ARTIGO III E IV DO RICMS SP"],
+			["A3","ARTIGO 54,INCISO V DO RICMS/SP"],
+			["CD","ISENTO CONF.ART-50., ANEXO I, LIVRO VI DO RICMS/SP(2000)"],
+			["AG","CONVENIO ICMS 52/91 BASE LEGAL ARTIGO 12 INCISO III E IV DO ANEXO II"],
+			["SP","ANEXO II DO CONVENIO ICMS 52/91"],
+			["GF","BASE DE CALC.RED.EM 33,33% NOS TERMOS ARTIGO 30 INC.I ANEXOII DECRETO 45.490"],
+			["MF","ISENTO ICMS CONVENIO 101/97"],
+			["1","ICMS REDUZIDO ARTIGO 54.INCISO V.DO RICMS/SP CFE.ANEXO II DA RESOLUCAO SF 04/98"],
+			["A","ISENTO ICMS CONF. TAB II ANEXO I ITEM 47.1 DO RICMS"],
+			["B","IMPOSTO RECOLHIDO POR SUBST.NOS TERMOS DO ART 281-F DO RICM"],
+			["C","DIFERIMENTO DO ICMS CONF ART 342 DO RICMS"],
+			["D","ICMS DIFERIDO CFE ART 400-C DEC 45.490"],
+			["E","ICMS RECOLHIDO POR SUBST TRIBUTARIA CONF ART 313-Y DO RICMS PORTARIA CAT 70 DE 02/06/2010"],
+			["F","BASE CALC.REDUZIDA CONV.ICMS N.52/91 E ART.53 DO RIMS DECRETO: 33118 DE 14/03/91-RESOL.SF.N.4 DE 16/01/98"],
+			["G","ICMS DIFERIDO CONF. ART. 399 DECRETO 45.490/00"],
+			["H","ICMS REC POR SUBSTITUICAO TRIB CONF DEC 54.338/2009"],
+			["I","ALIQ.RED.CONF.ART.54 PARAF.1. DO RICMS DEC.45.490/00"],
+			["J","ISENTO ICMS CLAUSULA PRIMEIRA INCISO V   CONV ICMS 70/91"],
+			["K","REDUCAO BASE DE CALCULO ANEXO I CONVENIO ICMS 52/91"],
+			["L","SUBST.TRIBUT.CONV.85/93, 74/94, 105/92"],
+			["M","ISENTO ICMS CLAUSULA PRIMEIRA INCISO VIII CONV ICMS 70/91"],
+			["O","BASE DE CALCULO REDUZIDA EM 33,33% NOS TERMOS DO ARTIGO 30 DO DECRETO 58.761/2012"],
+			["P","BASE DE CALCULO REDUZIDA CONFORME CONV ICMS 52/91"],
+			["Q","ICMS DIFERIDO CONF ART 338 INCISO II DO DECRETO 33118/91"],
+			["R","DIFERIMENTO DO ICMS ARTIGO 10 DDTT DO RICMS"],
+			["S","BSE DE CALC.RED.CONV.ICMS 52/91 E ART.51 RICMS/2000"],
+			["T","REDUCAO ICMS EM 33,33% DO VR DA OPERACAO CONF.ART 400-C DO RICMS"],
+			["U","ICMS DIFERIDO DE ACORDO DEC 45490 ART 399 DO RICMS/2000"],
+			["V","DIFERIMENTO DO ICMS CONF ART 342 DO RICMS/SP"],
+			["W","ISENTO ICMS :ITENS 47.1/3/5 TABII ANEXOS RICMS 33.118/91"],
+			["X","BASE DE CALC.RED.CONV.ICMS 52/91 E ART.51 RICMS/2000 DECRETO:45490 DE 30/11/00 RESOL.SF N.4 DE 16/01/98"],
+			["Y","ICMS ISENTO CFE LIVRO I ART 9 INCISO LXXXV DECR 37699"],
+			["Z","NAO INCIDENCIA DE ICMS CONF ART 7. INCISO XIV"]
+        ],
+        "conveniooutros": [
+		    ["N","NENHUM"],
+			["AB","ICMS REDUZIDO CFE.TERMOS DO CONVENIO ICMS 52/91 CLAUSULA I B"],
+			["AF","RED.NA BASE DE CALC, CONFORME POSICAO62.7, ITEM 21 DO ANEXO VI DO RICMS"],
+			["A2","ICMS ISENTO CFE.LIVRO I ART.9 INCISO LXXXV DO DECRETO 37699/97"],
+			["AC","RED.BS.CALC.CONF.ANEXO I CONV.ICMS 52/1991"],
+			["BC","REDUCAO BASE CALCULO CONVENIO 52/91"],
+			["AH","CONVENIO ICMS 52/91 BASE LEGAL ARTIGO 12, INCISO III ALINEA B"],
+			["MF","ISENTO DE ICMS CONVENIO 101/97"],
+			["2","RED.BASE DE CALC.ART.12,INCISO III ALINEA A E B DO ANEXO II"],
+			["B","DIFERIMENTO DO ICMS CONF ART 341   DO RICMS"],
+			["C","REDUCAO 60% CONF CONVENIO N. 100/97 DE 04/11/97 DO RICMS"],
+			["D","DIFERIMENTO DO ICMS CONF ART 342B DO RICMS"],
+			["E","ICMS RECOLHIDO POR SUBST TRIBUTARIA CONF ART 313-J DO RICMS/00"],
+			["F","BASE DE CALCULO REDUZIDA CONF. CONVENIO 65/93"],
+			["G","MERCADORIA ESTR ADQUIRIDA NO MERC INT CONFORME RES DO SENADO FEDERAL 13/2012."],
+			["H","ICMS REC POR SUBSTITUICAO TRIB CONF DEC 54.338/2009"],
+			["K","ICMS BASE DE CALCULO REDUZIDA CONV.52/91"],
+			["L","SUBST.TRIBUT.CONV.85/93, 74/94, 105/92"],
+			["M","ISENTO ICMS CLAUSULA PRIMEIRA INCISO VIII CONV ICMS 70/91"],
+			["O","ISENTO ICMS CLAUSULA PRIMEIRA INCISO X    CONV ICMS 70/91"],
+			["P","BASE DE CALCULO REDUZIDA CONFORME CONV ICMS 52/91"],
+			["Q","ICMS DIFERIDO CONF ART 338 INCISO II DO DECRETO 33118/91"],
+			["R","DIFERIMENTO DO ICMS ARTIGO 10 DDTT DO RICMS"],
+			["S","NAO INCIDENCIA DE ICMS CONF ITEM XVII DO ART. 4 DO RICMS"],
+			["T","REDUCAO ICMS CONF.ART 53 ITEM 8 BASE CALC C/REDUCAO 61.11%"],
+			["U","BASE DE CALCULO REDUZIDA CONFORME CONVENIO 36/92"],
+			["V","DIFERIMENTO DO ICMS CONF ART 344   DO RICMS"],
+			["X","BASE DE CALC.RED.CONV.ICMS N. 52/91 E ART.51 RICMS/00 DECRETO 45490 DE 30/11/2000 RESOL.SF N.4 DE 16/01/98"],
+			["Y","ICMS ISENTO CFE LIVRO 9 ART 9 INCISO LXXXV DECR 37699"],
+			["Z","NAO INCIDENCIA DE ICMS CONF ART 7. INCISO XIV DO RICMS/00"]
+        ],
+        "convenio12": [
+            ["N","NENHUM"],
+   	    ["2","INFORMAMOS O ENDERECO P/DEVOLUCAO DE EMBALAGENS VAZIAS(ARPEV),ENDERECO RODOVIA SP 284 KM 481.5 PARAGUACU PAULISTA - SP HORARIO DE FUNCIONAMENTO TERCA-FEIRA DA 7.00 AS 11.00 E DAS 12.00 AS 15.30 HORAS"],
+	    ["1","DECLARAMOS QUE O PRODUTO ESTA ACONDICIONADO PARA SUPORTAR RISCOS NORMAIS DE CARGA, TRANSPORTE E DESCARGA. CFE. REGULAMENTACAO EM VIGOR"]
+        ],
+        "marcaproduto": true,
+        "marcacombo": false,
+        "gruposPartida": [990, 992],
+        "marcas": []
+    },
+    "movimentos": {
+  			"comboDocumentos": true,
+	      "autoEnvioSefaz": true,
+        "labelCentroCusto": "Histórico Contábil",
+        "percentualInteiro": true,
+        "recalculoSync": false,
+        "ordemBusca": 1,
+        "redisNfeBoletos": true,
+        "carregaVendedor": true,
+        "editaVendedor": true,
+        "filtraVendedor": true,
+        "carregaPessoaTransporte": true,
+        "editaNumeroRequisicao": false,
+        "tipoPreco": "vista",
+        "calculoImposto": "nodejs",
+        "calculaPesoNfe": true,
+        "exibirPesoMovimento": false,
+        "envioAutomaticoXML": true,
+        "ccEmailPara": "cobranca@racaforte.com.br;joaocarlos@samos.com.br",
+        "exibirDiasVctoRodape": false,
+        "exibirPortadorTitulos": true,
+        "exibirPedidoCompraNfe": false,
+        "exibirRequisicaoNfe": false,
+        "rateiaFreteNfe": true,
+        "rateiaDescontoRequisicaoEntrada": false,
+        "rateiaDescontoNotaEntrada": false,
+        "alteraLiquido": true,
+        "descontoNfe": true,
+        "descontoMaximo": 21,
+        "descontoMaximoSupervisor":25,
+        "descontoMaximoGerente": 30,
+        "qtdePaginasImpressao": 1,
+        "entrega": {
+            "loja": false,
+            "deposito": false,
+            "imediata": false,
+            "empresa": false,
+            "data": false,
+            "hora": false,
+            "situacao": 0,
+            "entregar": false
+        },
+        "autoGerarRomaneio": false,
+        "ramoRomaneio": "construcao",
+        "limiteDiasPedidoRomaneio": 99999,
+        "impressaoRomaneio": [
+            "Imprimir"
+        ],
+        "sistemaDeAprovacao": false,
+        "casasDecimaisPreco": 2,
+        "pedidoCompraObrigatorio": false,
+        "gridProdutos": {
+            "MOVIMENTOSITENS_ID_PRODUTOS": true,
+            "PRODUTOS_NOME": true,
+            "PRODUTOS_MARCA": false,
+            "PRODUTOS_FABRICA": false,
+            "PRODUTOS_APLICACAO": false,
+            "SALDOS_LOCAL": false,
+            "SALDOS_DISPONIVEL": false,
+            "MOVIMENTOSITENS_QUANTIDADE": true,
+            "MOVIMENTOSITENS_PRECO": true,
+            "MOVIMENTOSITENS_PERCENTUAL": true,
+            "MOVIMENTOSITENS_DESCONTOS": false,
+            "MOVIMENTOSITENS_TOTAL": true,
+            "MOVIMENTOSITENS_LIQUIDO": true,
+            "MOVIMENTOSITENS_TOTALLIQUIDO": true
+        },
+        "promocao": {
+            "PROMOCOES_EMPRESAS": "",
+            "PROMOCOES_CUSTOTECNICO": 0,
+            "PROMOCOES_DESCONTO": 0,
+            "PROMOCOES_INDICE": 0,
+            "PROMOCOES_PARCELAS": 0
+        },
+        "exportarGravado": true,
+        "alterarAposExportar": false,
+        "exportacao": {
+            "ORC": [],
+            "PED": ["NFE"],
+            "REQ": ["NFE"],
+            "DEV": [],
+            "NFE": [],
+            "NFC": ["NFE"],
+            "CFE": [],
+            "TRS": [],
+            "CPA": ["REQ"]
+        },
+        "partida": {
+            "coeficiente": ""
+        },
+        "avisarSaldoInsuficiente": false,
+        "senhaSaldoInsuficiente": false,
+        "senhaImpressao": false,
+        "senhaDesconto": true,
+        "senhaDescontoPrivilegiado": false,
+        "usuariosNotificarEncomenda": [],
+        "carregaMontador": false,
+        "carregaEntregador": false,
+        "usarMarkup": false,
+        "pedidoLP": false,
+        "transporteEspecie": "CAIXAS",
+        "transporteMarca": "",
+        "lancarLoteNoPedido": true,
+        "lancarLoteNaRequisicao": false
+    },
+    "financeiros": {
+        "ordemBusca": 0,
+        "dataInicial": "01/01/2019",
+        "dataFinal": "31/12/2026",
+        "exibirDuplicataNoCaixa": true,
+        "transferirSaldoCaixa": false,
+        "gerarCaixaNoRetorno": false,
+        "tipoFinanceira": "",
+        "multiEmpresa": false,
+        "labelAlimentacao": "Vale Alimentação",
+        "labelOutro":"Outro",
+        "caixaLancaIndividual": false,
+        "boletos": {
+            "ordemBusca": 2,
+            "pix": true,
+            "permitirImpressaoVariosClientes": true
+        },
+        "duplicata": {
+            "dinheiro": false,
+            "portadorDinheiro": 4,
+            "readOnlyDinheiro": false,
+            "cheque":false,
+            "portadorCheque": 1,
+            "readOnlyCheque": false,
+            "credito":false,
+            "portadorCredito": 1,
+            "readOnlyCredito": false,
+            "debito":false,
+            "portadorDebito": 20,
+            "readOnlyDebito": false,
+            "pix":false,
+            "portadorPix": 7,
+            "readOnlyPix": false,
+            "readOnlyOutro": true
+        },
+        "centrocusto": true,
+        "editaNumeroAgrupamento": false
+    },
+    "emissao": {
+        "etiquetaProdutos": { "tipos": ["PRODUTOS"] },
+        "etiquetaProdutos": { "layouts": ["COM PREÇO","SEM PREÇO"] },
+        "etiquetaPessoas": { "tipos": ["PESSOAS"] }
+    },
+    "senhaNivel": {
+        "1": {
+            "nome": "Supervisor",
+            "regra": "QSszKGludmVydGlkbyl8QyhpbnZlcnRpZG8p"
+        },
+        "2": {
+            "nome": "Gerente",
+            "regra": "QShpbnZlcnRpZG8pfEMrMg"
+        },
+        "3": {
+            "nome": "Diretor",
+            "regra": "QisxfEMoaW52ZXJ0aWRvKQ"
+        }
+    },
+    "caminhoUpload": "",
+    "ordens": {
+        "status": [
+            ["1","Aberta"],
+            ["2","Concluida"],
+            ["T","Todas"]
+        ]
+    },
+    "menuRelatorios": [
+        {
+            "text": "Estoque",
+            "module": "winrelatoriosestoque",
+            "isWindow": true,
+            "children": [
+                {
+                    "text": "Inventário de Produtos",
+                    "module": "relatoriosinventario",
+                    "usuarios": [1, 2, 3, 117, 22, 14, 118, 119, 122],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Lista de Preços",
+                    "module": "relatoriosprecos",
+                    "usuarios": [1, 2, 3, 117, 22, 14, 118, 119, 122],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Saldo de Produtos",
+                    "module": "relatoriossaldos",
+                    "usuarios": [1, 2, 3, 117, 22, 14, 118, 119, 122],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Produtos Movimentados",
+                    "module": "relatoriosmovimentoprodutos",
+                    "usuarios": [1, 2, 3, 117, 22, 14, 118, 119, 122],
+                    "isWindow": true,
+                    "read": "T"
+                }
+            ]
+        },
+        {
+            "text": "Compras",
+            "module": "winrelatorioscompras",
+            "isWindow": true,
+            "children": [
+                {
+                    "text": "Compras Analítica",
+                    "module": "relatorioscomprasanalitica",
+                    "usuarios": [1, 3, 5, 14, 118, 119, 122],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Compras Fornecedor Sintética",
+                    "module": "relatorioscomprasfornecedor",
+                    "usuarios": [1, 3, 5, 14, 118, 119, 122],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Compras Produto Sintética",
+                    "module": "relatorioscomprasproduto",
+                    "usuarios": [1, 3, 5, 14, 118, 119, 122],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Lista para Compras",
+                    "module": "relatorioslistacompras",
+                    "usuarios": [1, 3, 5, 14, 118, 119, 122],
+                    "isWindow": true,
+                    "read": "T"
+                }
+            ]
+        },
+        {
+            "text": "Faturamento",
+            "module": "winrelatoriosfaturamento",
+            "isWindow": true,
+            "children": [
+                {
+                    "text": "Vendas por Pessoa Sintética",
+                    "module": "relatoriosvendaspessoassintetica",
+                    "usuarios": [1, 2, 3, 17, 117, 14, 118, 119, 120, 121, 122],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Vendas por Pessoa Analítica",
+                    "module": "relatoriosvendaspessoasanalitica",
+                    "usuarios": [1, 2, 3, 17, 117, 14, 118, 119, 120, 121, 122],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Vendas por Vendedor Sintética",
+                    "module": "relatoriosvendasvendedorsintetica",
+                    "usuarios": [1, 2, 3, 17, 117, 14, 118, 119, 120, 121, 122],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Vendas por Vendedor Analítica",
+                    "module": "relatoriosvendasvendedoranalitica",
+                    "usuarios": [1, 2, 3, 17, 117, 14, 118, 119, 120, 121, 122],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Vendas por Vendedor Produtos",
+                    "module": "relatoriosvendasvendedorprodutos",
+                    "usuarios": [1, 2, 3, 17, 117, 14, 118, 119, 120, 121, 122],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Vendas por Fornecedor Sintética",
+                    "module": "relatoriosvendasfornecedorsintetica",
+                    "usuarios": [1, 2, 3, 17, 117, 14, 118, 119, 120, 121, 122],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Comissões de Vendedores",
+                    "module": "relatorioscomissoes",
+                    "usuarios": [1, 2, 3, 17, 41, 117, 14, 118, 119, 120, 121, 122], 
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Documentos Emitidos no Período",
+                    "module": "relatoriosvendaperiodo",
+                    "usuarios": [1, 2, 3, 17, 117, 14, 41 ,118, 119, 120, 121, 122],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Vendas por Produtos Mês a Mês",
+                    "module": "relatoriosvendapessoa",
+                    "usuarios": [1, 3, 17, 117, 14, 118, 119, 120, 121, 122],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Margem Bruta Faturada",
+                    "module": "relatoriosmargembrutafaturada",
+                    "usuarios": [1, 3, 4, 10, 17, 117, 14, 118, 119, 120, 121, 122],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Movimentos CFOP Entrada/Saída",
+                    "module": "relatoriosmovimentoscfop",
+                    "usuarios": [1, 3, 5, 14, 118, 119, 122],
+                    "isWindow": true,
+                    "read": "T"
+                }
+            ]
+        },
+        {
+            "text": "Financeiro",
+            "module": "winrelatoriosfinanceiro",
+            "isWindow": true,
+            "children": [
+                {
+                    "text": "Títulos a Receber/Pagar",
+                    "module": "relatoriosfinanceiro",
+                    "usuarios": [41,1, 2, 3, 117, 14, 118, 119, 122],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Baixas a Receber/Pagar",
+                    "module": "relatoriosbaixas",
+                    "usuarios": [41,1, 2, 3, 117, 14, 118, 119, 122],
+                    "isWindow": true,
+                    "read": "T" 
+                },
+                {
+                    "text": "Fluxo de Caixa Sintético",
+                    "module": "relatorioscaixasintetico",
+                    "usuarios": [41,1, 2, 3,117],
+                    "isWindow": true,
+                    "read": "T"
+                },
+                {
+                    "text": "Conta Correntes",
+                    "module": "relatorioscontascorrentes",
+                    "usuarios": [41,1, 2, 117],
+                    "isWindow": true,
+                    "read": "T"
+                }
+            ]
+        },
+        {
+            "text": "Fiscal",
+            "module": "winrelatoriosfiscal",
+            "isWindow": true,
+            "children": [
+                {
+                    "text": "Registros Fiscais",
+                    "module": "relatoriosfiscais",
+                    "usuarios": [1, 2, 3, 41, 117, 14, 118, 119, 122],
+                    "isWindow": true,
+                    "read": "T"
+                }
+            ]
+        }
+    ]         
+}
